@@ -42,11 +42,12 @@ button {
     margin-top: 1em;
 
     svg {
-        height: 3em;
-        width: 3em;
+        height: 2em;
+        width: 2em;
         fill: $base-accent-color;
         stroke: #fff;
-        vertical-align: -1em;
+        vertical-align: -.5em;
+        transform: rotate(-32.5deg)
     }
 }
 
