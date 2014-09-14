@@ -19,6 +19,7 @@ html, body {
         margin: 0 auto;
         max-width: $medium-screen;
         text-align: center;
+        padding: 0 1em;
 
         @extend %clearfix;
     }
@@ -26,6 +27,10 @@ html, body {
 
 footer {
     margin-top: 2em;
+}
+
+button {
+    margin-top: 1em;
 }
 
 .logo {
