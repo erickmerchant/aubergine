@@ -7,7 +7,8 @@
     "scss_files": ["assets/scss/app.scss"],
     "icon_files": [
         "assets/eggplant.svg",
-        "bower_components/geomicons-open/icons/github.svg",
-        "bower_components/geomicons-open/icons/twitter.svg"
+        "bower_components/geomicons-open/icons/home.svg",
+        "bower_components/geomicons-open/icons/twitter.svg",
+        "bower_components/geomicons-open/icons/github.svg"
     ]
 }
