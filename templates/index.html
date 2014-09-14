@@ -1,0 +1,29 @@
+{% import 'macros/geomicons.html' as geomicons %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ title }}</title>
+        <link href="./app.css" type="text/css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Chango' rel='stylesheet' type='text/css'>
+        <link href="./favicon.png" rel="shortcut icon" type="image/x-icon">
+    </head>
+    <body>
+        <div>
+            <h1 class="logo">{% include 'svg/eggplant.html' %}{{ title }}</h1>
+            <form>
+                <h2><output name="output">00:00</output></h2>
+                <button type="button" name="work" data-interval="25" data-message="Take a break!">Work</button>
+                <button type="button" name="break" data-interval="5" data-message="Back to work!">Break</button>
+            </form>
+        </div>
+        <footer>
+            <p>Built by Erick Merchant <a href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a> <a href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a>
+            <p class="logo-credit">Eggplant by Michelle Dees from The Noun Project</p>
+        </footer>
+        <script async src="./app.js"></script>
+    </body>
+</html>

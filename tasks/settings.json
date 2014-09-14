@@ -1,0 +1,13 @@
+{
+    "date_formats": ["YYYY-MM-DD", "YYYY-MM-DD-HHmmss"],
+    "js_files": [
+        "assets/js/ender.min.js",
+        "assets/js/app.js"
+    ],
+    "scss_files": ["assets/scss/app.scss"],
+    "icon_files": [
+        "assets/eggplant.svg",
+        "bower_components/geomicons-open/icons/github.svg",
+        "bower_components/geomicons-open/icons/twitter.svg"
+    ]
+}
