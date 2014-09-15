@@ -11,22 +11,47 @@
     box-sizing: border-box;
 }
 
-html, body {
+%center {
+    margin: 0 auto;
+    max-width: $medium-screen;
+    text-align: center;
+}
+
+body {
     height: 100%;
     background: $base-background-color;
+}
 
-    > * {
-        margin: 0 auto;
-        max-width: $medium-screen;
-        text-align: center;
-        padding: 0 1em;
+header {
+    width: 100%;
 
-        @extend %clearfix;
+    background-color: $alt-background-color;
+    background-image: repeating-radial-gradient(
+        circle,
+        $alt-background-color,
+        $alt-background-color 15px,
+        $base-accent-color 15px,
+        $base-accent-color 30px
+    );
+
+    padding: 2em;
+
+    h1 {
+        @extend %center;
     }
+}
+
+main {
+    margin-top: 2em;
+    padding: 0 1em;
+
+    @extend %clearfix;
+    @extend %center;
 }
 
 footer {
     margin-top: 2em;
+    @extend %center;
 }
 
 button {
@@ -44,7 +69,7 @@ button {
     svg {
         height: 2em;
         width: 2em;
-        fill: $base-accent-color;
+        fill: $base-background-color;
         stroke: #fff;
         vertical-align: -.5em;
         transform: rotate(-32.5deg)

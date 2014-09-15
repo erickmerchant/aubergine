@@ -12,14 +12,16 @@
         <link href="./favicon.png" rel="shortcut icon" type="image/x-icon">
     </head>
     <body>
-        <div>
+        <header>
             <h1 class="logo">{% include 'svg/eggplant.html' %}{{ title }}</h1>
+        </header>
+        <main>
             <form>
                 <h2><output name="output">00:00</output></h2>
                 <button type="button" name="work" data-interval="25" data-message="Take a break!">Work</button>
                 <button type="button" name="break" data-interval="5" data-message="Back to work!">Break</button>
             </form>
-        </div>
+        </main>
         <footer>
             <p>Built by Erick Merchant <span class="links"><a href="http://erickmerchant.com/">{{ geomicons.icon('home') }}</a> <a href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a> <a href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a></span></p>
             <p class="logo-credit">Eggplant by Michelle Dees from The Noun Project</p>
