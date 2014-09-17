@@ -1,4 +1,4 @@
-/*! site.js */
+/*! app.js */
 +function(){
 
     var moment = require('moment');
