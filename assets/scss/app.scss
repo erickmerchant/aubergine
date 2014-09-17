@@ -25,8 +25,9 @@ body {
 header {
     width: 100%;
 
-    background-color: lighten($base-accent-color, 7%);
-    background-image: repeating-linear-gradient(33deg, transparent, transparent 10px, darken($base-accent-color, 7%) 10px, darken($base-accent-color, 7%) 20px);
+    background-color: lighten($base-accent-color, 5%);
+    background-image: linear-gradient(90deg, transparent 50%, darken($base-accent-color, 5%) 50%);
+    background-size: 4px 4px;
 
     padding: 2em;
 
