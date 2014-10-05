@@ -22,6 +22,10 @@ body {
     background: $base-background-color;
 }
 
+header {
+    @extend %center;
+}
+
 main {
     margin-top: 2em;
     padding: 0 1em;
@@ -50,6 +54,8 @@ button {
 .color-fields {
 
     @extend %center;
+
+    margin-top: 2em;
 
     label {
 

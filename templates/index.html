@@ -12,27 +12,34 @@
         <link href="" rel="shortcut icon" type="image/x-icon" id="favicon">
     </head>
     <body>
+        <header>
+            <h1>Chrono</h1>
+            <small>the themable productivity timer</small>
+        </header>
         <main>
             <form id="controls">
                 <h1><output name="output">00:00</output></h1>
                 <button type="button" name="work" data-interval="25" data-message="Take a break!">Work</button>
                 <button type="button" name="break" data-interval="5" data-message="Back to work!">Break</button>
             </form>
+            <form id="colors" class="color-fields">
+                <fieldset>
+                    <legend>Theme:</legend>
+                    {% for label, value in {
+                            'Gray': '#AAAAAA',
+                            'Orange': '#FF851B',
+                            'Green': '#2ECC40',
+                            'Blue': '#0074D9',
+                            'Fuchsia': '#F012BE'
+                        } %}
+                        <input {% if loop.first %}checked {% endif %}name="color" type="radio" value="{{ value }}" id="color-field-{{ loop.index }}">
+                        <label for="color-field-{{ loop.index }}" style="background-color: {{ value }}">{{ geomicons.icon('check') }}</label>
+                    {% endfor %}
+                </fieldset>
+            </form>
         </main>
         <footer>
             <p>Built by Erick Merchant <span class="links"><a href="http://erickmerchant.com/">{{ geomicons.icon('home') }}</a> <a href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a> <a href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a></span></p>
-            <form id="colors" class="color-fields">
-                {% for label, value in {
-                        'Gray': '#AAAAAA',
-                        'Orange': '#FF851B',
-                        'Green': '#2ECC40',
-                        'Blue': '#0074D9',
-                        'Fuchsia': '#F012BE'
-                    } %}
-                    <input {% if loop.first %}checked {% endif %}name="color" type="radio" value="{{ value }}" id="color-field-{{ loop.index }}">
-                    <label for="color-field-{{ loop.index }}" style="background-color: {{ value }}">{{ geomicons.icon('check') }}</label>
-                {% endfor %}
-            </form>
         </footer>
         <script async src="./app.js"></script>
     </body>

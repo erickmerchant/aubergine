@@ -89,7 +89,7 @@
 
         if (Notification.permission === "granted") {
 
-            new Notification(message, {
+            new Notification("Chrono: \n" + message, {
                 icon: chrono.getImg(200, 200)
             });
         }
