@@ -5,48 +5,27 @@
     var pnglib = require('pnglib')
     var onecolor = require('onecolor');
     var cache = $.cache('chrono');
-
-    var chrono = {
-            end: 0,
-            state: 0,
-            message: '',
-            color: null,
-            getImg: function(width, height) {
-
-                var p = new pnglib(width, height, 256); // construcor takes height, weight and color-depth
-                var background = p.color(chrono.color.red()*255, chrono.color.green()*255, chrono.color.blue()*255, 255); // set the background transparent
-
-                return 'data:image/png;base64,'+p.getBase64();
-            }
-        }
-    ;
-
+    var cached_color = cache.get('color');
+    var theme;
+    var end = 0;
+    var state = 0;
+    var message = '';
     var timeoutID = null;
-
     var outputEl = $('[name=output]');
 
-    $('#controls button').on('click', function(){
+    function get_data_uri(width, height) {
 
-        var el = $(this);
+        var p = new pnglib(width, height, 256); // construcor takes height, weight and color-depth
+        var background = p.color(theme.red()*255, theme.green()*255, theme.blue()*255, 255); // set the background transparent
 
-        reset();
-
-        // $('button').attr('disabled', true);
-
-        chrono.state = 1;
-
-        chrono.end = moment().add(el.data('interval'), 'minute');
-
-        chrono.message = el.data('message');
-
-        go();
-    });
+        return 'data:image/png;base64,'+p.getBase64();
+    }
 
     function go() {
 
-        if(chrono.state) {
+        if(state) {
 
-            var diff = chrono.end.diff(moment(), 'seconds');
+            var diff = end.diff(moment(), 'seconds');
 
             var seconds = parseInt(diff % 60);
 
@@ -60,7 +39,7 @@
             }
             else {
 
-                notify(chrono.message);
+                notify(message);
 
                 reset();
             }
@@ -71,7 +50,7 @@
 
         // $('button').attr('disabled', false);
 
-        chrono.state = 0;
+        state = 0;
 
         outputEl.val('00:00');
 
@@ -90,7 +69,7 @@
         if (Notification.permission === "granted") {
 
             new Notification("Chrono: \n" + message, {
-                icon: chrono.getImg(200, 200)
+                icon: get_data_uri(200, 200)
             });
         }
     }
@@ -113,15 +92,15 @@
         }
     }
 
-    function changeColor(color) {
+    function change_color(color) {
 
         $('body').css('background', color);
 
-        chrono.color = onecolor(color);
+        theme = onecolor(color);
 
         var favicon = $('#favicon');
 
-        var link = '<link href="'+chrono.getImg(16, 16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
+        var link = '<link href="'+get_data_uri(16, 16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
 
         if(favicon.length) {
 
@@ -132,23 +111,36 @@
         }
     }
 
+    $('#controls button').on('click', function(){
+
+        var el = $(this);
+
+        reset();
+
+        // $('button').attr('disabled', true);
+
+        state = 1;
+
+        end = moment().add(el.data('interval'), 'minute');
+
+        message = el.data('message');
+
+        go();
+    });
+
     $('#colors [type="radio"]').on('change', function(){
 
         var color = $(this).val();
 
         cache.set('color', color);
 
-        changeColor(color);
+        change_color(color);
     });
 
-    var color = cache.get('color');
+    if(cached_color) {
 
-    if(color) {
+        $('#colors [value="'+cached_color+'"]').get(0).checked = true;
 
-        $('#colors [value="'+color+'"]').get(0).checked = true;
-
-        changeColor(color);
+        change_color(cached_color);
     }
-
-    // window.chrono = chrono;
 }();
