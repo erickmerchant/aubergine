@@ -139,7 +139,10 @@
 
     if(cached_color) {
 
-        $('#colors [value="'+cached_color+'"]').get(0).checked = true;
+        if($('#colors [value="'+cached_color+'"]').length) {
+
+            $('#colors [value="'+cached_color+'"]').get(0).checked = true;
+        }
 
         change_color(cached_color);
     }
