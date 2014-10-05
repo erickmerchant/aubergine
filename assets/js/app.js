@@ -113,17 +113,32 @@
         }
     }
 
+    function changeColor(color) {
+
+        $('body').css('background', color);
+
+        chrono.color = onecolor(color);
+
+        var favicon = $('#favicon');
+
+        var link = '<link href="'+chrono.getImg(16, 16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
+
+        if(favicon.length) {
+
+            favicon.replaceWith(link);
+        }
+        else {
+            $('head').append(link);
+        }
+    }
+
     $('#colors [type="radio"]').on('change', function(){
 
         var color = $(this).val();
 
         cache.set('color', color);
 
-        $('body').css('background', color);
-
-        chrono.color = onecolor(color);
-
-        $('#favicon').attr('href', chrono.getImg(16, 16));
+        changeColor(color);
     });
 
     var color = cache.get('color');
@@ -132,11 +147,7 @@
 
         $('#colors [value="'+color+'"]').get(0).checked = true;
 
-        $('body').css('background', color);
-
-        chrono.color = onecolor(color);
-
-        $('#favicon').attr('href', chrono.getImg(16, 16));
+        changeColor(color);
     }
 
     // window.chrono = chrono;
