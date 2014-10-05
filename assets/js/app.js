@@ -11,7 +11,7 @@
     var state = 0;
     var message = '';
     var timeoutID = null;
-    var outputEl = $('[name=output]');
+    var output_el = $('[name=output]');
 
     function get_data_uri(width, height) {
 
@@ -33,7 +33,7 @@
 
             if(diff > 0) {
 
-                outputEl.val(format(minutes) + ':' + format(seconds));
+                output_el.val(format(minutes) + ':' + format(seconds));
 
                 timeoutID = setTimeout(go, 500);
             }
@@ -52,7 +52,7 @@
 
         state = 0;
 
-        outputEl.val('00:00');
+        output_el.val('00:00');
 
         timeoutID && clearTimeout(timeoutID);
     }
