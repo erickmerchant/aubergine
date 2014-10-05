@@ -11,17 +11,16 @@ $header-line-height: $base-font-size * 1.25;
 $base-border-radius: em(3);
 
 // Colors
-$dark-gray: #333;
+$dark-gray: #222;
 $medium-gray: #999;
 $light-gray: #DDD;
 
 // Background Color
-$base-background-color: #614051;
-$alt-background-color: #632547;
+$base-background-color: #AAA;
 
 // Font Colors
-$base-font-color: #fff;
-$base-accent-color: #9a4373;
+$base-font-color: #FFF;
+$base-accent-color: $dark-gray;
 
 // Link Colors
 $base-link-color: $base-accent-color;
@@ -31,7 +30,7 @@ $hover-button-color: $hover-link-color;
 $disabled-button-color: $medium-gray;
 
 // Border color
-$base-border-color: #fff;
+$base-border-color: #FFF;
 
 // Forms
 $form-border-color: $base-border-color;

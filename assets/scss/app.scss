@@ -22,21 +22,6 @@ body {
     background: $base-background-color;
 }
 
-header {
-    width: 100%;
-
-    background-color: lighten($base-accent-color, 5%);
-    background-image: linear-gradient(90deg, transparent 50%, darken($base-accent-color, 5%) 50%);
-    background-size: 4px 4px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, .5);
-
-    padding: 2em;
-
-    h1 {
-        @extend %center;
-    }
-}
-
 main {
     margin-top: 2em;
     padding: 0 1em;
@@ -58,20 +43,39 @@ button {
     display: inline-block;
 }
 
-.logo {
-
-    margin-top: 1em;
-
-    svg {
-        height: 2em;
-        width: 2em;
-        fill: $base-background-color;
-        stroke: #fff;
-        vertical-align: -.5em;
-        transform: rotate(-32.5deg)
-    }
-}
-
 .logo-credit {
     font-size: .5em;
+}
+
+.color-fields {
+
+    @extend %center;
+
+    label {
+
+        display: inline-block;
+        height: 2em;
+        width: 2em;
+        border: 2px solid $base-font-color;
+        border-radius: $base-border-radius;
+        margin: .5em;
+        padding: .4em;
+        color: $base-font-color;
+        font-size: 1em;
+
+        .geomicon {
+            display: none;
+        }
+    }
+
+    input {
+        display: none;
+    }
+
+    input:checked + label {
+
+        .geomicon {
+            display: block;
+        }
+    }
 }

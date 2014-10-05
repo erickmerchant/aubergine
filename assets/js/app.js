@@ -2,8 +2,9 @@
 +function(){
 
     var moment = require('moment');
+    var cache = $.cache('chrono')
 
-    var aubergine = {
+    var chrono = {
             end: 0,
             state: 0,
             message: ''
@@ -14,7 +15,7 @@
 
     var outputEl = $('[name=output]');
 
-    $('button').on('click', function(){
+    $('#controls button').on('click', function(){
 
         var el = $(this);
 
@@ -22,20 +23,20 @@
 
         // $('button').attr('disabled', true);
 
-        aubergine.state = 1;
+        chrono.state = 1;
 
-        aubergine.end = moment().add(el.data('interval'), 'minute');
+        chrono.end = moment().add(el.data('interval'), 'minute');
 
-        aubergine.message = el.data('message');
+        chrono.message = el.data('message');
 
         go();
     });
 
     function go() {
 
-        if(aubergine.state) {
+        if(chrono.state) {
 
-            var diff = aubergine.end.diff(moment(), 'seconds');
+            var diff = chrono.end.diff(moment(), 'seconds');
 
             var seconds = parseInt(diff % 60);
 
@@ -49,7 +50,7 @@
             }
             else {
 
-                notify(aubergine.message);
+                notify(chrono.message);
 
                 reset();
             }
@@ -60,7 +61,7 @@
 
         // $('button').attr('disabled', false);
 
-        aubergine.state = 0;
+        chrono.state = 0;
 
         outputEl.val('00:00');
 
@@ -79,7 +80,7 @@
         if (Notification.permission === "granted") {
 
             new Notification(message, {
-                icon: './eggplant.png'
+                // icon: './eggplant.png'
             });
         }
     }
@@ -102,5 +103,23 @@
         }
     }
 
-    // window.aubergine = aubergine;
+    $('#colors [type="radio"]').on('change', function(){
+
+        var color = $(this).val();
+
+        cache.set('color', color);
+
+        $('body').css('background', color);
+    });
+
+    var color = cache.get('color');
+
+    if(color) {
+
+        $('#colors [value="'+color+'"]').get(0).checked = true;
+
+        $('body').css('background', color);
+    }
+
+    // window.chrono = chrono;
 }();
