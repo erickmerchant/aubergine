@@ -2,12 +2,22 @@
 +function(){
 
     var moment = require('moment');
-    var cache = $.cache('chrono')
+    var pnglib = require('pnglib')
+    var onecolor = require('onecolor');
+    var cache = $.cache('chrono');
 
     var chrono = {
             end: 0,
             state: 0,
-            message: ''
+            message: '',
+            color: null,
+            getImg: function(width, height) {
+
+                var p = new pnglib(width, height, 256); // construcor takes height, weight and color-depth
+                var background = p.color(chrono.color.red()*255, chrono.color.green()*255, chrono.color.blue()*255, 255); // set the background transparent
+
+                return 'data:image/png;base64,'+p.getBase64();
+            }
         }
     ;
 
@@ -80,7 +90,7 @@
         if (Notification.permission === "granted") {
 
             new Notification(message, {
-                // icon: './eggplant.png'
+                icon: chrono.getImg(200, 200)
             });
         }
     }
@@ -110,6 +120,10 @@
         cache.set('color', color);
 
         $('body').css('background', color);
+
+        chrono.color = onecolor(color);
+
+        $('#favicon').attr('href', chrono.getImg(16, 16));
     });
 
     var color = cache.get('color');
@@ -119,6 +133,10 @@
         $('#colors [value="'+color+'"]').get(0).checked = true;
 
         $('body').css('background', color);
+
+        chrono.color = onecolor(color);
+
+        $('#favicon').attr('href', chrono.getImg(16, 16));
     }
 
     // window.chrono = chrono;
