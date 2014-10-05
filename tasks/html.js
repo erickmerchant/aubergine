@@ -18,7 +18,7 @@ gulp.task('html', function (cb) {
 
     site.route('/')
         .use(push({
-            title: 'Aubergine'
+            title: 'Chrono'
         }))
         .render('index.html');
 
