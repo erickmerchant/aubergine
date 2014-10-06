@@ -74,24 +74,6 @@
         }
     }
 
-    if (!("Notification" in window)) {
-
-        Notification.permission = 'denied';
-    }
-    else {
-
-        if (!Notification.permission || Notification.permission !== 'denied') {
-
-            Notification.requestPermission(function (permission) {
-
-                if (!('permission' in Notification)) {
-
-                    Notification.permission = permission;
-                }
-            });
-        }
-    }
-
     function change_color(color) {
 
         $('body').css('background', color);
@@ -107,6 +89,7 @@
             favicon.replaceWith(link);
         }
         else {
+
             $('head').append(link);
         }
     }
@@ -136,6 +119,24 @@
 
         change_color(color);
     });
+
+    if (!('Notification' in window && 'permission' in window.Notification && 'requestPermission' in window.Notification)) {
+
+        Notification = { permission: 'denied' };
+    }
+    else {
+
+        if (!Notification.permission || Notification.permission !== 'denied') {
+
+            Notification.requestPermission(function (permission) {
+
+                if (!('permission' in Notification)) {
+
+                    Notification.permission = permission;
+                }
+            });
+        }
+    }
 
     if(cached_color) {
 
