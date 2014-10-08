@@ -1,6 +1,6 @@
 // Typography
-$base-font-family: 'Chango';
-$header-font-family: 'Chango';
+$base-font-family: 'Source Sans Pro';
+$header-font-family: 'Source Sans Pro';
 
 // Sizes
 $base-font-size: 1em;
@@ -20,13 +20,13 @@ $base-background-color: #AAA;
 
 // Font Colors
 $base-font-color: #FFF;
-$base-accent-color: $dark-gray;
+$base-accent-color: #FFF;
 
 // Link Colors
-$base-link-color: $base-accent-color;
+$base-link-color: $base-font-color;
 $hover-link-color: darken($base-accent-color, 5%);
-$base-button-color: $base-link-color;
-$hover-button-color: $hover-link-color;
+$base-button-color: transparent;
+$hover-button-color: hsla(0, 0, 0, .1);
 $disabled-button-color: $medium-gray;
 
 // Border color

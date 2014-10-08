@@ -12,6 +12,7 @@
     var message = '';
     var timeoutID = null;
     var output_el = $('[name=output]');
+    var title_el = $('title');
 
     function get_data_uri(width, height) {
 
@@ -34,6 +35,7 @@
             if(diff > 0) {
 
                 output_el.val(format(minutes) + ':' + format(seconds));
+                title_el.text(format(minutes) + ':' + format(seconds));
 
                 timeoutID = setTimeout(go, 500);
             }
@@ -53,6 +55,7 @@
         state = 0;
 
         output_el.val('00:00');
+        title_el.text('00:00');
 
         timeoutID && clearTimeout(timeoutID);
     }
@@ -68,9 +71,13 @@
 
         if (Notification.permission === "granted") {
 
-            new Notification("Chrono: \n" + message, {
+            var notification = new Notification(message, {
                 icon: get_data_uri(200, 200)
             });
+
+            notification.onclick = function(){
+                window.focus();
+            };
         }
     }
 

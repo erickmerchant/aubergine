@@ -7,11 +7,10 @@
   display: block;
   width: 100%;
   // font-size: $base-font-size;
-  font-weight: normal;
+  font-weight: bold;
   line-height: 1;
   padding: .75em 1em;
   text-decoration: none;
-  box-shadow: 0 0 2px rgba(0, 0, 0, .5);
 
   &:hover {
     background-color: $hover-button-color;
@@ -23,7 +22,12 @@
 
   %button {
       display: inline-block;
+      margin-right: 1em;
       width: auto;
+
+      &:last-child {
+          margin-right: 0;
+      }
   }
 }
 

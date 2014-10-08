@@ -16,11 +16,7 @@ gulp.task('html', function (cb) {
 
     var site = engine.site('./', nunjucks.render);
 
-    site.route('/')
-        .use(push({
-            title: 'Chrono'
-        }))
-        .render('index.html');
+    site.route('/').render('index.html');
 
     return site.build();
 });
