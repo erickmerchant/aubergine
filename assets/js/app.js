@@ -84,6 +84,10 @@
     function change_color(color) {
 
         $('body').css('background', color);
+        $('button').hover(
+            function(){ $(this).css('color', color); },
+            function(){ $(this).css('color', ''); }
+        );
 
         theme = onecolor(color);
 
@@ -146,6 +150,8 @@
     }
 
     if(cached_color) {
+
+        $('#colors [checked]').get(0).checked = false;
 
         if($('#colors [value="'+cached_color+'"]').length) {
 

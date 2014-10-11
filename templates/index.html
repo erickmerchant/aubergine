@@ -14,8 +14,8 @@
         <main class="box">
             <form id="controls">
                 <h1><output name="output">00:00</output></h1>
-                <button class="button button-dark-gray-outline" type="button" name="work" data-interval="25" data-message="Take a break!">Work</button>
-                <button class="button button-dark-gray-outline" type="button" name="break" data-interval="5" data-message="Back to work!">Break</button>
+                <button class="button" type="button" name="work" data-interval="25" data-message="Take a break!">Work</button>
+                <button class="button" type="button" name="break" data-interval="5" data-message="Back to work!">Break</button>
             </form>
             <form id="colors" class="color-fields">
                 <fieldset>
@@ -28,7 +28,7 @@
                             'Fuchsia': '#F012BE'
                         } %}
                         <input {% if loop.first %}checked {% endif %}name="color" type="radio" value="{{ value }}" id="color-field-{{ loop.index }}">
-                        <label for="color-field-{{ loop.index }}" style="background-color: {{ value }}">{{ geomicons.icon('check') }}</label>
+                        <label for="color-field-{{ loop.index }}" style="background-color: {{ value }}"><span class="square"></icon></label>
                     {% endfor %}
                 </fieldset>
             </form>

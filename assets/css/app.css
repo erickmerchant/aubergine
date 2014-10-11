@@ -4,13 +4,12 @@
 @import "basscss-table-object";
 @import "basscss-color-basic";
 @import "./basscss-adjustments.css";
-@import "./buttons-dark-gray-outline.css";
 @import "./visibilities.css";
 @import "./icons.css";
 
 :root {
     --font-family: 'Source Sans Pro';
-    --border-color: var(--dark-gray);
+    --border-color: var(--lighter-gray);
     --border-width: 2px;
     --border-radius: 2px;
 }
@@ -18,18 +17,30 @@
 /*! app.css */
 
 .box {
-    inherit: .clearfix, .container, .center, .mt2, .px1;
+    inherit: .lighter-gray, .clearfix, .container, .center, .mt2, .px1;
+}
+
+.box a {
+    inherit: .lighter-gray;
 }
 
 .button {
-    inherit: .block, .h3, .mx-auto, .mt1;
+    inherit: .border, .rounded, .block, .h3, .mx-auto, .mt1;
     width: 90%;
+
+    background: transparent;
+    border-color: var(--lighter-gray);
+    color: var(--lighter-gray);
+}
+
+.button:hover {
+    inherit: .bg-lighter-gray, .light-gray;
 }
 
 @media (--breakpoint-sm) {
 
     .button {
-        inherit: .inline-block;
+        inherit: .inline-block, .mr1, .ml1;
         width: auto;
     }
 }
@@ -47,16 +58,18 @@
     inherit: .border, .rounded, .inline-block, .dark-gray, .h4, .m1;
 }
 
-.color-fields label .icon {
-    inherit: .invisible, .block, .m1;
+.color-fields label .square {
+    inherit: .invisible, .block, .m1, .border, .rounded;
+    height: 1em;
+    width: 1em;
 }
 
 .color-fields input {
     display: none;
 }
 
-.color-fields input:checked + label .icon {
-    inherit: .visible, .block;
+.color-fields input:checked + label .square {
+    inherit: .visible, .block, .bg-lighter-gray;
 }
 
 .links {
