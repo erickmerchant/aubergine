@@ -4,7 +4,15 @@ var gulp = require('gulp');
 var _ = require('lodash');
 var nunjucks = require('nunjucks');
 var engine = require('static-engine');
-var push = engine.plugins.push;
+var push = function (literal) {
+
+    return function (pages, next) {
+
+        pages.push(literal);
+
+        next(pages);
+    };
+};
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 
@@ -14,7 +22,7 @@ nunjucks.configure('./templates/', {
 
 gulp.task('html', function (cb) {
 
-    var site = engine.site('./', nunjucks.render);
+    var site = engine('./', nunjucks.render);
 
     site.route('/').render('index.html');
 

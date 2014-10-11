@@ -7,6 +7,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "geomicons-open": "git://github.com/jxnblk/geomicons-open.git#~0.2.0"
+    "geomicons-open": "git://github.com/jxnblk/geomicons-open.git#~0.2.0",
+    "normalize.css": "~3.0.2"
   }
 }

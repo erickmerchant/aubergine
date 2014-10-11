@@ -4,7 +4,10 @@
         "assets/js/ender.min.js",
         "assets/js/app.js"
     ],
-    "scss_files": ["assets/scss/app.scss"],
+    "css_files": [
+        "bower_components/normalize.css/normalize.css",
+        "assets/css/app.css"
+    ],
     "icon_files": [
         "bower_components/geomicons-open/icons/home.svg",
         "bower_components/geomicons-open/icons/twitter.svg",

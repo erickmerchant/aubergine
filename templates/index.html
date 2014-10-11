@@ -11,11 +11,11 @@
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <main>
+        <main class="box">
             <form id="controls">
                 <h1><output name="output">00:00</output></h1>
-                <button type="button" name="work" data-interval="25" data-message="Take a break!">Work</button>
-                <button type="button" name="break" data-interval="5" data-message="Back to work!">Break</button>
+                <button class="button button-dark-gray-outline" type="button" name="work" data-interval="25" data-message="Take a break!">Work</button>
+                <button class="button button-dark-gray-outline" type="button" name="break" data-interval="5" data-message="Back to work!">Break</button>
             </form>
             <form id="colors" class="color-fields">
                 <fieldset>
@@ -33,7 +33,7 @@
                 </fieldset>
             </form>
         </main>
-        <footer>
+        <footer class="box">
             <p>Built by Erick Merchant <span class="links"><a href="http://erickmerchant.com/">{{ geomicons.icon('home') }}</a> <a href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a> <a href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a></span></p>
         </footer>
         <script async src="./app.js"></script>

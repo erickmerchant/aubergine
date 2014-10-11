@@ -1,25 +1,35 @@
 'use strict';
 
 var gulp = require('gulp');
-var argh = require('argh');
-var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var scss_files = require('./settings.json').scss_files;
 var gulp = require('gulp');
 var uncss = require('gulp-uncss');
 var minifycss = require('gulp-minify-css');
 var tap = require('gulp-tap');
 var glob = require('glob');
+var rework = require('gulp-rework');
+var css_files = require('./settings.json').css_files;
+var concat = require('gulp-concat');
+var calc = require('rework-calc');
+var media = require('rework-custom-media');
+var npm = require('rework-npm');
+var vars = require('rework-vars');
+var colors = require('rework-plugin-colors');
+var inherit = require('rework-inherit');
 
 gulp.task('css', function () {
 
-    var outputStyle = argh.argv.dev ? 'nested' : 'compressed';
-
-    var stream = gulp.src(scss_files)
-        .pipe(sass({
-            outputStyle: outputStyle
-        }))
+    var stream = gulp.src(css_files)
+        .pipe(rework(
+            npm(),
+            vars(),
+            media(),
+            calc,
+            colors(),
+            inherit()
+        ))
         .pipe(autoprefixer('> 1%', 'last 2 versions'))
+        .pipe(concat("app.css"))
         .pipe(gulp.dest('./'));
 
     return stream;
@@ -30,21 +40,20 @@ gulp.task('css-minify', ['css', 'html-minify'], function (cb) {
     var ignore = [
         /\.token.*/,
         /\.style.*/,
-        /\.namespace.*/
+        /\.namespace.*/,
+        /code\[class\*\=\"language\-\"\]/,
+        /pre\[class\*="language-"\]/
     ];
 
-    glob('index.html', function (err, files) {
-
-        gulp.src('app.css')
-            .pipe(uncss({
-                html: files,
-                ignore: ignore
-            }))
-            .pipe(minifycss())
-            .pipe(gulp.dest('./'))
-            .pipe(tap(function () {
-                cb();
-            }));
-    });
+    gulp.src('app.css')
+        .pipe(uncss({
+            html: ['index.html'],
+            ignore: ignore
+        }))
+        .pipe(minifycss())
+        .pipe(gulp.dest('./'))
+        .pipe(tap(function () {
+            cb();
+        }));
 
 });
