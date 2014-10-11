@@ -22,7 +22,16 @@
 }
 
 .button {
-    inherit: .h3, .mr1, .ml1;
+    inherit: .block, .h3, .mx-auto, .mt1;
+    width: 90%;
+}
+
+@media (--breakpoint-sm) {
+
+    .button {
+        inherit: .inline-block;
+        width: auto;
+    }
 }
 
 .color-fields {
