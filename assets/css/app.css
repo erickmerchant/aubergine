@@ -16,6 +16,10 @@
 
 /*! app.css */
 
+body {
+    transition: background-color 0.5s ease-in;
+}
+
 .box {
     inherit: .lighter-gray, .clearfix, .container, .center, .mt2, .px1;
 }
