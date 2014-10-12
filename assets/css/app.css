@@ -59,7 +59,7 @@ body {
 }
 
 .color-fields label {
-    inherit: .border, .rounded, .inline-block, .dark-gray, .h4, .m1;
+    inherit: .border, .rounded, .inline-block, .dark-gray, .h5, .m1;
 }
 
 .color-fields label .square {
