@@ -2,7 +2,7 @@
 +function(){
 
     var moment = require('moment');
-    var pnglib = require('pnglib')
+    var pnglib = require('pnglib');
     var onecolor = require('onecolor');
     var cache = $.cache('chrono');
     var cached_color = cache.get('color');
@@ -62,7 +62,7 @@
 
     function format(int) {
 
-        int = new String(int);
+        int = String(int);
 
         return int >= 10 ? int : '0' + int;
     }
