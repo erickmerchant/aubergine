@@ -11,8 +11,6 @@
     var state = 0;
     var message = '';
     var timeoutID = null;
-    var output_el = $('[name=output]');
-    var title_el = $('title');
 
     function get_data_uri(width, height) {
 
@@ -34,8 +32,8 @@
 
             if(diff > 0) {
 
-                output_el.val(format(minutes) + ':' + format(seconds));
-                title_el.text(format(minutes) + ':' + format(seconds));
+                $('[name=output]').val(format(minutes) + ':' + format(seconds));
+                $('title').text(format(minutes) + ':' + format(seconds));
 
                 timeoutID = setTimeout(go, 500);
             }
@@ -54,8 +52,8 @@
 
         state = 0;
 
-        output_el.val('00:00');
-        title_el.text('00:00');
+        $('[name=output]').val('00:00');
+        $('title').text('00:00');
 
         timeoutID && clearTimeout(timeoutID);
     }
@@ -105,7 +103,7 @@
         }
     }
 
-    $('#controls button').on('click', function(){
+    $(document).on('click', '#controls button', function(){
 
         var el = $(this);
 
@@ -122,7 +120,7 @@
         go();
     });
 
-    $('#colors [type="radio"]').on('change', function(){
+    $(document).on('change', '#colors [type="radio"]', function(){
 
         var color = $(this).val();
 
