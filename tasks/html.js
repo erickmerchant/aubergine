@@ -24,7 +24,19 @@ gulp.task('html', function (cb) {
 
     var site = engine('./', nunjucks.render);
 
-    site.route('/').render('index.html');
+    site.route('/').use(push({
+        controls: {
+            'Work': {'interval': 25, 'message': 'Take a break!'},
+            'Break': {'interval': 5, 'message': 'Back to work!'}
+        },
+        colors: [
+            '#AAAAAA',
+            '#FF851B',
+            '#2ECC40',
+            '#0074D9',
+            '#F012BE'
+        ]
+    })).render('index.html');
 
     return site.build();
 });

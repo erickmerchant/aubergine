@@ -14,21 +14,16 @@
         <main class="box">
             <form id="controls">
                 <h1><output name="output">00:00</output></h1>
-                <button class="button" type="button" name="work" data-interval="25" data-message="Take a break!">Work</button>
-                <button class="button" type="button" name="break" data-interval="5" data-message="Back to work!">Break</button>
+                {% for text, data in controls %}
+                    <button class="button" type="button" data-interval="{{ data.interval }}" data-message="{{ data.message }}">{{ text }}</button>
+                {% endfor %}
             </form>
             <form id="colors" class="color-fields">
                 <fieldset>
                     <legend>Theme:</legend>
-                    {% for label, value in {
-                            'Gray': '#AAAAAA',
-                            'Orange': '#FF851B',
-                            'Green': '#2ECC40',
-                            'Blue': '#0074D9',
-                            'Fuchsia': '#F012BE'
-                        } %}
-                        <input {% if loop.first %}checked {% endif %}name="color" type="radio" value="{{ value }}" id="color-field-{{ loop.index }}">
-                        <label for="color-field-{{ loop.index }}" style="background-color: {{ value }}"><span class="square"></icon></label>
+                    {% for color in colors %}
+                        <input {% if loop.first %}checked {% endif %}name="color" type="radio" value="{{ color }}" id="color-field-{{ loop.index }}">
+                        <label for="color-field-{{ loop.index }}" style="background-color: {{ color }}"><span class="square"></icon></label>
                     {% endfor %}
                 </fieldset>
             </form>
