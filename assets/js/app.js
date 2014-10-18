@@ -12,7 +12,6 @@
     var timeoutID = null;
     var $output = $('output');
     var $title = $('title');
-    var $head = $('head');
     var $body = $('body');
     var notifications_supported = ('Notification' in window && 'permission' in window.Notification && 'requestPermission' in window.Notification);
 
@@ -86,17 +85,13 @@
 
         $body.css('background', color);
 
-        var favicon = $('[rel="shortcut icon"]');
+        var favicon = $('#favicon');
 
-        var link = '<link href="'+get_data_uri(16, 16)+'" rel="shortcut icon" type="image/x-icon">';
+        var link = '<link href="'+get_data_uri(16, 16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
 
         if(favicon.length) {
 
             favicon.replaceWith(link);
-        }
-        else {
-
-            $head.append(link);
         }
     }
 
