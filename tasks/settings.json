@@ -5,12 +5,12 @@
         "assets/js/app.js"
     ],
     "css_files": [
-        "bower_components/normalize.css/normalize.css",
+        "node_modules/normalize.css/normalize.css",
         "assets/css/app.css"
     ],
     "icon_files": [
-        "bower_components/geomicons-open/icons/home.svg",
-        "bower_components/geomicons-open/icons/twitter.svg",
-        "bower_components/geomicons-open/icons/github.svg"
+        "node_modules/geomicons-open/icons/home.svg",
+        "node_modules/geomicons-open/icons/twitter.svg",
+        "node_modules/geomicons-open/icons/github.svg"
     ]
 }
