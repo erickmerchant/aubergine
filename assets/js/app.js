@@ -6,18 +6,23 @@
     var onecolor = require('onecolor');
     var cache = $.cache('chrono');
     var cached_color = cache.get('color');
-    var theme;
     var end = 0;
     var state = 0;
     var message = '';
     var timeoutID = null;
+    var $output = $('output');
+    var $title = $('title');
+    var $head = $('head');
+    var $body = $('body');
+    var notifications_supported = ('Notification' in window && 'permission' in window.Notification && 'requestPermission' in window.Notification);
 
     function get_data_uri(width, height) {
 
-        var p = new pnglib(width, height, 256); // construcor takes height, weight and color-depth
-        var background = p.color(theme.red()*255, theme.green()*255, theme.blue()*255, 255); // set the background transparent
+        var png = new pnglib(width, height, 256);
+        var theme = onecolor(cached_color);
+        var background = png.color(theme.red()*255, theme.green()*255, theme.blue()*255, 255);
 
-        return 'data:image/png;base64,'+p.getBase64();
+        return 'data:image/png;base64,'+png.getBase64();
     }
 
     function go() {
@@ -32,8 +37,8 @@
 
             if(diff > 0) {
 
-                $('[name=output]').val(format(minutes) + ':' + format(seconds));
-                $('title').text(format(minutes) + ':' + format(seconds));
+                $output.val(format(minutes) + ':' + format(seconds));
+                $title.text(format(minutes) + ':' + format(seconds));
 
                 timeoutID = setTimeout(go, 500);
             }
@@ -48,12 +53,10 @@
 
     function reset() {
 
-        // $('button').attr('disabled', false);
-
         state = 0;
 
-        $('[name=output]').val('00:00');
-        $('title').text('00:00');
+        $output.val('00:00');
+        $title.text('00:00');
 
         timeoutID && clearTimeout(timeoutID);
     }
@@ -67,7 +70,7 @@
 
     function notify(message) {
 
-        if (Notification.permission === "granted") {
+        if (notifications_supported && Notification.permission === "granted") {
 
             var notification = new Notification(message, {
                 icon: get_data_uri(200, 200)
@@ -81,17 +84,11 @@
 
     function change_color(color) {
 
-        $('body').css('background', color);
-        $('button').hover(
-            function(){ $(this).css('color', color); },
-            function(){ $(this).css('color', ''); }
-        );
+        $body.css('background', color);
 
-        theme = onecolor(color);
+        var favicon = $('[rel="shortcut icon"]');
 
-        var favicon = $('#favicon');
-
-        var link = '<link href="'+get_data_uri(16, 16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
+        var link = '<link href="'+get_data_uri(16, 16)+'" rel="shortcut icon" type="image/x-icon">';
 
         if(favicon.length) {
 
@@ -99,7 +96,7 @@
         }
         else {
 
-            $('head').append(link);
+            $head.append(link);
         }
     }
 
@@ -126,35 +123,40 @@
 
         cache.set('color', color);
 
+        cached_color = color;
+
         change_color(color);
     });
 
-    if (!('Notification' in window && 'permission' in window.Notification && 'requestPermission' in window.Notification)) {
+    $(document).on('mouseenter', 'button', function(){
 
-        Notification = { permission: 'denied' };
-    }
-    else {
+        $(this).css('color', cached_color);
+    });
 
-        if (!Notification.permission || Notification.permission !== 'denied') {
+    $(document).on('mouseleave', 'button', function(){
 
-            Notification.requestPermission(function (permission) {
+        $(this).css('color', '');
+    });
 
-                if (!('permission' in Notification)) {
+    if (notifications_supported && (!Notification.permission || Notification.permission !== 'denied')) {
 
-                    Notification.permission = permission;
-                }
-            });
-        }
+        Notification.requestPermission(function (permission) {
+
+            if (!('permission' in Notification)) {
+
+                Notification.permission = permission;
+            }
+        });
     }
 
     if(cached_color) {
 
-        $('#colors [checked]').get(0).checked = false;
+        // $('#colors [checked]').get(0).checked = false;
 
-        if($('#colors [value="'+cached_color+'"]').length) {
+        $('#colors [value="'+cached_color+'"]').each(function(){
 
-            $('#colors [value="'+cached_color+'"]').get(0).checked = true;
-        }
+            this.checked = true;
+        });
 
         change_color(cached_color);
     }
