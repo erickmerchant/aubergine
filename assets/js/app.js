@@ -17,9 +17,15 @@
 
     function get_data_uri(width, height) {
 
+        height = height || width;
+
         var png = new pnglib(width, height, 256);
         var theme = onecolor(cached_color);
-        var background = png.color(theme.red()*255, theme.green()*255, theme.blue()*255, 255);
+        var args;
+
+        args = [theme.red(), theme.green(), theme.blue(), 1].map(function(v) { return v * 255; });
+
+        png.color.apply(png, args);
 
         return 'data:image/png;base64,'+png.getBase64();
     }
@@ -29,15 +35,14 @@
         if(state) {
 
             var diff = end.diff(moment(), 'seconds');
-
-            var seconds = parseInt(diff % 60);
-
-            var minutes = parseInt(diff / 60);
+            var seconds = format(parseInt(diff % 60));
+            var minutes = format(parseInt(diff / 60));
+            var formatted = minutes + ':' + seconds;
 
             if(diff > 0) {
 
-                $output.val(format(minutes) + ':' + format(seconds));
-                $title.text(format(minutes) + ':' + format(seconds));
+                $output.val(formatted);
+                $title.text(formatted);
 
                 timeoutID = setTimeout(go, 500);
             }
@@ -72,7 +77,7 @@
         if (notifications_supported && Notification.permission === "granted") {
 
             var notification = new Notification(message, {
-                icon: get_data_uri(200, 200)
+                icon: get_data_uri(200)
             });
 
             notification.onclick = function(){
@@ -87,7 +92,7 @@
 
         var favicon = $('#favicon');
 
-        var link = '<link href="'+get_data_uri(16, 16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
+        var link = '<link href="'+get_data_uri(16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
 
         if(favicon.length) {
 
