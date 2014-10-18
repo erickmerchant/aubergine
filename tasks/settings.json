@@ -1,7 +1,7 @@
 {
     "date_formats": ["YYYY-MM-DD", "YYYY-MM-DD-HHmmss"],
     "js_files": [
-        "assets/js/ender.min.js",
+        "ender.min.js",
         "assets/js/app.js"
     ],
     "css_files": [
