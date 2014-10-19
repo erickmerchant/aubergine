@@ -1,6 +1,5 @@
 @import 'basscss';
 @import "./basscss-adjustments.css";
-@import "./visibilities.css";
 @import "./icons.css";
 
 :root {
@@ -16,67 +15,36 @@ body {
     transition: background-color 0.5s ease-in;
 }
 
-.box {
-    inherit: .lighter-gray, .clearfix, .container, .center, .mt2, .px1;
-}
-
-.box a {
-    inherit: .lighter-gray;
-}
-
 .button {
-    inherit: .border, .rounded, .block, .h3, .mx-auto, .mt1;
-    width: 90%;
-
-    background: transparent;
-    border-color: var(--lighter-gray);
     color: var(--lighter-gray);
+    margin: var(--space-1) auto 0 auto;
+    display: block;
+    width: 90%;
+    background: transparent;
 }
 
 .button:hover {
-    inherit: .bg-lighter-gray, .light-gray;
+    background: var(--lighter-gray);
+    color: var(--light-gray);
 }
 
 @media (--breakpoint-sm) {
 
     .button {
-        inherit: .inline-block, .mr1, .ml1;
+        margin: var(--space-1);
+        display: inline-block;
         width: auto;
     }
 }
 
-.color-fields {
-
-    inherit: .clearfix, .container, .center, .mt2;
-}
-
-.color-fields legend {
-    width: 100%;
-}
-
-.color-fields label {
-    inherit: .border, .rounded, .inline-block, .dark-gray, .h5, .m1;
-}
-
-.color-fields label .square {
-    inherit: .invisible, .block, .m1, .border, .rounded;
+.square {
+    visibility: hidden;
+    display: block;
     height: 1em;
     width: 1em;
+    background: var(--lighter-gray);
 }
 
-.color-fields input {
-    display: none;
-}
-
-.color-fields input:checked + label .square {
-    inherit: .visible, .block, .bg-lighter-gray;
-}
-
-.links {
-    inherit: .inline-block;
-}
-
-.links a {
-
-    inherit: .border-bottom, .ml1, .dark-gray;
+.checkbox:checked + label .square {
+    visibility: visible;
 }
