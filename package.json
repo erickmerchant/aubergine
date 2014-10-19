@@ -22,7 +22,6 @@
     "lodash": "^2.4.1",
     "moment": "^2.7.0",
     "node-static": "^0.7.4",
-    "normalize.css": "git://github.com/necolas/normalize.css",
     "nunjucks": "^1.0.5",
     "q": "^1.0.1",
     "require-dir": "^0.1.0",
