@@ -31,6 +31,6 @@
     "rework-npm": "^1.0.0",
     "rework-plugin-colors": "^1.0.3",
     "rework-vars": "^3.1.1",
-    "static-engine": "^1.0.0"
+    "static-engine": "^2.0.0"
   }
 }
