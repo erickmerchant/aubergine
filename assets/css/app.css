@@ -3,6 +3,7 @@
 @import "./icons.css";
 
 :root {
+    --container-width: 25em;
     --font-family: 'Source Sans Pro';
     --border-color: var(--lighter-gray);
     --border-width: 2px;
@@ -18,29 +19,17 @@ body {
     transition: background-color 0.5s ease-in;
 }
 
-.button {
+.button-light-gray-outline {
     color: var(--lighter-gray);
-    margin: var(--space-1) auto 0 auto;
-    display: block;
-    width: 90%;
     background: transparent;
 }
 
-.button:hover {
+.button-light-gray-outline:hover {
     background: var(--lighter-gray);
     color: var(--light-gray);
 }
 
-@media (--breakpoint-sm) {
-
-    .button {
-        margin: var(--space-1);
-        display: inline-block;
-        width: auto;
-    }
-}
-
-.square {
+.is-checked-square {
     visibility: hidden;
     display: block;
     height: 1em;
@@ -48,6 +37,6 @@ body {
     background: var(--lighter-gray);
 }
 
-.checkbox:checked + label .square {
+.checkbox:checked + label .is-checked-square {
     visibility: visible;
 }

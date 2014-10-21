@@ -15,16 +15,20 @@
         <main class="lighter-gray clearfix container center mt2 px1">
             <form id="controls">
                 <h1><output name="output">00:00</output></h1>
-                {% for text, data in controls %}
-                    <button class="button h3 rounded border" type="button" data-interval="{{ data.interval }}" data-message="{{ data.message }}">{{ text }}</button>
-                {% endfor %}
+                <div class="clearfix">
+                    {% for text, data in controls %}
+                        <div class="sm-col sm-col-12 md-col-6 p1">
+                            <button class="button-light-gray-outline full-width button h3 rounded border" type="button" data-interval="{{ data.interval }}" data-message="{{ data.message }}">{{ text }}</button>
+                        </div>
+                    {% endfor %}
+                </div>
             </form>
             <form id="colors" class="clearfix container center mt2">
                 <fieldset>
                     <legend class="full-width">Theme:</legend>
                     {% for color in colors %}
                         <input {% if loop.first %}checked {% endif %}name="color" type="radio" value="{{ color }}" id="color-field-{{ loop.index }}" class="hide checkbox">
-                        <label for="color-field-{{ loop.index }}" style="background-color: {{ color }}" class="border rounded inline-block dark-gray h5 m1"><span class="square block m1 border rounded"></icon></label>
+                        <label for="color-field-{{ loop.index }}" style="background-color: {{ color }}" class="border rounded inline-block dark-gray h5 m1"><span class="is-checked-square block m1 border rounded"></icon></label>
                     {% endfor %}
                 </fieldset>
             </form>
