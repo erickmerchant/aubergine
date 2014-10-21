@@ -1,9 +1,8 @@
 /*! app.js */
 +function(){
 
-    var moment = require('moment');
     var pnglib = require('pnglib');
-    var onecolor = require('onecolor');
+    var hex_rgb = require('hex-rgb');
     var cache = $.cache('chrono');
     var cached_color = cache.get('color');
     var end = 0;
@@ -20,10 +19,9 @@
         height = height || width;
 
         var png = new pnglib(width, height, 256);
-        var theme = onecolor(cached_color);
-        var args;
+        var args = hex_rgb(cached_color);
 
-        args = [theme.red(), theme.green(), theme.blue(), 1].map(function(v) { return v * 255; });
+        args.push(255);
 
         png.color.apply(png, args);
 
@@ -34,12 +32,16 @@
 
         if(state) {
 
-            var diff = end.diff(moment(), 'seconds');
-            var seconds = format(parseInt(diff % 60));
-            var minutes = format(parseInt(diff / 60));
-            var formatted = minutes + ':' + seconds;
+            var diff = (end - Date.now()) / 1000;
+            var seconds;
+            var minutes;
+            var formatted;
 
             if(diff > 0) {
+
+                seconds = format(parseInt(diff % 60));
+                minutes = format(parseInt(diff / 60));
+                formatted = minutes + ':' + seconds;
 
                 $output.val(formatted);
                 $title.text(formatted);
@@ -110,7 +112,7 @@
 
         state = 1;
 
-        end = moment().add(el.data('interval'), 'minute');
+        end = Date.now() + (el.data('interval') * 60000);
 
         message = el.data('message');
 
