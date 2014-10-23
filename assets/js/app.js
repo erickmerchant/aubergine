@@ -88,21 +88,7 @@
         }
     }
 
-    function change_color(color) {
-
-        $body.css('background', color);
-
-        var favicon = $('#favicon');
-
-        var link = '<link href="'+get_data_uri(16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
-
-        if(favicon.length) {
-
-            favicon.replaceWith(link);
-        }
-    }
-
-    $(document).on('click', '#controls button', function(){
+    $(document).on('click', 'button', function(){
 
         var el = $(this);
 
@@ -119,7 +105,7 @@
         go();
     });
 
-    $(document).on('change', '#colors [type="radio"]', function(){
+    $(document).on('click', '[type="radio"]', function(){
 
         var color = $(this).val();
 
@@ -127,17 +113,18 @@
 
         cached_color = color;
 
-        change_color(color);
-    });
+        $body.css('background', color);
 
-    $(document).on('mouseenter', 'button', function(){
+        var favicon = $('#favicon');
 
-        $(this).css('color', cached_color);
-    });
+        var link = '<link href="'+get_data_uri(16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
 
-    $(document).on('mouseleave', 'button', function(){
+        if(favicon.length) {
 
-        $(this).css('color', '');
+            favicon.replaceWith(link);
+        }
+
+        this.checked = true;
     });
 
     if (notifications_supported && (!Notification.permission || Notification.permission !== 'denied')) {
@@ -153,13 +140,6 @@
 
     if(cached_color) {
 
-        // $('#colors [checked]').get(0).checked = false;
-
-        $('#colors [value="'+cached_color+'"]').each(function(){
-
-            this.checked = true;
-        });
-
-        change_color(cached_color);
+        $('[value="'+cached_color+'"]').trigger('click');
     }
 }();

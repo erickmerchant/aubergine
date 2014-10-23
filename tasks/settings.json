@@ -10,6 +10,7 @@
     "icon_files": [
         "node_modules/geomicons-open/icons/home.svg",
         "node_modules/geomicons-open/icons/twitter.svg",
-        "node_modules/geomicons-open/icons/github.svg"
+        "node_modules/geomicons-open/icons/github.svg",
+        "node_modules/geomicons-open/icons/check.svg"
     ]
 }
