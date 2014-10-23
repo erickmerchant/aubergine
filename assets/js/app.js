@@ -1,8 +1,6 @@
 /*! app.js */
 +function(){
 
-    var pnglib = require('pnglib');
-    var hex_rgb = require('hex-rgb');
     var cache = $.cache('chrono');
     var cached_color = cache.get('color');
     var end = 0;
@@ -14,18 +12,21 @@
     var $body = $('body');
     var notifications_supported = ('Notification' in window && 'permission' in window.Notification && 'requestPermission' in window.Notification);
 
-    function get_data_uri(width, height) {
+    function get_data_uri(size) {
 
-        height = height || width;
+        var canvas = document.createElement('canvas');
 
-        var png = new pnglib(width, height, 256);
-        var args = hex_rgb(cached_color);
+        var context = canvas.getContext('2d');
 
-        args.push(255);
+        canvas.width = size;
 
-        png.color.apply(png, args);
+        canvas.height = size;
 
-        return 'data:image/png;base64,'+png.getBase64();
+        context.fillStyle = cached_color;
+
+        context.fillRect(0, 0, size, size);
+
+        return canvas.toDataURL();
     }
 
     function go() {
