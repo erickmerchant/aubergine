@@ -14,7 +14,7 @@
     <body>
         <form class="lighter-gray container center mt2 px1">
             <h1><output name="output">00:00</output></h1>
-            <fieldset class="clearfix mx-auto sm-col-8">
+            <fieldset class="clearfix mx-auto sm-col-8 md-col-6 lg-col-4">
                 {% for text, data in controls %}
                     <div class="sm-col sm-col-6 p1">
                         <button class="button-app full-width button h3 rounded border" type="button" data-interval="{{ data.interval }}" data-message="{{ data.message }}">{{ text }}</button>
