@@ -15,7 +15,6 @@ var media = require('rework-custom-media');
 var npm = require('rework-npm');
 var vars = require('rework-vars');
 var colors = require('rework-plugin-colors');
-var inherit = require('rework-inherit');
 
 gulp.task('css', function () {
 
@@ -25,8 +24,7 @@ gulp.task('css', function () {
             vars(),
             media(),
             calc,
-            colors(),
-            inherit()
+            colors()
         ))
         .pipe(autoprefixer('> 1%', 'last 2 versions'))
         .pipe(concat("app.css"))
