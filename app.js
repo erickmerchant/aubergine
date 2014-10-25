@@ -1,7 +1,7 @@
 /*!
   * =============================================================
   * Ender: open module JavaScript framework (https://enderjs.com)
-  * Build: ender build qwery bonzo bean kizzy
+  * Build: ender build qwery bonzo bean kizzy --output js/ender
   * Packages: ender-core@2.0.0 ender-commonjs@1.0.7 qwery@4.0.0 bonzo@2.0.0 bean@1.0.14 kizzy@0.0.5
   * =============================================================
   */
