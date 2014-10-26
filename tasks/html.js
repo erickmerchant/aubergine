@@ -15,7 +15,7 @@ var push = function (literal) {
 };
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
-var argh = require('argh');
+var argv = require('argh').argv;
 var tap = require('gulp-tap');
 
 nunjucks.configure('./templates/', {
@@ -42,7 +42,7 @@ gulp.task('html', ['icons'], function (cb) {
 
     site.build().then(function(){
 
-        if(argh.argv.dev) {
+        if(argv.dev) {
 
             cb();
         }

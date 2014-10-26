@@ -15,9 +15,9 @@ var media = require('rework-custom-media');
 var npm = require('rework-npm');
 var vars = require('rework-vars');
 var colors = require('rework-plugin-colors');
-var argh = require('argh');
+var argv = require('argh').argv;
 
-gulp.task('css', (argh.argv.dev ? [] : ['html']), function (cb) {
+gulp.task('css', (argv.dev ? [] : ['html']), function (cb) {
 
     var stream = gulp.src(css_files)
         .pipe(rework(
@@ -32,7 +32,7 @@ gulp.task('css', (argh.argv.dev ? [] : ['html']), function (cb) {
         .pipe(gulp.dest('./'))
         .pipe(tap(function(){
 
-            if(argh.argv.dev) {
+            if(argv.dev) {
 
                 cb();
             }
