@@ -1,7 +1,6 @@
 'use strict';
 
 var gulp = require('gulp');
-var _ = require('lodash');
 var nunjucks = require('nunjucks');
 var engine = require('static-engine');
 var push = function (literal) {
@@ -16,7 +15,7 @@ var push = function (literal) {
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 var argv = require('argh').argv;
-var tap = require('gulp-tap');
+var stream_to_promise = require('stream-to-promise');
 
 nunjucks.configure('./templates/', {
     autoescape: true
@@ -48,14 +47,13 @@ gulp.task('html', ['icons'], function (cb) {
         }
         else {
 
-            gulp.src('index.html')
+            var stream = gulp.src('index.html')
                 .pipe(htmlmin({
                     collapseWhitespace: true
                 }))
-                .pipe(gulp.dest('./'))
-                .pipe(tap(function () {
-                    cb();
-                }));
+                .pipe(gulp.dest('./'));
+
+            stream_to_promise(stream).then(function(){ cb(); });
         }
     });
 });
