@@ -7,7 +7,7 @@ gulp.task('watch', ['default'], function () {
 
     gulp.watch('base/**', ['base']);
     gulp.watch('js/**/**.js', ['js']);
-    gulp.watch('bower_components/geomicons-open/**/**.svg', ['icons-append']);
+    gulp.watch('bower_components/geomicons-open/**/**.svg', ['icons']);
 
     if (!argh.argv.dev) {
 

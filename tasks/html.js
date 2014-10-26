@@ -20,7 +20,7 @@ nunjucks.configure('./templates/', {
     autoescape: true
 });
 
-gulp.task('html', function (cb) {
+gulp.task('html', ['icons'], function (cb) {
 
     var site = engine('./', nunjucks.render);
 
@@ -41,7 +41,7 @@ gulp.task('html', function (cb) {
     return site.build();
 });
 
-gulp.task('html-minify', ['html', 'icons-append'], function () {
+gulp.task('html-minify', ['html'], function () {
 
     var stream = gulp.src('index.html')
         .pipe(htmlmin({

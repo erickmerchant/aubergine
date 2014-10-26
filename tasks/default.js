@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var argh = require('argh');
 
-var default_task_deps = ['html', 'icons-append', 'css', 'js'];
+var default_task_deps = ['html', 'icons', 'css', 'js'];
 
 if (!argh.argv.dev) {
 
