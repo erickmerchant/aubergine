@@ -15,6 +15,8 @@ var push = function (literal) {
 };
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
+var argh = require('argh');
+var tap = require('gulp-tap');
 
 nunjucks.configure('./templates/', {
     autoescape: true
@@ -38,16 +40,22 @@ gulp.task('html', ['icons'], function (cb) {
         ]
     })).render('index.html');
 
-    return site.build();
-});
+    site.build().then(function(){
 
-gulp.task('html-minify', ['html'], function () {
+        if(argh.argv.dev) {
 
-    var stream = gulp.src('index.html')
-        .pipe(htmlmin({
-            collapseWhitespace: true
-        }))
-        .pipe(gulp.dest('./'));
+            cb();
+        }
+        else {
 
-    return stream;
+            gulp.src('index.html')
+                .pipe(htmlmin({
+                    collapseWhitespace: true
+                }))
+                .pipe(gulp.dest('./'))
+                .pipe(tap(function () {
+                    cb();
+                }));
+        }
+    });
 });

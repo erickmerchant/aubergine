@@ -15,8 +15,9 @@ var media = require('rework-custom-media');
 var npm = require('rework-npm');
 var vars = require('rework-vars');
 var colors = require('rework-plugin-colors');
+var argh = require('argh');
 
-gulp.task('css', function () {
+gulp.task('css', (argh.argv.dev ? [] : ['html']), function (cb) {
 
     var stream = gulp.src(css_files)
         .pipe(rework(
@@ -28,30 +29,33 @@ gulp.task('css', function () {
         ))
         .pipe(autoprefixer('> 1%', 'last 2 versions'))
         .pipe(concat("app.css"))
-        .pipe(gulp.dest('./'));
-
-    return stream;
-});
-
-gulp.task('css-minify', ['css', 'html-minify'], function (cb) {
-
-    var ignore = [
-        /\.token.*/,
-        /\.style.*/,
-        /\.namespace.*/,
-        /code\[class\*\=\"language\-\"\]/,
-        /pre\[class\*="language-"\]/
-    ];
-
-    gulp.src('app.css')
-        .pipe(uncss({
-            html: ['index.html'],
-            ignore: ignore
-        }))
-        .pipe(minifycss())
         .pipe(gulp.dest('./'))
-        .pipe(tap(function () {
-            cb();
-        }));
+        .pipe(tap(function(){
 
+            if(argh.argv.dev) {
+
+                cb();
+            }
+            else {
+
+                var ignore = [
+                    /\.token.*/,
+                    /\.style.*/,
+                    /\.namespace.*/,
+                    /code\[class\*\=\"language\-\"\]/,
+                    /pre\[class\*="language-"\]/
+                ];
+
+                gulp.src('app.css')
+                    .pipe(uncss({
+                        html: ['index.html'],
+                        ignore: ignore
+                    }))
+                    .pipe(minifycss())
+                    .pipe(gulp.dest('./'))
+                    .pipe(tap(function () {
+                        cb();
+                    }));
+            }
+        }));
 });
