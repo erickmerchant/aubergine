@@ -1,33 +1,11 @@
 {
   "name": "chrono",
   "dependencies": {
-    "argh": "^0.1.3",
     "basscss": "^4.1.2",
-    "chalk": "^0.5.1",
     "geomicons-open": "0.0.4",
-    "glob": "^4.0.4",
     "gulp": "~3.8.0",
-    "gulp-autoprefixer": "^1.0.1",
-    "gulp-cheerio": "^0.3.2",
-    "gulp-cleanhtml": "0.0.2",
-    "gulp-concat": "^2.2.0",
-    "gulp-footer": "^1.0.5",
-    "gulp-header": "^1.0.5",
-    "gulp-htmlmin": "^0.2.0",
-    "gulp-minify-css": "^0.3.7",
-    "gulp-rework": "^1.0.2",
-    "gulp-uglify": "^1.0.1",
-    "gulp-uncss": "^0.5.0",
-    "moment": "^2.7.0",
-    "node-static": "^0.7.4",
+    "gulp-tasks": "git://github.com/erickmerchant/gulp-tasks",
     "nunjucks": "^1.0.5",
-    "require-dir": "^0.1.0",
-    "rework-calc": "^1.1.0",
-    "rework-custom-media": "^0.2.0",
-    "rework-npm": "^1.0.0",
-    "rework-plugin-colors": "^1.0.3",
-    "rework-vars": "^3.1.1",
-    "static-engine": "^2.0.0",
-    "stream-to-promise": "^1.0.4"
+    "static-engine": "^2.0.0"
   }
 }
