@@ -1,5 +1,6 @@
 {
   "name": "chrono",
+  "private": "true",
   "dependencies": {
     "basscss": "^4.1.2",
     "geomicons-open": "0.0.4",
