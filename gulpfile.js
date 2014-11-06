@@ -3,7 +3,6 @@ var tasks = require('gulp-tasks');
 
 tasks.config({
     build_directory: "./",
-    date_formats: ["YYYY-MM-DD"],
     js_files: [
         "js/ender.min.js",
         "js/app.js"
