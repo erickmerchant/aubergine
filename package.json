@@ -6,6 +6,6 @@
     "geomicons-open": "0.0.4",
     "gulp-tasks": "erickmerchant/gulp-tasks",
     "nunjucks": "^1.0.5",
-    "static-engine": "^2.0.0"
+    "static-engine": "^3.0.0"
   }
 }
