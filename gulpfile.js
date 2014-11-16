@@ -10,12 +10,7 @@ tasks.config({
     css_files: [
         "css/app.css"
     ],
-    icon_files: [
-        "node_modules/geomicons-open/icons/home.svg",
-        "node_modules/geomicons-open/icons/twitter.svg",
-        "node_modules/geomicons-open/icons/github.svg",
-        "node_modules/geomicons-open/icons/check.svg"
-    ],
+    icon_files: "node_modules/geomicons-open/icons/*.svg",
     build: function () {
 
         var nunjucks = require('nunjucks');
