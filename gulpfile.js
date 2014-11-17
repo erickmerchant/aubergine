@@ -2,15 +2,15 @@
 var tasks = require('gulp-tasks');
 
 tasks.config({
-    build_directory: "./",
-    js_files: [
+    directory: "./",
+    js: [
         "js/ender.min.js",
         "js/app.js"
     ],
-    css_files: [
+    css: [
         "css/app.css"
     ],
-    icon_files: "node_modules/geomicons-open/icons/*.svg",
+    icons: "node_modules/geomicons-open/icons/*.svg",
     build: function () {
 
         var nunjucks = require('nunjucks');
