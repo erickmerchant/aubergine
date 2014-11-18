@@ -30,7 +30,7 @@ tasks.config({
             autoescape: true
         });
 
-        site.route('/').use(push({
+        site.route('index.html').use(push({
             controls: {
                 'Work': {'interval': 25, 'message': 'Take a break!'},
                 'Break': {'interval': 5, 'message': 'Back to work!'}
