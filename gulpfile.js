@@ -1,11 +1,5 @@
 
 var tasks = require('gulp-tasks');
-var ender = require('ender');
-
-tasks.before = function(cb) {
-
-    ender.exec('ender build qwery bonzo bean kizzy --output js/ender', cb);
-};
 
 tasks.config({
     directory: "./",
@@ -51,6 +45,12 @@ tasks.config({
         })).render('index.html');
 
         return site.build();
+    },
+    before: function(cb) {
+
+        var ender = require('ender');
+
+        ender.exec('ender build qwery bonzo bean kizzy --output js/ender', cb);
     }
 });
 
