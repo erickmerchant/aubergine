@@ -4,7 +4,6 @@
   "dependencies": {
     "basscss": "^4.1.2",
     "ender": "^2.0.5",
-    "es6-promise": "^2.0.0",
     "geomicons-open": "0.0.4",
     "gulp-tasks": "erickmerchant/gulp-tasks",
     "nunjucks": "^1.0.5",

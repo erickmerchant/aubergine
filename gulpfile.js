@@ -1,18 +1,11 @@
 
 var tasks = require('gulp-tasks');
-var Promise = require('es6-promise').Promise;
 var ender = require('ender');
 
-tasks.extend('js', function() {
+tasks.before = function(cb) {
 
-    return new Promise(function(resolve, reject){
-
-        ender.exec('ender build qwery bonzo bean kizzy --output js/ender', function(){
-
-            resolve(true);
-        });
-    });
-});
+    ender.exec('ender build qwery bonzo bean kizzy --output js/ender', cb);
+};
 
 tasks.config({
     directory: "./",
