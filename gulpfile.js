@@ -1,5 +1,6 @@
 
 var tasks = require('gulp-tasks');
+var Promise = require('es6-promise').Promise;
 
 tasks.config({
     directory: "./",
@@ -13,38 +14,39 @@ tasks.config({
     icons: "node_modules/geomicons-open/icons/*.svg",
     build: function () {
 
-        var nunjucks = require('nunjucks');
-        var engine = require('static-engine');
-        var site = engine('./', nunjucks.render);
-        var push = function (literal) {
-
-            return function (pages, next) {
-
-                pages.push(literal);
-
-                next(pages);
-            };
-        };
+        var nunjucks = require('static-engine-renderer-nunjucks');
+        var render = require('static-engine-render');
+        var page;
 
         nunjucks.configure('./templates/', {
             autoescape: true
         });
 
-        site.route('index.html').use(push({
-            controls: {
-                'Work': {'interval': 25, 'message': 'Take a break!'},
-                'Break': {'interval': 5, 'message': 'Back to work!'}
-            },
-            colors: [
-                '#AAAAAA',
-                '#FF851B',
-                '#2ECC40',
-                '#0074D9',
-                '#F012BE'
-            ]
-        })).render('index.html');
+        render.configure('./');
 
-        return site.build();
+        page = render('index.html', nunjucks('index.html'));
+
+        return page([{
+
+                controls: {
+                    'Work': {
+                        'interval': 25,
+                        'message': 'Take a break!'
+                    },
+                    'Break': {
+                        'interval': 5,
+                        'message': 'Back to work!'
+                    }
+                },
+                colors: [
+                    '#AAAAAA',
+                    '#FF851B',
+                    '#2ECC40',
+                    '#0074D9',
+                    '#F012BE'
+                ]
+            }
+        ]);
     },
     before: function(cb) {
 
