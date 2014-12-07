@@ -5,7 +5,7 @@
     "basscss": "^4.1.2",
     "ender": "^2.0.5",
     "es6-promise": "^2.0.0",
-    "geomicons-open": "0.0.4",
+    "geomicons-open": "0.0.6",
     "gulp-tasks": "erickmerchant/gulp-tasks",
     "static-engine": "^5.0.0",
     "static-engine-render": "^1.0.1",
