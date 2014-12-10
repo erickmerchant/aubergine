@@ -50,9 +50,14 @@ tasks.config({
     },
     before: function(cb) {
 
-        var ender = require('ender');
+        var exec = require('child_process').exec;
 
-        ender.exec('ender build qwery bonzo bean kizzy --output js/ender', cb);
+        exec('ender build qwery bonzo bean kizzy --output js/ender', function (err, stdout, stderr) {
+
+            if (err !== null) cb(err);
+            else
+                cb();
+        });
     }
 });
 
