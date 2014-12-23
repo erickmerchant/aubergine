@@ -31,6 +31,7 @@ body {
 .checkbox-app + label {
     height: 1.5em;
     width: 1.5em;
+    box-sizing: border-box;
     background: var(--lighter-gray);
     color: transparent;
 }
