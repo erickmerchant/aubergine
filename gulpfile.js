@@ -2,8 +2,9 @@
 var tasks = require('gulp-tasks');
 var Promise = require('es6-promise').Promise;
 
-tasks.config({
+tasks({
     directory: "./",
+    single: true,
     js: [
         "js/ender.min.js",
         "js/app.js"
@@ -60,5 +61,3 @@ tasks.config({
         });
     }
 });
-
-tasks();
