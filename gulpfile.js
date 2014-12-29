@@ -6,7 +6,7 @@ tasks({
     directory: "./",
     single: true,
     js: [
-        "js/ender.min.js",
+        "temp/ender.min.js",
         "js/app.js"
     ],
     css: [
@@ -53,7 +53,7 @@ tasks({
 
         var exec = require('child_process').exec;
 
-        exec('ender build qwery bonzo bean kizzy --output js/ender', function (err, stdout, stderr) {
+        exec('ender build qwery bonzo bean kizzy --output temp/ender', function (err, stdout, stderr) {
 
             if (err !== null) cb(err);
             else
