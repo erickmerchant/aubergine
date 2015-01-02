@@ -25,39 +25,8 @@ tasks({
 
         render.configure('./');
 
-        page = render('index.html', nunjucks('index.html'));
+        page = render('/index.html', nunjucks('index.html'));
 
-        return page([{
-
-                controls: {
-                    'Work': {
-                        'interval': 25,
-                        'message': 'Take a break!'
-                    },
-                    'Break': {
-                        'interval': 5,
-                        'message': 'Back to work!'
-                    }
-                },
-                colors: [
-                    '#AAAAAA',
-                    '#FF851B',
-                    '#2ECC40',
-                    '#0074D9',
-                    '#F012BE'
-                ]
-            }
-        ]);
-    },
-    before: function(cb) {
-
-        var exec = require('child_process').exec;
-
-        exec('ender build qwery bonzo bean kizzy --output temp/ender', function (err, stdout, stderr) {
-
-            if (err !== null) cb(err);
-            else
-                cb();
-        });
+        return page([{}]);
     }
 });

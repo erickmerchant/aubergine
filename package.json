@@ -8,7 +8,6 @@
     "basscss-ui-utility-disclosure-states": "0.0.6",
     "basscss-ui-utility-groups": "0.0.4",
     "basscss-utility-headings": "0.0.6",
-    "ender": "^2.0.5",
     "es6-promise": "^2.0.0",
     "geomicons-open": "0.0.6",
     "gulp-tasks": "erickmerchant/gulp-tasks",

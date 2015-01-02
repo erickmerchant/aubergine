@@ -1,33 +1,14 @@
 /*! app.js */
 +function(){
 
-    var cache = $.cache('chrono');
-    var cached_color = cache.get('color');
     var end = 0;
     var state = 0;
     var message = '';
     var timeoutID = null;
-    var $output = $('output');
-    var $title = $('title');
-    var $body = $('body');
+    var output = document.querySelectorAll('output')[0];
+    var title = document.querySelectorAll('title')[0];
+    var buttons = document.querySelectorAll('button');
     var notifications_supported = ('Notification' in window && 'permission' in window.Notification && 'requestPermission' in window.Notification);
-
-    function get_data_uri(size) {
-
-        var canvas = document.createElement('canvas');
-
-        var context = canvas.getContext('2d');
-
-        canvas.width = size;
-
-        canvas.height = size;
-
-        context.fillStyle = cached_color;
-
-        context.fillRect(0, 0, size, size);
-
-        return canvas.toDataURL();
-    }
 
     function go() {
 
@@ -44,8 +25,8 @@
                 minutes = format(parseInt(diff / 60));
                 formatted = minutes + ':' + seconds;
 
-                $output.val(formatted);
-                $title.text(formatted);
+                output.value = formatted;
+                title.innerHTML = formatted;
 
                 timeoutID = setTimeout(go, 500);
             }
@@ -62,8 +43,8 @@
 
         state = 0;
 
-        $output.val('00:00');
-        $title.text('00:00');
+        output.value = '00:00';
+        title.innerHTML = '00:00';
 
         timeoutID && clearTimeout(timeoutID);
     }
@@ -80,7 +61,7 @@
         if (notifications_supported && Notification.permission === "granted") {
 
             var notification = new Notification(message, {
-                icon: get_data_uri(200)
+                icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAFKElEQVR4Xu3VsRHDMAwEQbFqlm83YDm49Fc5Aix4o3Pv/Tw+AgR+ChyBeBkE3gUE4nUQ+CMgEM+DgEC8AQJNwB+kuZkaERDIyKGt2QQE0txMjQgIZOTQ1mwCAmlupkYEBDJyaGs2AYE0N1MjAgIZObQ1m4BAmpupEQGBjBzamk1AIM3N1IiAQEYObc0mIJDmZmpEQCAjh7ZmExBIczM1IiCQkUNbswkIpLmZGhEQyMihrdkEBNLcTI0ICGTk0NZsAgJpbqZGBAQycmhrNgGBNDdTIwICGTm0NZuAQJqbqREBgYwc2ppNQCDNzdSIgEBGDm3NJiCQ5mZqREAgI4e2ZhMQSHMzNSIgkJFDW7MJCKS5mRoREMjIoa3ZBATS3EyNCAhk5NDWbAICaW6mRgQEMnJoazYBgTQ3UyMCAhk5tDWbgECam6kRAYGMHNqaTUAgzc3UiIBARg5tzSYgkOZmakRAICOHtmYTEEhzMzUiIJCRQ1uzCQikuZkaERDIyKGt2QQE0txMjQgIZOTQ1mwCAmlupkYEBDJyaGs2AYE0N1MjAgIZObQ1m4BAmpupEQGBjBzamk1AIM3N1IiAQEYObc0mIJDmZmpEQCAjh7ZmExBIczM1IiCQkUNbswkIpLmZGhEQyMihrdkEBNLcTI0ICGTk0NZsAgJpbqZGBAQycmhrNgGBNDdTIwICGTm0NZuAQJqbqREBgYwc2ppNQCDNzdSIgEBGDm3NJiCQ5mZqREAgI4e2ZhMQSHMzNSIgkJFDW7MJCKS5mRoREMjIoa3ZBATS3EyNCAhk5NDWbAICaW6mRgQEMnJoazYBgTQ3UyMCAhk5tDWbgECam6kRAYGMHNqaTUAgzc3UiIBARg5tzSYgkOZmakRAICOHtmYTEEhzMzUiIJCRQ1uzCQikuZkaERDIyKGt2QQE0txMjQgIZOTQ1mwCAmlupkYEBDJyaGs2AYE0N1MjAgIZObQ1m4BAmpupEQGBjBzamk1AIM3N1IiAQEYObc0mIJDmZmpEQCAjh7ZmExBIczM1IiCQkUNbswkIpLmZGhEQyMihrdkEBNLcTI0ICGTk0NZsAgJpbqZGBAQycmhrNgGBNDdTIwICGTm0NZuAQJqbqREBgYwc2ppNQCDNzdSIgEBGDm3NJiCQ5mZqREAgI4e2ZhMQSHMzNSIgkJFDW7MJCKS5mRoREMjIoa3ZBATS3EyNCAhk5NDWbAICaW6mRgQEMnJoazYBgTQ3UyMCAhk5tDWbgECam6kRAYGMHNqaTUAgzc3UiIBARg5tzSYgkOZmakRAICOHtmYTEEhzMzUiIJCRQ1uzCQikuZkaERDIyKGt2QQE0txMjQgIZOTQ1mwCAmlupkYEBDJyaGs2AYE0N1MjAgIZObQ1m4BAmpupEQGBjBzamk1AIM3N1IiAQEYObc0mIJDmZmpEQCAjh7ZmExBIczM1IiCQkUNbswkIpLmZGhEQyMihrdkEBNLcTI0ICGTk0NZsAgJpbqZGBAQycmhrNgGBNDdTIwICGTm0NZuAQJqbqREBgYwc2ppNQCDNzdSIgEBGDm3NJiCQ5mZqREAgI4e2ZhMQSHMzNSIgkJFDW7MJCKS5mRoREMjIoa3ZBATS3EyNCAhk5NDWbAICaW6mRgQEMnJoazYBgTQ3UyMCAhk5tDWbgECam6kRAYGMHNqaTUAgzc3UiIBARg5tzSYgkOZmakRAICOHtmYTEEhzMzUiIJCRQ1uzCQikuZkaERDIyKGt2QQE0txMjQh8ASFq3vhU70CkAAAAAElFTkSuQmCC'
             });
 
             notification.onclick = function(){
@@ -89,44 +70,21 @@
         }
     }
 
-    $(document).on('click', 'button', function(){
+    for(var i = 0; i < buttons.length; i++) {
 
-        var el = $(this);
+        buttons[i].addEventListener('click', function(){
 
-        reset();
+            reset();
 
-        // $('button').attr('disabled', true);
+            state = 1;
 
-        state = 1;
+            end = Date.now() + (this.dataset.interval * 60000);
 
-        end = Date.now() + (el.data('interval') * 60000);
+            message = this.dataset.message;
 
-        message = el.data('message');
-
-        go();
-    });
-
-    $(document).on('click', '[type="radio"]', function(){
-
-        var color = $(this).val();
-
-        cache.set('color', color);
-
-        cached_color = color;
-
-        $body.css('background', color);
-
-        var favicon = $('#favicon');
-
-        var link = '<link href="'+get_data_uri(16)+'" rel="shortcut icon" type="image/x-icon" id="favicon">';
-
-        if(favicon.length) {
-
-            favicon.replaceWith(link);
-        }
-
-        this.checked = true;
-    });
+            go();
+        });
+    }
 
     if (notifications_supported && (!Notification.permission || Notification.permission !== 'denied')) {
 
@@ -137,10 +95,5 @@
                 Notification.permission = permission;
             }
         });
-    }
-
-    if(cached_color) {
-
-        $('[value="'+cached_color+'"]').trigger('click');
     }
 }();

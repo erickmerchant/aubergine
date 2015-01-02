@@ -7,34 +7,28 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>00:00</title>
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
-        <link href="./favicon.png" rel="shortcut icon" type="image/png" id="favicon">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:900&text=WorkBreakTheme:BuiltbyErickMerchant0123456789' rel='stylesheet' type='text/css'>
+        <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIElEQVQ4T2MsLy//z0ABYBw1gGE0DBhGwwCYh4ZBOgAATCYmUfgAnoYAAAAASUVORK5CYII=" rel="shortcut icon" type="image/png" id="favicon">
     </head>
-    <body>
-        <form class="lighter-gray container center mt2 px1">
+    <body class="bg-lighter-gray mid-gray">
+        <form class="container center mt2 px1">
             <h1><output name="output">00:00</output></h1>
             <fieldset class="clearfix mx-auto sm-col-8 md-col-6 lg-col-4 h3">
-                {% for text, data in controls %}
-                    <div class="sm-col sm-col-6 p1">
-                        <button class="button-app py2 full-width button" type="button" data-interval="{{ data.interval }}" data-message="{{ data.message }}">{{ text }}</button>
-                    </div>
-                {% endfor %}
-            </fieldset>
-            <fieldset class="clearfix container center mt2 h3">
-                <legend class="full-width">Theme:</legend>
-                {% for color in colors %}
-                    <input {% if loop.first %}checked {% endif %}name="color" type="radio" value="{{ color }}" id="color-field-{{ loop.index }}" class="hide checkbox-app">
-                    <label for="color-field-{{ loop.index }}" style="background-color: {{ color }}" class="border rounded inline-block m1">{{ geomicons.icon('check') }}</label>
-                {% endfor %}
+                <div class="sm-col sm-col-6 p1">
+                    <button class="button button-gray py2 full-width" type="button" data-interval="25" data-message="Take a break!">Work</button>
+                </div>
+                <div class="sm-col sm-col-6 p1">
+                    <button class="button button-gray py2 full-width" type="button" data-interval="5" data-message="Back to work!">Break</button>
+                </div>
             </fieldset>
         </form>
-        <footer class="lighter-gray center mt2 px1">
+        <footer class="center mt2 px1">
             <p>
                 Built by Erick Merchant
                 <span class="ml1 inline-block">
-                    <a class="p1 button-nav-light lighter-gray" href="http://erickmerchant.com/">{{ geomicons.icon('home') }}</a>
-                    <a class="p1 button-nav-light lighter-gray" href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a>
-                    <a class="p1 button-nav-light lighter-gray" href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a>
+                    <a class="p1 button-nav-light mid-gray" href="http://erickmerchant.com/">{{ geomicons.icon('home') }}</a>
+                    <a class="p1 button-nav-light mid-gray" href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a>
+                    <a class="p1 button-nav-light mid-gray" href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a>
                 </span>
             </p>
         </footer>
