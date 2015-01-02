@@ -13,10 +13,10 @@
     <body>
         <form class="lighter-gray container center mt2 px1">
             <h1><output name="output">00:00</output></h1>
-            <fieldset class="clearfix mx-auto sm-col-8 md-col-6 lg-col-4">
+            <fieldset class="clearfix mx-auto sm-col-8 md-col-6 lg-col-4 h3">
                 {% for text, data in controls %}
                     <div class="sm-col sm-col-6 p1">
-                        <button class="button-app full-width button h3 rounded border" type="button" data-interval="{{ data.interval }}" data-message="{{ data.message }}">{{ text }}</button>
+                        <button class="button-app py2 full-width button" type="button" data-interval="{{ data.interval }}" data-message="{{ data.message }}">{{ text }}</button>
                     </div>
                 {% endfor %}
             </fieldset>
@@ -32,9 +32,9 @@
             <p>
                 Built by Erick Merchant
                 <span class="ml1 inline-block">
-                    <a class="button button-narrow button-nav-light lighter-gray" href="http://erickmerchant.com/">{{ geomicons.icon('home') }}</a>
-                    <a class="button button-narrow button-nav-light lighter-gray" href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a>
-                    <a class="button button-narrow button-nav-light lighter-gray" href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a>
+                    <a class="p1 button-nav-light lighter-gray" href="http://erickmerchant.com/">{{ geomicons.icon('home') }}</a>
+                    <a class="p1 button-nav-light lighter-gray" href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a>
+                    <a class="p1 button-nav-light lighter-gray" href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a>
                 </span>
             </p>
         </footer>

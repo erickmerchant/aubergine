@@ -2,7 +2,12 @@
   "name": "chrono",
   "private": "true",
   "dependencies": {
-    "basscss": "^4.1.2",
+    "basscss": "^4.2.1",
+    "basscss-background-images": "0.0.4",
+    "basscss-ui-utility-button-sizes": "^1.0.0",
+    "basscss-ui-utility-disclosure-states": "0.0.6",
+    "basscss-ui-utility-groups": "0.0.4",
+    "basscss-utility-headings": "0.0.6",
     "ender": "^2.0.5",
     "es6-promise": "^2.0.0",
     "geomicons-open": "0.0.6",

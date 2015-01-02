@@ -1,4 +1,10 @@
 @import 'basscss';
+/* @import 'basscss-background-images'; */
+/* @import 'basscss-ui-utility-button-sizes'; */
+/* @import 'basscss-ui-utility-disclosure-states'; */
+/* @import 'basscss-ui-utility-groups'; */
+/* @import 'basscss-utility-headings'; */
+/* @import 'flex-object'; */
 @import "./basscss-adjustments.css";
 @import "./icons.css";
 
@@ -21,13 +27,36 @@ body {
 }
 
 .button-app {
+    line-height: 1rem;
     color: var(--lighter-gray);
-    background: transparent;
+    background-color: transparent;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--lighter-gray);
+    transition-duration: .1s;
+    transition-timing-function: ease-out;
+    transition-property: box-shadow, background-color;
 }
 
-.button-app:hover {
-    background: var(--lighter-gray);
+.button-app:hover,
+.button-app.is-active {
     color: var(--mid-gray);
+    background-color: var(--lighter-gray);
+}
+
+.button-app:active {
+    box-shadow: inset 0 3px 3px 0 rgba(#000,.25);
+}
+
+.button-app:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(white, .5), 0 0 1px 4px rgba(var(--lighter-gray), .5);
+}
+
+.button-app:disabled,
+.button-app.is-disabled {
+    color: var(--lighter-gray);
+    background-color: transparent;
+    opacity: .5;
 }
 
 .checkbox-app + label {
