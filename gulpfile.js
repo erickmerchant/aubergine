@@ -6,7 +6,6 @@ tasks({
     directory: "./",
     single: true,
     js: [
-        "temp/ender.min.js",
         "js/app.js"
     ],
     css: [
