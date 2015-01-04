@@ -13,4 +13,4 @@ module.exports = function(size, color) {
     context.fillRect(0, 0, size, size);
 
     return canvas.toDataURL();
-}
+};

@@ -1,14 +1,14 @@
 
 var dom = function(selector) {
     this.nodes = document.querySelectorAll(selector);
-}
+};
 
 dom.prototype = {
     each: function(fn) {
 
         for(var i = 0; i < this.nodes.length; i++) {
 
-            fn(this.nodes[i])
+            fn(this.nodes[i]);
         }
     },
     on: function(event, fn) {
@@ -34,7 +34,7 @@ dom.prototype = {
         this.each(function(el) {
 
             el.appendChild(div.firstChild);
-        })
+        });
     }
 };
 

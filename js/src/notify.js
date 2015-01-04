@@ -26,6 +26,6 @@ notify.grant = function() {
             }
         });
     }
-}
+};
 
 module.exports = notify;
