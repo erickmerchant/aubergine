@@ -5,7 +5,7 @@ var config = {
     css: "css/app.css",
     icons: "node_modules/geomicons-open/icons/*.svg"
 };
-var serve = require('server');
+var serve = require('erickmerchant-server');
 
 function build() {
 
