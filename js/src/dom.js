@@ -1,4 +1,3 @@
-
 var dom = function(selector) {
     this.nodes = document.querySelectorAll(selector);
 };
@@ -6,34 +5,34 @@ var dom = function(selector) {
 dom.prototype = {
     each: function(fn) {
 
-        for(var i = 0; i < this.nodes.length; i++) {
+        Array.prototype.slice.call(this.nodes, 0).forEach(function(el){
 
-            fn(this.nodes[i]);
-        }
+            fn.call(el);
+        });
     },
     on: function(event, fn) {
 
-        this.each(function(el){
+        this.each(function() {
 
-            el.addEventListener(event, fn);
+            this.addEventListener(event, fn);
         });
     },
     html: function(html) {
 
-        this.each(function(el){
+        this.each(function() {
 
-            el.innerHTML = html;
+            this.innerHTML = html;
         });
     },
     append: function(html) {
 
-        var div = document.createElement('div');
+        this.each(function() {
 
-        div.innerHTML = html;
+            var div = document.createElement('div');
 
-        this.each(function(el) {
+            div.innerHTML = html;
 
-            el.appendChild(div.firstChild);
+            this.appendChild(div.firstChild);
         });
     }
 };
