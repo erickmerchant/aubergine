@@ -9,6 +9,7 @@
 @import "./icons.css";
 
 :root {
+    --container-width: 40em;
     --font-family: 'Source Sans Pro';
     --heading-font-weight: 900;
     --bold-font-weight: 900;

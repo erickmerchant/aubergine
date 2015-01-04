@@ -17,7 +17,7 @@ $$('head').append('<link href="'+data_uri(16, '#777')+'" rel="shortcut icon" typ
     var icon = data_uri(200, '#777');
 
     buttons = $$('button');
-    output = $$('title, output');
+    output = $$('title, h1');
 
     function go() {
 
