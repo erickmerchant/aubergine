@@ -127,18 +127,18 @@ function icons() {
     var header = require('gulp-header');
 
     return gulp.src(config.icons)
-    .pipe(cheerio(function ($) {
-        var $path = $('svg').children('path');
-        var id = $('svg').attr('id');
-        $path.attr('id', id);
-        $('svg').replaceWith($path[0]);
-    }))
-    .pipe(concat('icons.svg'))
-    .pipe(header(
-        '<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'
-    ))
-    .pipe(footer('</defs></svg>'))
-    .pipe(gulp.dest('templates/temp'));
+        .pipe(cheerio(function ($) {
+            var $path = $('svg').children('path');
+            var id = $('svg').attr('id');
+            $path.attr('id', id);
+            $('svg').replaceWith($path[0]);
+        }))
+        .pipe(concat('icons.svg'))
+        .pipe(header(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'
+        ))
+        .pipe(footer('</defs></svg>'))
+        .pipe(gulp.dest('templates/temp'));
 }
 
 gulp.task('default', gulp.series(icons, build, html, gulp.parallel(css, js)));
