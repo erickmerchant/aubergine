@@ -5,7 +5,6 @@ var config = {
     css: "css/app.css",
     icons: "node_modules/geomicons-open/icons/*.svg"
 };
-var serve = require('erickmerchant-server');
 
 function build() {
 
@@ -148,4 +147,21 @@ gulp.task('watch', function() {
     gulp.watch(['css/**/**.css', 'js/**/**.js', 'templates/**/**.html'], 'default');
 });
 
-gulp.task('serve', gulp.parallel('default', 'watch', serve(config.directory)));
+gulp.task('serve', gulp.parallel('default', 'watch', function(done){
+
+    var express = require('express');
+    var static = require('express-static');
+    var logger = require('express-log');
+
+    var app = express();
+
+    app.use(logger());
+
+    app.use(static(config.directory));
+
+    var server = app.listen(8080, function(){
+        console.log('server is running at %s', server.address().port);
+    });
+
+    done();
+}));

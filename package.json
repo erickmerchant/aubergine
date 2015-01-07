@@ -8,6 +8,9 @@
     "basscss-ui-utility-disclosure-states": "0.0.6",
     "basscss-ui-utility-groups": "0.0.4",
     "basscss-utility-headings": "0.0.6",
+    "express": "^4.10.7",
+    "express-log": "^1.0.1",
+    "express-static": "^1.0.3",
     "geomicons-open": "0.0.6",
     "glob": "^4.3.2",
     "gulp": "^3.8.10",
@@ -28,7 +31,6 @@
     "rework-npm": "^1.0.0",
     "rework-plugin-colors": "^1.0.3",
     "rework-vars": "^3.1.1",
-    "erickmerchant-server": "erickmerchant/server",
     "static-engine-render": "^1.0.1",
     "static-engine-renderer-nunjucks": "^1.0.0"
   }
