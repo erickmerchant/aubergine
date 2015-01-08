@@ -159,6 +159,11 @@ gulp.task('serve', gulp.parallel('default', 'watch', function(done){
 
     app.use(static(config.directory));
 
+    app.use(function(req, res, next){
+        
+        res.redirect('/');
+    });
+
     var server = app.listen(8080, function(){
         console.log('server is running at %s', server.address().port);
     });
