@@ -74,7 +74,6 @@ function js() {
 
     return gulp.src(config.js)
         .pipe(browserify())
-        .pipe(concat("index.js"))
         .pipe(uglify({
             preserveComments: 'some'
         }))
