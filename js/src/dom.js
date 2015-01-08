@@ -5,7 +5,7 @@ var dom = function(selector) {
 dom.prototype = {
     each: function(fn) {
 
-        Array.prototype.slice.call(this.nodes, 0).forEach(function(el){
+        [].slice.call(this.nodes).forEach(function(el){
 
             fn.call(el);
         });
