@@ -6,7 +6,7 @@ var config = {
     icons: "node_modules/geomicons-open/icons/*.svg"
 };
 
-function build() {
+function pages() {
 
     var nunjucks = require('static-engine-renderer-nunjucks');
     var render = require('static-engine-render');
@@ -88,7 +88,7 @@ function js() {
         }));
 }
 
-function html(){
+function optimize(){
 
     var htmlmin = require('gulp-htmlmin');
     var cheerio = require('gulp-cheerio');
@@ -133,14 +133,7 @@ function icons() {
         .pipe(gulp.dest('templates/temp'));
 }
 
-gulp.task('default', gulp.series(icons, build, html, gulp.parallel(css, js)));
-
-gulp.task('watch', function() {
-
-    gulp.watch(['css/**/**.css', 'js/**/**.js', 'templates/**/**.html'], 'default');
-});
-
-gulp.task('serve', gulp.parallel('default', 'watch', function(done){
+function serve(done){
 
     var express = require('express');
     var static = require('express-static');
@@ -153,7 +146,7 @@ gulp.task('serve', gulp.parallel('default', 'watch', function(done){
     app.use(static(config.directory));
 
     app.use(function(req, res, next){
-        
+
         res.redirect('/');
     });
 
@@ -162,4 +155,13 @@ gulp.task('serve', gulp.parallel('default', 'watch', function(done){
     });
 
     done();
-}));
+}
+
+function watch() {
+
+    gulp.watch(['css/**/**.css', 'js/**/**.js', 'templates/**/**.html'], 'default');
+}
+
+gulp.task('default', gulp.series(icons, pages, optimize, gulp.parallel(css, js)));
+
+gulp.task('dev', gulp.parallel('default', watch, serve));
