@@ -103,16 +103,10 @@ function html(){
 
             $('use').each(function(){
 
-                uses.push($(this).attr('xlink:href'));
+                $(this).replaceWith($('path' + $(this).attr('xlink:href')).clone());
             });
 
-            $('path[id]').each(function(){
-
-                if(uses.indexOf('#'+$(this).attr('id')) < 0) {
-
-                    $(this).replaceWith('');
-                }
-            });
+            $('svg defs').parent().remove();
         }))
         .pipe(gulp.dest(config.directory));
 }
