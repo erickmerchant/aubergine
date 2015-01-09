@@ -91,22 +91,10 @@ function js() {
 function optimize(){
 
     var htmlmin = require('gulp-htmlmin');
-    var cheerio = require('gulp-cheerio');
 
     return gulp.src('index.html')
         .pipe(htmlmin({
             collapseWhitespace: true
-        }))
-        .pipe(cheerio(function ($) {
-
-            var uses = [];
-
-            $('use').each(function(){
-
-                $(this).replaceWith($('path' + $(this).attr('xlink:href')).clone());
-            });
-
-            $('svg defs').parent().remove();
         }))
         .pipe(gulp.dest(config.directory));
 }
@@ -115,22 +103,28 @@ function icons() {
 
     var cheerio = require('gulp-cheerio');
     var concat = require('gulp-concat');
-    var footer = require('gulp-footer');
-    var header = require('gulp-header');
+    var tap = require('gulp-tap');
 
     return gulp.src(config.icons)
-        .pipe(cheerio(function ($) {
-            var $path = $('svg').children('path');
-            var id = $('svg').attr('id');
-            $path.attr('id', id);
-            $('svg').replaceWith($path[0]);
+    .pipe(concat('icons.svg'))
+    .pipe(tap(function(file){
+
+        return gulp.src('index.html')
+        .pipe(cheerio(function($){
+
+            var defs = $('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'+file.contents+'</defs></svg>');
+
+            $('body').append(defs);
+
+            $('use').each(function(){
+
+                $(this).replaceWith($('svg' + $(this).attr('xlink:href') + ' path').clone());
+            });
+
+            defs.remove();
         }))
-        .pipe(concat('icons.svg'))
-        .pipe(header(
-            '<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'
-        ))
-        .pipe(footer('</defs></svg>'))
-        .pipe(gulp.dest('templates/temp'));
+        .pipe(gulp.dest(config.directory));
+    }));
 }
 
 function serve(done){
@@ -162,6 +156,6 @@ function watch() {
     gulp.watch(['css/**/**.css', 'js/**/**.js', 'templates/**/**.html'], 'default');
 }
 
-gulp.task('default', gulp.series(icons, pages, optimize, gulp.parallel(css, js)));
+gulp.task('default', gulp.series(pages, optimize, icons, gulp.parallel(css, js)));
 
 gulp.task('dev', gulp.parallel('default', watch, serve));
