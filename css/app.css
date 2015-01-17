@@ -4,9 +4,7 @@
 
 :root {
     --container-width: 40em;
-    --font-family: 'Source Sans Pro';
-    --heading-font-weight: 900;
-    --bold-font-weight: 900;
+    --font-family: var(--monospace-font-family);
     --border-color: var(--lighter-gray);
     --border-width: 2px;
     --border-radius: 2px;
