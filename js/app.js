@@ -19,7 +19,7 @@ $$('head').append('<link href="'+data_uri(16, '#777')+'" rel="shortcut icon" typ
     buttons = $$('button');
     output = $$('title, h1');
 
-    function go() {
+    function go(previous) {
 
         if(state) {
 
@@ -34,9 +34,9 @@ $$('head').append('<link href="'+data_uri(16, '#777')+'" rel="shortcut icon" typ
                 minutes = format(parseInt(diff / 60));
                 formatted = minutes + ':' + seconds;
 
-                output.html(formatted);
+                (previous && previous !== formatted) && output.html(formatted);
 
-                timeoutID = setTimeout(go, 500);
+                timeoutID = setTimeout(go, 500, formatted);
             }
             else {
 
