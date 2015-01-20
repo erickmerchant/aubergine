@@ -5,7 +5,7 @@
 
 :root {
     --container-width: 40em;
-    --font-family: var(--monospace-font-family);
+    --font-family: Courier, 'Courier New', monospace;
     --border-color: var(--lighter-gray);
     --border-width: 2px;
     --border-radius: 2px;
