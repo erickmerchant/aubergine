@@ -34,7 +34,7 @@ $$('head').append('<link href="'+data_uri(16, '#777')+'" rel="shortcut icon" typ
                 minutes = format(parseInt(diff / 60));
                 formatted = minutes + ':' + seconds;
 
-                (previous && previous !== formatted) && output.html(formatted);
+                (!previous || previous !== formatted) && output.html(formatted);
 
                 timeoutID = setTimeout(go, 500, formatted);
             }
