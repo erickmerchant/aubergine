@@ -9,10 +9,10 @@
         <title>00:00</title>
         <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script><![endif]-->
     </head>
-    <body class="bg-lighter-gray mid-gray">
-        <form class="container center mt2 px1">
-            <h1>00:00</h1>
-            <fieldset class="clearfix mx-auto h3">
+    <body class="bg-lighter-gray mid-gray table">
+        <form class="table-cell center px1">
+            <h1 class="h0 h00-responsive">00:00</h1>
+            <fieldset class="container mx-auto h3">
                 <div class="sm-col sm-col-6 p1">
                     <button class="button-gray py2 full-width" type="button" data-interval="25" data-message="Take a break!">Work</button>
                 </div>
@@ -20,16 +20,14 @@
                     <button class="button-gray py2 full-width" type="button" data-interval="5" data-message="Back to work!">Break</button>
                 </div>
             </fieldset>
-        </form>
-        <footer class="center mt2 px1">
-            <p>
+            <p class="center mt2 mb4 px1">
                 Built by Erick Merchant
-                <span class="ml1 inline-block">
+                <span class="ml1 mt1 inline-block">
                     <a class="p1 button-nav-light mid-gray" href="http://erickmerchant.com/">{{ geomicons.icon('home') }}</a>
                     <a class="p1 button-nav-light mid-gray" href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a>
                     <a class="p1 button-nav-light mid-gray" href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a>
                 </span>
             </p>
-        </footer>
+        </form>
     </body>
 </html>

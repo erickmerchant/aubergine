@@ -4,6 +4,7 @@
   "dependencies": {
     "basscss": "^4.2.1",
     "basscss-button-gray": "0.0.1",
+    "basscss-utility-headings": "0.0.6",
     "express": "^4.10.7",
     "express-log": "^1.0.1",
     "express-static": "^1.0.3",

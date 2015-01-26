@@ -1,3 +1,12 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
 fieldset {
+    padding: 0;
     border: none;
 }
