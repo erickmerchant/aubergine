@@ -3,8 +3,6 @@ var data_uri = require('./src/data-uri.js');
 var $$ = require('./src/dom.js');
 var notify = require('./src/notify.js');
 
-$$('head').append('<link href="'+data_uri(16, '#777')+'" rel="shortcut icon" type="image/png">');
-
 +function(win){
 
     var end = 0;

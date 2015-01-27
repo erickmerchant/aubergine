@@ -23,17 +23,6 @@ dom.prototype = {
 
             this.innerHTML = html;
         });
-    },
-    append: function(html) {
-
-        this.each(function() {
-
-            var div = document.createElement('div');
-
-            div.innerHTML = html;
-
-            this.appendChild(div.firstChild);
-        });
     }
 };
 
