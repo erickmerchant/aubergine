@@ -47,7 +47,7 @@ var notify = require('./src/notify.js');
 
     function format(int) {
 
-        int = "" + int;
+        int = "" + parseInt(int);
 
         return int >= 10 ? int : '0' + int;
     }
