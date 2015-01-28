@@ -9,28 +9,19 @@ var notify = require('./src/notify.js');
     var state = 0;
     var message = '';
     var timeoutID = null;
-    var output;
-    var buttons;
-    var head;
+    var output = $$('title, h1');
     var icon = data_uri(200, '#777');
-
-    buttons = $$('button');
-    output = $$('title, h1');
 
     function go(previous) {
 
         if(state) {
 
             var diff = (end - Date.now()) / 1000;
-            var seconds;
-            var minutes;
             var formatted;
 
             if(diff > 0) {
 
-                seconds = format(parseInt(diff % 60));
-                minutes = format(parseInt(diff / 60));
-                formatted = minutes + ':' + seconds;
+                formatted = format(diff / 60) + ':' + format(diff % 60);
 
                 (!previous || previous !== formatted) && output.html(formatted);
 
@@ -56,12 +47,12 @@ var notify = require('./src/notify.js');
 
     function format(int) {
 
-        int = String(int);
+        int = "" + int;
 
         return int >= 10 ? int : '0' + int;
     }
 
-    buttons.on('click', function(){
+    $$('button').on('click', function(){
 
         reset();
 
