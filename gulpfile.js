@@ -1,8 +1,8 @@
 var gulp = require('gulp');
 var config = {
     directory: "./",
-    js: "js/app.js",
-    css: "css/app.css",
+    js: "./js/app.js",
+    css: "./css/app.css",
     icons: "node_modules/geomicons-open/icons/*.svg"
 };
 
@@ -70,10 +70,20 @@ function js() {
     var uglify = require('gulp-uglify');
     var tap = require('gulp-tap');
     var cheerio = require('gulp-cheerio');
-    var browserify = require('gulp-browserify');
+    var browserify = require('browserify');
+    var source = require('vinyl-source-stream');
+    var buffer = require('vinyl-buffer');
+    var collapse = require('bundle-collapser/plugin');
+    var bundler = browserify({
+        entries: config.js,
+        debug: false
+    });
 
-    return gulp.src(config.js)
-        .pipe(browserify())
+    return bundler
+        .plugin(collapse)
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(buffer())
         .pipe(uglify({
             preserveComments: 'some'
         }))
@@ -144,7 +154,7 @@ function serve(done){
         res.redirect('/');
     });
 
-    var server = app.listen(8080, function(){
+    var server = app.listen(8088, function(){
         console.log('server is running at %s', server.address().port);
     });
 

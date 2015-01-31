@@ -5,6 +5,8 @@
     "basscss": "^4.2.1",
     "basscss-button-gray": "0.0.1",
     "basscss-utility-headings": "0.0.6",
+    "browserify": "^8.1.1",
+    "bundle-collapser": "^1.1.1",
     "express": "^4.10.7",
     "express-log": "^1.0.1",
     "express-static": "^1.0.3",
@@ -12,7 +14,6 @@
     "glob": "^4.3.2",
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^2.0.0",
-    "gulp-browserify": "^0.5.0",
     "gulp-cheerio": "^0.5.1",
     "gulp-concat": "^2.4.3",
     "gulp-htmlmin": "^1.0.0",
@@ -27,6 +28,8 @@
     "rework-plugin-colors": "^1.0.3",
     "rework-vars": "^3.1.1",
     "static-engine-render": "^1.0.1",
-    "static-engine-renderer-nunjucks": "^1.0.0"
+    "static-engine-renderer-nunjucks": "^1.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
   }
 }
