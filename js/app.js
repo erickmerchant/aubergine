@@ -1,4 +1,3 @@
-/*! app.js */
 var data_uri = require('./src/data-uri.js');
 var $$ = require('./src/dom.js');
 var notify = require('./src/notify.js');
