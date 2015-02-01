@@ -10,6 +10,8 @@ function pages() {
 
     var nunjucks = require('static-engine-renderer-nunjucks');
     var render = require('static-engine-render');
+    var one = require('static-engine-one');
+    var engine = require('static-engine');
     var page;
 
     nunjucks.configure('./templates/', {
@@ -18,9 +20,7 @@ function pages() {
 
     render.configure('./');
 
-    page = render('/index.html', nunjucks('index.html'));
-
-    return page([{}]);
+    return engine(one, render('/index.html', nunjucks('index.html')));
 }
 
 function css(){
