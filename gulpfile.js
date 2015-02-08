@@ -20,7 +20,7 @@ function pages() {
 
     render.configure('./');
 
-    return engine(one, render('temp/index.html', nunjucks('index.html')));
+    return engine(one, render('index.html', nunjucks('index.html')));
 }
 
 function css(){
@@ -49,10 +49,10 @@ function css(){
         .pipe(autoprefixer('> 1%', 'last 2 versions'))
         .pipe(concat("index.css"))
         .pipe(uncss({
-            html: glob.sync('temp/index.html')
+            html: glob.sync('index.html')
         }))
         .pipe(minifycss())
-        .pipe(gulp.dest('temp/'));
+        .pipe(gulp.dest(config.directory));
 }
 
 function js() {
@@ -80,12 +80,12 @@ function js() {
         }))
         .pipe(tap(function(file){
 
-            return gulp.src('temp/index.html')
+            return gulp.src('index.html')
                 .pipe(cheerio(function($){
 
                     $('body').append('<script>'+file.contents+'</script>');
                 }))
-                .pipe(gulp.dest('temp/'));
+                .pipe(gulp.dest(config.directory));
         }));
 }
 
@@ -93,11 +93,11 @@ function optimize(){
 
     var htmlmin = require('gulp-htmlmin');
 
-    return gulp.src('temp/index.html')
+    return gulp.src('index.html')
         .pipe(htmlmin({
             collapseWhitespace: true
         }))
-        .pipe(gulp.dest('temp/'));
+        .pipe(gulp.dest(config.directory));
 }
 
 function icons() {
@@ -110,7 +110,7 @@ function icons() {
     .pipe(concat('icons.svg'))
     .pipe(tap(function(file){
 
-        return gulp.src('temp/index.html')
+        return gulp.src('index.html')
         .pipe(cheerio(function($){
 
             var defs = $('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'+file.contents+'</defs></svg>');
@@ -124,7 +124,7 @@ function icons() {
 
             defs.remove();
         }))
-        .pipe(gulp.dest('temp/'));
+        .pipe(gulp.dest(config.directory));
     }));
 }
 
@@ -132,9 +132,9 @@ function selectors() {
 
     var gs = require('gulp-selectors');
 
-    return gulp.src(['temp/index.css', 'temp/index.html'])
+    return gulp.src(['index.css', 'index.html'])
         .pipe(gs.run())
-        .pipe(gulp.dest('temp/'));
+        .pipe(gulp.dest(config.directory));
 }
 
 function combine() {
@@ -143,10 +143,10 @@ function combine() {
     var tap = require('gulp-tap');
     var cheerio = require('gulp-cheerio');
 
-    return gulp.src('temp/index.css')
+    return gulp.src('index.css')
         .pipe(tap(function(file){
 
-            gulp.src('temp/index.html')
+            gulp.src('index.html')
                 .pipe(cheerio(function($){
 
                     $('head').append('<style type="text/css">'+file.contents+'</style>');
