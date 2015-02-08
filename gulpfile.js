@@ -20,7 +20,7 @@ function pages() {
 
     render.configure('./');
 
-    return engine(one, render('/index.html', nunjucks('index.html')));
+    return engine(one, render('temp/index.html', nunjucks('index.html')));
 }
 
 function css(){
@@ -36,7 +36,6 @@ function css(){
     var npm = require('rework-npm');
     var vars = require('rework-vars');
     var colors = require('rework-plugin-colors');
-    var tap = require('gulp-tap');
     var cheerio = require('gulp-cheerio');
 
     return gulp.src(config.css)
@@ -50,18 +49,10 @@ function css(){
         .pipe(autoprefixer('> 1%', 'last 2 versions'))
         .pipe(concat("index.css"))
         .pipe(uncss({
-            html: glob.sync('index.html')
+            html: glob.sync('temp/index.html')
         }))
         .pipe(minifycss())
-        .pipe(tap(function(file){
-
-            return gulp.src('index.html')
-                .pipe(cheerio(function($){
-
-                    $('head').append('<style type="text/css">'+file.contents+'</style>');
-                }))
-                .pipe(gulp.dest(config.directory));
-        }));
+        .pipe(gulp.dest('temp/'));
 }
 
 function js() {
@@ -89,12 +80,12 @@ function js() {
         }))
         .pipe(tap(function(file){
 
-            return gulp.src('index.html')
+            return gulp.src('temp/index.html')
                 .pipe(cheerio(function($){
 
                     $('body').append('<script>'+file.contents+'</script>');
                 }))
-                .pipe(gulp.dest(config.directory));
+                .pipe(gulp.dest('temp/'));
         }));
 }
 
@@ -102,11 +93,11 @@ function optimize(){
 
     var htmlmin = require('gulp-htmlmin');
 
-    return gulp.src('index.html')
+    return gulp.src('temp/index.html')
         .pipe(htmlmin({
             collapseWhitespace: true
         }))
-        .pipe(gulp.dest(config.directory));
+        .pipe(gulp.dest('temp/'));
 }
 
 function icons() {
@@ -119,7 +110,7 @@ function icons() {
     .pipe(concat('icons.svg'))
     .pipe(tap(function(file){
 
-        return gulp.src('index.html')
+        return gulp.src('temp/index.html')
         .pipe(cheerio(function($){
 
             var defs = $('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'+file.contents+'</defs></svg>');
@@ -133,8 +124,36 @@ function icons() {
 
             defs.remove();
         }))
-        .pipe(gulp.dest(config.directory));
+        .pipe(gulp.dest('temp/'));
     }));
+}
+
+function selectors() {
+
+    var gs = require('gulp-selectors');
+
+    return gulp.src(['temp/index.css', 'temp/index.html'])
+        .pipe(gs.run())
+        .pipe(gulp.dest('temp/'));
+}
+
+function combine() {
+
+    var path = require('path');
+    var tap = require('gulp-tap');
+    var cheerio = require('gulp-cheerio');
+
+    return gulp.src('temp/index.css')
+        .pipe(tap(function(file){
+
+            gulp.src('temp/index.html')
+                .pipe(cheerio(function($){
+
+                    $('head').append('<style type="text/css">'+file.contents+'</style>');
+
+                }))
+                .pipe(gulp.dest(config.directory));
+        }));
 }
 
 function serve(done){
@@ -166,6 +185,6 @@ function watch() {
     gulp.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html'], 'default');
 }
 
-gulp.task('default', gulp.series(pages, optimize, icons, gulp.parallel(css, js)));
+gulp.task('default', gulp.series( pages, optimize, icons, js, css, selectors, combine) );
 
 gulp.task('dev', gulp.parallel('default', watch, serve));
