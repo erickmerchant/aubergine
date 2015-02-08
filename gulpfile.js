@@ -75,9 +75,11 @@ function js() {
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(buffer())
-        .pipe(uglify({
-            preserveComments: 'some'
+        .pipe(tap(function(file){
+
+            file.contents = new Buffer('!function(window){ ' + file.contents + '; }(window);');
         }))
+        .pipe(uglify())
         .pipe(tap(function(file){
 
             return gulp.src('index.html')
