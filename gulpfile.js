@@ -185,6 +185,6 @@ function watch() {
     gulp.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html'], 'default');
 }
 
-gulp.task('default', gulp.series( pages, optimize, icons, js, css, selectors, combine) );
+gulp.task('default', gulp.series( pages, optimize, icons, js, css, selectors, combine ) );
 
 gulp.task('dev', gulp.parallel('default', watch, serve));
