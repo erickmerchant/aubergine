@@ -1,69 +1,64 @@
 var data_uri = require('./src/data-uri.js');
 var $$ = require('./src/dom.js');
 var notify = require('./src/notify.js');
+var end = 0;
+var state = 0;
+var message = '';
+var timeoutID = null;
+var output = $$('title, h1');
+var icon = data_uri(200, '#777');
 
-+function(win){
+function go(previous) {
 
-    var end = 0;
-    var state = 0;
-    var message = '';
-    var timeoutID = null;
-    var output = $$('title, h1');
-    var icon = data_uri(200, '#777');
+    if(state) {
 
-    function go(previous) {
+        var diff = (end - Date.now()) / 1000;
+        var formatted;
 
-        if(state) {
+        if(diff > 0) {
 
-            var diff = (end - Date.now()) / 1000;
-            var formatted;
+            formatted = format(diff / 60) + ':' + format(diff % 60);
 
-            if(diff > 0) {
+            (!previous || previous !== formatted) && output.html(formatted);
 
-                formatted = format(diff / 60) + ':' + format(diff % 60);
+            timeoutID = setTimeout(go, 500, formatted);
+        }
+        else {
 
-                (!previous || previous !== formatted) && output.html(formatted);
+            notify(message, icon);
 
-                timeoutID = setTimeout(go, 500, formatted);
-            }
-            else {
-
-                notify(message, icon);
-
-                reset();
-            }
+            reset();
         }
     }
+}
 
-    function reset() {
+function reset() {
 
-        state = 0;
+    state = 0;
 
-        output.html('00:00');
+    output.html('00:00');
 
-        timeoutID && clearTimeout(timeoutID);
-    }
+    timeoutID && clearTimeout(timeoutID);
+}
 
-    function format(int) {
+function format(int) {
 
-        int = "" + parseInt(int);
+    int = "" + parseInt(int);
 
-        return int >= 10 ? int : '0' + int;
-    }
+    return int >= 10 ? int : '0' + int;
+}
 
-    $$('button').on('click', function(){
+$$('button').on('click', function(){
 
-        reset();
+    reset();
 
-        state = 1;
+    state = 1;
 
-        end = Date.now() + (this.getAttribute('data-interval') * 60000);
+    end = Date.now() + (this.getAttribute('data-interval') * 60000);
 
-        message = this.getAttribute('data-message');
+    message = this.getAttribute('data-message');
 
-        go();
-    });
+    go();
+});
 
-    notify.grant();
-
-}(window);
+notify.grant();
