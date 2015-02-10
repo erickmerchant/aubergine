@@ -1,6 +1,6 @@
 @import 'basscss-base-reset';
 @import 'basscss-base-typography';
-/*@import 'basscss-base-forms';*/
+@import 'basscss-base-forms';
 @import 'basscss-base-buttons';
 @import 'basscss-base-tables';
 @import 'basscss-utility-layout';
@@ -14,7 +14,7 @@
 @import 'basscss-color-base';
 /*@import 'basscss-color-forms';*/
 /*@import 'basscss-color-forms-dark';*/
-@import 'basscss-color-tables';
+/*@import 'basscss-color-tables';*/
 /*@import 'basscss-button-blue';*/
 /*@import 'basscss-button-blue-outline';*/
 /*@import 'basscss-button-red';*/
@@ -23,7 +23,7 @@
 @import 'basscss-button-nav-light';
 /*@import 'basscss-button-nav-dark';*/
 @import 'basscss-colors';
-@import 'basscss-color-borders';
+/*@import 'basscss-color-borders';*/
 @import 'basscss-defaults';
 
 @import "./basscss-adjustments.css";
