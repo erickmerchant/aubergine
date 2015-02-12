@@ -30,7 +30,7 @@
 @import "./icons.css";
 
 :root {
-    --container-width: 30em;
+    --container-width: 40em;
     --font-family: var(--monospace-font-family);
     --border-color: var(--lighter-gray);
     --border-width: 2px;
