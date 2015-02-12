@@ -1,10 +1,10 @@
-var $$ = require('./src/dom.js');
+var dom = require('./src/dom.js');
 var notify = require('./src/notify.js');
 var end = 0;
 var state = 0;
 var message = '';
 var timeoutID = null;
-var output = $$('title, h1');
+var output = dom('title, h1');
 var icon = './noticon.png';
 
 function go(previous) {
@@ -47,7 +47,7 @@ function format(int) {
     return int >= 10 ? int : '0' + int;
 }
 
-$$('button').on('click', function(){
+dom('button').on('click', function(){
 
     reset();
 
