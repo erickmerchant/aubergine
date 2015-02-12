@@ -1,4 +1,3 @@
-var data_uri = require('./src/data-uri.js');
 var $$ = require('./src/dom.js');
 var notify = require('./src/notify.js');
 var end = 0;
@@ -6,7 +5,7 @@ var state = 0;
 var message = '';
 var timeoutID = null;
 var output = $$('title, h1');
-var icon = data_uri(200, '#777');
+var icon = './noticon.png';
 
 function go(previous) {
 
