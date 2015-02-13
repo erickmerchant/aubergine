@@ -34,5 +34,6 @@
     --font-family: var(--monospace-font-family);
     --border-color: var(--lighter-gray);
     --border-width: 2px;
-    --border-radius: 2px;
+    --button-padding-y: var(--space-2);
+    --button-font-size: var(--h3);
 }
