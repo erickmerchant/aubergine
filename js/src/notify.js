@@ -11,6 +11,8 @@ function notify(message, icon) {
         notification.onclick = function(){
             window.focus();
         };
+
+        return notification;
     }
 }
 

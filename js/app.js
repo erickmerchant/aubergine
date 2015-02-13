@@ -6,6 +6,7 @@ var message = '';
 var timeoutID = null;
 var output = dom('title, h1');
 var icon = './noticon.png';
+var notification;
 
 function go(previous) {
 
@@ -24,7 +25,7 @@ function go(previous) {
         }
         else {
 
-            notify(message, icon);
+            notification = notify(message, icon);
 
             reset();
         }
@@ -50,6 +51,13 @@ function format(int) {
 dom('button').on('click', function(){
 
     reset();
+
+    if(notification) {
+
+        notification.close();
+    }
+
+    notification = null;
 
     state = 1;
 
