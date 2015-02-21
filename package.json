@@ -29,7 +29,7 @@
     "basscss-utility-responsive-states": "0.0.2",
     "basscss-utility-typography": "0.0.2",
     "basscss-utility-white-space": "0.0.3",
-    "browserify": "^8.1.1",
+    "browserify": "^9.0.2",
     "bundle-collapser": "^1.1.1",
     "express": "^4.10.7",
     "express-log": "^1.0.1",
