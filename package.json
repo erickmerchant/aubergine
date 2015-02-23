@@ -54,7 +54,7 @@
     "rework-vars": "^3.1.1",
     "static-engine": "^8.0.0",
     "static-engine-one": "^1.0.0",
-    "static-engine-render": "^3.0.0",
+    "static-engine-render": "^4.0.0",
     "static-engine-renderer-nunjucks": "^2.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0"

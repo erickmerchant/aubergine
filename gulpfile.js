@@ -18,9 +18,7 @@ function pages() {
         autoescape: true
     });
 
-    render.configure('./');
-
-    return engine(one, render('index.html', nunjucks('index.html')));
+    return engine(one, render('./index.html', nunjucks('index.html')));
 }
 
 function css(){
