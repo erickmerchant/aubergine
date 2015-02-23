@@ -18,12 +18,12 @@
 /*@import 'basscss-button-blue';*/
 /*@import 'basscss-button-blue-outline';*/
 /*@import 'basscss-button-red';*/
-@import 'basscss-button-gray';
-/*@import 'basscss-button-light-gray';*/
-@import 'basscss-button-nav-light';
+/*@import 'basscss-button-gray';*/
+@import 'basscss-button-light-gray';
+/*@import 'basscss-button-nav-light';*/
 /*@import 'basscss-button-nav-dark';*/
 @import 'basscss-colors';
-/*@import 'basscss-color-borders';*/
+@import 'basscss-color-borders';
 @import 'basscss-defaults';
 
 @import "./basscss-adjustments.css";
@@ -32,8 +32,8 @@
 :root {
     --container-width: 40em;
     --font-family: var(--monospace-font-family);
-    --border-color: var(--lighter-gray);
-    --border-width: 2px;
+    --border-width: 3px;
+    --border-color: var(--black);
     --button-padding-y: var(--space-2);
     --button-font-size: var(--h3);
 }
