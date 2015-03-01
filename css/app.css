@@ -28,10 +28,9 @@
 @import "./icons.css";
 
 :root {
-    --container-width: 40em;
     --font-family: var(--monospace-font-family);
-    --border-width: 3px;
-    --border-color: var(--black);
+    --border-width: .2em;
+    --border-radius: .3em;
     --button-padding-y: var(--space-2);
     --button-font-size: var(--h3);
 }
