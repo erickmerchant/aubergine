@@ -29,8 +29,7 @@
 
 :root {
     --font-family: var(--monospace-font-family);
-    --border-width: .2em;
-    --border-radius: .3em;
+    --border-width: 2px;
     --button-padding-y: var(--space-2);
     --button-font-size: var(--h3);
 }

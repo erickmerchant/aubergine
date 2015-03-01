@@ -5,3 +5,7 @@ html {
 body {
     min-height: 100%;
 }
+
+.button-outline:focus:before {
+    opacity: .125;
+}
