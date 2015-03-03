@@ -8,20 +8,17 @@ var output = dom('title, h1');
 var icon = './noticon.png';
 var notification;
 
-function go(previous) {
+function go() {
 
     if(state) {
 
         var diff = (end - Date.now()) / 1000;
-        var formatted;
 
         if(diff > 0) {
 
-            formatted = format(diff / 60) + ':' + format(diff % 60);
+            output.html(format(diff));
 
-            (!previous || previous !== formatted) && output.html(formatted);
-
-            timeoutID = setTimeout(go, 500, formatted);
+            timeoutID = setTimeout(go, 300);
         }
         else {
 
@@ -36,16 +33,28 @@ function reset() {
 
     state = 0;
 
-    output.html('00:00');
+    output.html(format(0));
 
-    timeoutID && clearTimeout(timeoutID);
+    if(timeoutID) {
+
+        clearTimeout(timeoutID);
+    }
 }
 
-function format(int) {
+function format(diff) {
 
-    int = "" + parseInt(int);
+    return [diff / 60, diff % 60]
+        .map(Math.floor)
+        .map(function(int){
 
-    return int >= 10 ? int : '0' + int;
+            if(int >= 10) {
+
+                return int
+            }
+
+            return '0' + int;
+        })
+        .join(':');
 }
 
 dom('button').on('click', function(){

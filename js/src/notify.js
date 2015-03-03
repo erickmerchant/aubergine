@@ -1,4 +1,4 @@
-var supported = ('Notification' in window && 'permission' in window.Notification && 'requestPermission' in window.Notification);
+var supported = ('Notification' in window && 'permission' in Notification && 'requestPermission' in Notification);
 
 function notify(message, icon) {
 
@@ -18,14 +18,11 @@ function notify(message, icon) {
 
 notify.grant = function() {
 
-    if (supported && (!window.Notification.permission || window.Notification.permission !== 'denied')) {
+    if (supported && Notification.permission !== 'denied') {
 
-        window.Notification.requestPermission(function (permission) {
+        Notification.requestPermission(function (permission) {
 
-            if (!('permission' in window.Notification)) {
-
-                window.Notification.permission = permission;
-            }
+            Notification.permission = permission;
         });
     }
 };
