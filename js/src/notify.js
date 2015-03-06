@@ -1,8 +1,18 @@
-var supported = ('Notification' in window && 'permission' in Notification && 'requestPermission' in Notification);
+var Notification = ('Notification' in window) ? window.Notification : {};
+
+function permission() {
+
+    if('permission' in Notification) {
+
+        return Notification.permission;
+    }
+
+    return '';
+}
 
 function notify(message, icon) {
 
-    if (supported && Notification.permission === "granted") {
+    if (permission() === "granted") {
 
         var notification = new Notification(message, {
             icon: icon
@@ -18,7 +28,7 @@ function notify(message, icon) {
 
 notify.grant = function() {
 
-    if (supported && Notification.permission !== 'denied') {
+    if ('requestPermission' in Notification && permission() !== 'denied') {
 
         Notification.requestPermission(function (permission) {
 
