@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 var config = {
     directory: "./",
@@ -181,14 +183,14 @@ function combine() {
 function serve(done){
 
     var express = require('express');
-    var static = require('express-static');
+    var _static = require('express-static');
     var logger = require('express-log');
 
     var app = express();
 
     app.use(logger());
 
-    app.use(static(config.directory));
+    app.use(_static(config.directory));
 
     app.use(function(req, res, next){
 
