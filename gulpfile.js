@@ -1,12 +1,7 @@
 'use strict';
 
+const directory = "./";
 var gulp = require('gulp');
-var config = {
-    directory: "./",
-    js: "./js/app.js",
-    css: "./css/app.css",
-    icons: "node_modules/geomicons-open/icons/*.svg"
-};
 
 function pages() {
 
@@ -38,7 +33,7 @@ function css(){
     var colors = require('rework-plugin-colors');
     var cheerio = require('gulp-cheerio');
 
-    return gulp.src(config.css)
+    return gulp.src("./css/app.css")
         .pipe(rework(
             npm(),
             vars(),
@@ -52,7 +47,7 @@ function css(){
             html: glob.sync('index.html')
         }))
         .pipe(csso())
-        .pipe(gulp.dest(config.directory));
+        .pipe(gulp.dest(directory));
 }
 
 function js() {
@@ -66,7 +61,7 @@ function js() {
     var buffer = require('vinyl-buffer');
     var collapse = require('bundle-collapser/plugin');
     var bundler = browserify({
-        entries: config.js,
+        entries: "./js/app.js",
         debug: false
     });
 
@@ -87,7 +82,7 @@ function js() {
 
                     $('body').append('<script>'+file.contents+'</script>');
                 }))
-                .pipe(gulp.dest(config.directory));
+                .pipe(gulp.dest(directory));
         }));
 }
 
@@ -99,7 +94,7 @@ function optimize(){
         .pipe(htmlmin({
             collapseWhitespace: true
         }))
-        .pipe(gulp.dest(config.directory));
+        .pipe(gulp.dest(directory));
 }
 
 function icons() {
@@ -107,19 +102,16 @@ function icons() {
     var cheerio = require('gulp-cheerio');
     var fs = require('fs');
 
-    return gulp.src(config.directory + 'index.html')
+    return gulp.src('./index.html')
         .pipe(cheerio(function($){
 
             var defs = new Set();
             var href;
             var id;
             var paths;
-            var get_path = function(id, include_id_attr) {
+            var get_path = function(id) {
 
-                var d = fs.readFileSync('./node_modules/geomicons-open/src/paths/'+id+'.d', {encoding:'utf8'});
-                var id_attr = include_id_attr ? ' id="'+id+'"' : '';
-
-                return '<path d="'+d.split("\n").join('')+'"'+id_attr+'/>'
+                return fs.readFileSync('./node_modules/geomicons-open/src/paths/'+id+'.d', {encoding:'utf8'}).split("\n").join('');
             };
 
             $('use').each(function(){
@@ -133,7 +125,7 @@ function icons() {
                 }
                 else {
 
-                    $(this).replaceWith(get_path(id));
+                    $(this).replaceWith('<path d="' + get_path(id) + '"/>');
                 }
             });
 
@@ -143,13 +135,13 @@ function icons() {
 
                 for(id of defs) {
 
-                    paths.push(get_path(id, true));
+                    paths.push('<path d="' + get_path(id) + '" id="' + id + '"/>');
                 }
 
                 $('body').append('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'+paths.join('')+'</defs></svg>')
             }
         }))
-        .pipe(gulp.dest(config.directory));
+        .pipe(gulp.dest(directory));
 }
 
 function selectors() {
@@ -158,7 +150,7 @@ function selectors() {
 
     return gulp.src(['index.css', 'index.html'])
         .pipe(gs.run())
-        .pipe(gulp.dest(config.directory));
+        .pipe(gulp.dest(directory));
 }
 
 function combine() {
@@ -176,7 +168,7 @@ function combine() {
                     $('head').append('<style type="text/css">'+file.contents+'</style>');
 
                 }))
-                .pipe(gulp.dest(config.directory));
+                .pipe(gulp.dest(directory));
         }));
 }
 
@@ -190,7 +182,7 @@ function serve(done){
 
     app.use(logger());
 
-    app.use(_static(config.directory));
+    app.use(_static(directory));
 
     app.use(function(req, res, next){
 
