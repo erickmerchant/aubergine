@@ -103,29 +103,51 @@ function optimize(){
 function icons() {
 
     var cheerio = require('gulp-cheerio');
-    var concat = require('gulp-concat');
-    var tap = require('gulp-tap');
+    var fs = require('fs');
 
-    return gulp.src(config.icons)
-    .pipe(concat('icons.svg'))
-    .pipe(tap(function(file){
-
-        return gulp.src('index.html')
+    return gulp.src(config.directory + 'index.html')
         .pipe(cheerio(function($){
 
-            var defs = $('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'+file.contents+'</defs></svg>');
+            var defs = new Set();
+            var href;
+            var id;
+            var paths;
+            var get_path = function(id, include_id_attr) {
 
-            $('body').append(defs);
+                var d = fs.readFileSync('./node_modules/geomicons-open/src/paths/'+id+'.d', {encoding:'utf8'});
+                var id_attr = include_id_attr ? ' id="'+id+'"' : '';
+
+                return '<path d="'+d.split("\n").join('')+'"'+id_attr+'/>'
+            };
 
             $('use').each(function(){
 
-                $(this).replaceWith($('svg' + $(this).attr('xlink:href') + ' path').clone());
+                href = $(this).attr('xlink:href');
+                id = href.substring(1);
+
+                if($('use[xlink\\:href="'+href+'"]').length > 1) {
+
+                    defs.add(id);
+                }
+                else {
+
+                    $(this).replaceWith(get_path(id));
+                }
             });
 
-            defs.remove();
+            if(defs.size) {
+
+                paths = [];
+
+                for(id of defs) {
+
+                    paths.push(get_path(id, true));
+                }
+
+                $('body').append('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'+paths.join('')+'</defs></svg>')
+            }
         }))
         .pipe(gulp.dest(config.directory));
-    }));
 }
 
 function selectors() {
