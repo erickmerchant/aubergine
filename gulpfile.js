@@ -77,7 +77,7 @@ function js() {
         .pipe(buffer())
         .pipe(tap(function(file){
 
-            file.contents = new Buffer('!function(window){ ' + file.contents + '; }(window);');
+            file.contents = new Buffer('!function(window, document){ ' + file.contents + '; }(window, document);');
         }))
         .pipe(uglify())
         .pipe(tap(function(file){
