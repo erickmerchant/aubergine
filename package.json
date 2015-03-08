@@ -28,6 +28,7 @@
     "basscss-utility-white-space": "0.0.3",
     "browserify": "^9.0.2",
     "bundle-collapser": "^1.1.1",
+    "cson-parser": "^1.0.8",
     "express": "^4.10.7",
     "express-log": "^1.0.1",
     "express-static": "^1.0.3",
@@ -51,9 +52,9 @@
     "rework-plugin-colors": "^1.0.3",
     "rework-vars": "^3.1.1",
     "static-engine": "^8.0.0",
-    "static-engine-one": "^1.0.0",
+    "static-engine-content": "^5.1.0",
     "static-engine-render": "^4.0.0",
-    "static-engine-renderer-nunjucks": "^2.0.0",
+    "swig": "^1.4.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0"
   }

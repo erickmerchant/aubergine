@@ -1,0 +1,27 @@
+buttons: [
+    {
+        interval: 25
+        message: 'Take a break!'
+        text: 'Work'
+    }
+    {
+        interval: 5
+        message: 'Back to work!'
+        text: 'Break'
+    }
+]
+footer: 'Built by Erick Merchant'
+menu: [
+    {
+        icon: 'home'
+        url: 'http://erickmerchant.com/'
+    }
+    {
+        icon: 'twitter'
+        url: 'http://twitter.com/erickmerchant/'
+    }
+    {
+        icon: 'github'
+        url: 'http://github.com/erickmerchant/'
+    }
+]

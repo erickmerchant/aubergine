@@ -5,17 +5,27 @@ var gulp = require('gulp');
 
 function pages() {
 
-    var nunjucks = require('static-engine-renderer-nunjucks');
+    var swig = require('swig');
     var render = require('static-engine-render');
-    var one = require('static-engine-one');
+    var content = require('static-engine-content');
     var engine = require('static-engine');
+    var cson = require('cson-parser');
     var page;
 
-    nunjucks.configure('./templates/', {
-        autoescape: true
-    });
+    return engine(
+        content('./content/index.cson', [
+            function (page, done) {
 
-    return engine(one, render('./index.html', nunjucks('index.html')));
+                page = cson.parse(page.content);
+
+                done(null, page);
+            }
+        ]),
+        render('./index.html', function(page, done) {
+
+            swig.renderFile('./templates/index.html', page, done);
+        })
+    );
 }
 
 function css(){
@@ -198,7 +208,7 @@ function serve(done){
 
 function watch() {
 
-    gulp.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html'], 'default');
+    gulp.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html', 'content/**/*.cson'], 'default');
 }
 
 gulp.task('default', gulp.series( pages, optimize, icons, js, css, selectors, combine ) );

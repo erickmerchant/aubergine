@@ -12,18 +12,17 @@
     <body class="flex flex-center bg-darken-4 white">
         <form class="mx-auto center p1">
             <h1 class="h00 h00-responsive">00:00</h1>
-            <div class="sm-col sm-col-6 p1">
-                <button class="button-outline bg-darken-3 full-width" type="button" data-interval="25" data-message="Take a break!">Work</button>
-            </div>
-            <div class="sm-col sm-col-6 p1">
-                <button class="button-outline bg-darken-3 full-width" type="button" data-interval="5" data-message="Back to work!">Break</button>
-            </div>
+            {% for button in buttons %}
+                <div class="sm-col sm-col-6 p1">
+                    <button class="button-outline bg-darken-3 full-width" type="button" data-interval="{{ button.interval }}" data-message="{{ button.message }}">{{ button.text }}</button>
+                </div>
+            {% endfor %}
             <div class="sm-col sm-col-12 p3">
-                Built by Erick Merchant
+                {{ footer }}
                 <span class="inline-block p1">
-                    <a class="p1 white" href="http://erickmerchant.com/">{{ geomicons.icon('home') }}</a>
-                    <a class="p1 white" href="http://twitter.com/erickmerchant/">{{ geomicons.icon('twitter') }}</a>
-                    <a class="p1 white" href="http://github.com/erickmerchant/">{{ geomicons.icon('github') }}</a>
+                    {% for link in menu %}
+                        <a class="p1 white" href="{{ link.url }}">{{ geomicons.icon(link.icon) }}</a>
+                    {% endfor %}
                 </span>
             </div>
         </form>
