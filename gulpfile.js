@@ -12,6 +12,8 @@ function pages() {
     var cson = require('cson-parser');
     var page;
 
+    swig.setDefaults({ cache: false });
+
     return engine(
         content('./content/index.cson', [
             function (page, done) {
