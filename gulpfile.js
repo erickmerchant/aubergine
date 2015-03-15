@@ -10,19 +10,15 @@ function pages() {
     var content = require('static-engine-content');
     var engine = require('static-engine');
     var cson = require('cson-parser');
-    var page;
 
     swig.setDefaults({ cache: false });
 
     return engine(
-        content('./content/index.cson', [
-            function (page, done) {
+        content('./content/index.cson'),
+        function (pages, done) {
 
-                page = cson.parse(page.content);
-
-                done(null, page);
-            }
-        ]),
+            done(null, [cson.parse(pages[0].content)]);
+        },
         render('./index.html', function(page, done) {
 
             swig.renderFile('./templates/index.html', page, done);
