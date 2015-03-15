@@ -3,6 +3,10 @@
 const directory = "./";
 var gulp = require('gulp');
 
+gulp.task('default', gulp.series( pages, minify_html, icons, js, css, shorten_selectors, insert_css ) );
+
+gulp.task('dev', gulp.parallel('default', watch, serve));
+
 function pages() {
 
     var swig = require('swig');
@@ -208,7 +212,3 @@ function watch() {
 
     gulp.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html', 'content/**/*.cson'], 'default');
 }
-
-gulp.task('default', gulp.series( pages, minify_html, icons, js, css, shorten_selectors, insert_css ) );
-
-gulp.task('dev', gulp.parallel('default', watch, serve));
