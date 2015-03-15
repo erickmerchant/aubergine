@@ -51,7 +51,7 @@
     "rework-npm": "^1.0.0",
     "rework-plugin-colors": "^1.0.3",
     "rework-vars": "^3.1.1",
-    "static-engine": "^8.0.0",
+    "static-engine": "^9.0.1",
     "static-engine-content": "^5.1.0",
     "static-engine-render": "^4.0.0",
     "swig": "^1.4.2",
