@@ -3,7 +3,7 @@
 const directory = "./";
 var gulp = require('gulp');
 
-gulp.task('default', gulp.series( pages, minify_html, icons, js, css, shorten_selectors, insert_css ) );
+gulp.task('default', gulp.series( pages, minifyHTML, icons, js, css, shortenSelectors, insertCSS ) );
 
 gulp.task('dev', gulp.parallel('default', watch, serve));
 
@@ -98,7 +98,7 @@ function js() {
         }));
 }
 
-function minify_html(){
+function minifyHTML(){
 
     var htmlmin = require('gulp-htmlmin');
 
@@ -121,7 +121,7 @@ function icons() {
             var href;
             var id;
             var paths;
-            var get_path = function(id) {
+            var getPath = function(id) {
 
                 return fs.readFileSync('./node_modules/geomicons-open/src/paths/'+id+'.d', {encoding:'utf8'}).split("\n").join('');
             };
@@ -137,7 +137,7 @@ function icons() {
                 }
                 else {
 
-                    $(this).replaceWith('<path d="' + get_path(id) + '"/>');
+                    $(this).replaceWith('<path d="' + getPath(id) + '"/>');
                 }
             });
 
@@ -147,7 +147,7 @@ function icons() {
 
                 for(id of defs) {
 
-                    paths.push('<path d="' + get_path(id) + '" id="' + id + '"/>');
+                    paths.push('<path d="' + getPath(id) + '" id="' + id + '"/>');
                 }
 
                 $('body').append('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>'+paths.join('')+'</defs></svg>')
@@ -156,7 +156,7 @@ function icons() {
         .pipe(gulp.dest(directory));
 }
 
-function shorten_selectors() {
+function shortenSelectors() {
 
     var selectors = require('gulp-selectors');
 
@@ -165,7 +165,7 @@ function shorten_selectors() {
         .pipe(gulp.dest(directory));
 }
 
-function insert_css() {
+function insertCSS() {
 
     var path = require('path');
     var tap = require('gulp-tap');
