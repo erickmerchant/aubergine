@@ -42,7 +42,7 @@ function css(){
     var media = require('rework-custom-media');
     var npm = require('rework-npm');
     var vars = require('rework-vars');
-    var colors = require('rework-plugin-colors');
+    var color = require('rework-color-function');
     var cheerio = require('gulp-cheerio');
 
     return gulp.src("./css/app.css")
@@ -51,9 +51,9 @@ function css(){
             vars(),
             media(),
             calc,
-            colors()
+            color
         ))
-        .pipe(autoprefixer('> 1%', 'last 2 versions'))
+        .pipe(autoprefixer('> 5%', 'last 2 versions'))
         .pipe(concat("index.css"))
         .pipe(uncss({
             html: glob.sync('index.html')
