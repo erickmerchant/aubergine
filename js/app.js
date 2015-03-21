@@ -12,13 +12,13 @@ function go() {
 
     if(state) {
 
-        var diff = (end - Date.now()) / 1000;
+        var diff = Math.round((end - Date.now()) / 1000);
 
         if(diff > 0) {
 
             output.html(format(diff));
 
-            timeoutID = setTimeout(go, 300);
+            timeoutID = setTimeout(go, 100);
         }
         else {
 
