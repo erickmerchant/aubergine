@@ -84,7 +84,7 @@ function js() {
         .pipe(buffer())
         .pipe(tap(function(file){
 
-            file.contents = new Buffer('!function(window, document){ ' + file.contents + '; }(window, document);');
+            file.contents = new Buffer('!function(window, document, Math, Date){ ' + file.contents + '; }(window, document, Math, Date);');
         }))
         .pipe(uglify())
         .pipe(tap(function(file){
