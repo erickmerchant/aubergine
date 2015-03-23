@@ -53,7 +53,7 @@
     "rework-vars": "^3.1.1",
     "static-engine": "^9.0.1",
     "static-engine-content": "^6.0.0",
-    "static-engine-render": "^4.0.0",
+    "static-engine-render": "^5.0.0",
     "swig": "^1.4.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0"
