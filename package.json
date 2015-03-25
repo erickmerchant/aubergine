@@ -25,7 +25,7 @@
     "basscss-utility-layout": "0.0.2",
     "basscss-utility-responsive-states": "0.0.2",
     "basscss-utility-typography": "0.0.2",
-    "basscss-utility-white-space": "0.0.3",
+    "basscss-utility-white-space": "0.0.4",
     "browserify": "^9.0.2",
     "bundle-collapser": "^1.1.1",
     "cson-parser": "^1.0.8",
