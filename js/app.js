@@ -59,6 +59,8 @@ function format(diff) {
 
 dom('button').on('click', function(){
 
+    var data = this.dataset;
+
     reset();
 
     if(notification) {
@@ -70,9 +72,9 @@ dom('button').on('click', function(){
 
     state = 1;
 
-    end = Date.now() + (this.getAttribute('data-interval') * 60000);
+    end = Date.now() + (data.interval * 60000);
 
-    message = this.getAttribute('data-message');
+    message = data.message;
 
     go();
 });
