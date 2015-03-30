@@ -17,7 +17,7 @@ function pages() {
 
     swig.setDefaults({ cache: false });
 
-    return engine(
+    return engine([
         content('./content/index.cson'),
         function (pages, done) {
 
@@ -27,7 +27,7 @@ function pages() {
 
             swig.renderFile('./templates/index.html', page, done);
         })
-    );
+    ]);
 }
 
 function css(){
