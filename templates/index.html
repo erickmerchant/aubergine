@@ -13,19 +13,19 @@
         <link href="./favicon.png" rel="shortcut icon" type="image/png">
         <title>00:00</title>
     </head>
-    <body class="flex flex-center bg-navy aqua white">
+    <body class="flex flex-center bg-olive">
         <form class="mx-auto center p1">
             <h1 class="h00 h00-responsive">00:00</h1>
             {% for button in buttons %}
                 <div class="sm-col sm-col-6 p1">
-                    <button class="button-outline aqua full-width" type="button" data-interval="{{ button.interval }}" data-message="{{ button.message }}">{{ button.text }}</button>
+                    <button class="button-outline full-width" type="button" data-interval="{{ button.interval }}" data-message="{{ button.message }}">{{ button.text }}</button>
                 </div>
             {% endfor %}
             <div class="sm-col sm-col-12 p3">
                 {{ footer }}
                 <span class="inline-block p1">
                     {% for link in menu %}
-                        <a class="p1 aqua" href="{{ link.url }}">{{ icon(link.icon) }}</a>
+                        <a class="p1 button-transparent black" href="{{ link.url }}">{{ icon(link.icon) }}</a>
                     {% endfor %}
                 </span>
             </div>
