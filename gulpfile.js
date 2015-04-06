@@ -2,10 +2,11 @@
 
 const directory = "./";
 var gulp = require('gulp');
+var defaultSeries = gulp.series( pages, minifyHTML, icons, js, css, shortenSelectors, insertCSS );
 
-gulp.task('default', gulp.series( pages, minifyHTML, icons, js, css, shortenSelectors, insertCSS ) );
+gulp.task('default', defaultSeries);
 
-gulp.task('dev', gulp.parallel('default', watch, serve));
+gulp.task('dev', gulp.parallel(defaultSeries, watch, serve));
 
 function pages() {
 
@@ -210,5 +211,5 @@ function serve(done){
 
 function watch() {
 
-    gulp.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html', 'content/**/*.cson'], 'default');
+    gulp.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html', 'content/**/*.cson'], defaultSeries);
 }
