@@ -28,8 +28,8 @@
 @import "./icons.css";
 
 :root {
-    --font-family: var(--monospace-font-family);
-    --border-width: 4px;
-    --button-padding-y: var(--space-2);
-    --button-font-size: var(--h3);
+  --font-family: var(--monospace-font-family);
+  --border-width: 4px;
+  --button-padding-y: var(--space-2);
+  --button-font-size: var(--h3);
 }

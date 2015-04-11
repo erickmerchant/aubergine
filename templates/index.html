@@ -1,34 +1,34 @@
 {% macro icon(name) %}
-    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-      <use xlink:href="#{{ name }}"></use>
-    </svg>
+  <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <use xlink:href="#{{ name }}"></use>
+  </svg>
 {% endmacro %}
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="./favicon.png" rel="shortcut icon" type="image/png">
-        <title>00:00</title>
-    </head>
-    <body class="flex flex-center lime bg-black">
-        <form class="mx-auto center p1">
-            <h1 class="h00 h00-responsive">00:00</h1>
-            {% for button in buttons %}
-                <div class="sm-col sm-col-6 p1">
-                    <button class="button-outline full-width" type="button" data-interval="{{ button.interval }}" data-message="{{ button.message }}">{{ button.text }}</button>
-                </div>
-            {% endfor %}
-            <div class="sm-col sm-col-12 p3">
-                {{ footer }}
-                <span class="inline-block p1">
-                    {% for link in menu %}
-                        <a class="p1 button-transparent lime" href="{{ link.url }}">{{ icon(link.icon) }}</a>
-                    {% endfor %}
-                </span>
-            </div>
-        </form>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./favicon.png" rel="shortcut icon" type="image/png">
+    <title>00:00</title>
+  </head>
+  <body class="flex flex-center lime bg-black">
+    <form class="mx-auto center p1">
+      <h1 class="h00 h00-responsive">00:00</h1>
+      {% for button in buttons %}
+        <div class="sm-col sm-col-6 p1">
+          <button class="button-outline full-width" type="button" data-interval="{{ button.interval }}" data-message="{{ button.message }}">{{ button.text }}</button>
+        </div>
+      {% endfor %}
+      <div class="sm-col sm-col-12 p3">
+        {{ footer }}
+        <span class="inline-block p1">
+          {% for link in menu %}
+            <a class="p1 button-transparent lime" href="{{ link.url }}">{{ icon(link.icon) }}</a>
+          {% endfor %}
+        </span>
+      </div>
+    </form>
+  </body>
 </html>

@@ -1,40 +1,33 @@
-var Notification = ('Notification' in window) ? window.Notification : {};
+var Notification = ('Notification' in window) ? window.Notification : {}
 
-function permission() {
+function permission () {
+  if ('permission' in Notification) {
+    return Notification.permission
+  }
 
-    if('permission' in Notification) {
-
-        return Notification.permission;
-    }
-
-    return '';
+  return ''
 }
 
-function notify(message, icon) {
+function notify (message, icon) {
+  if (permission() === 'granted') {
+    var notification = new Notification(message, {
+      icon: icon
+    })
 
-    if (permission() === "granted") {
-
-        var notification = new Notification(message, {
-            icon: icon
-        });
-
-        notification.onclick = function(){
-            window.focus();
-        };
-
-        return notification;
+    notification.onclick = function () {
+      window.focus()
     }
+
+    return notification
+  }
 }
 
-notify.grant = function() {
+notify.grant = function () {
+  if ('requestPermission' in Notification && permission() !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      Notification.permission = permission
+    })
+  }
+}
 
-    if ('requestPermission' in Notification && permission() !== 'denied') {
-
-        Notification.requestPermission(function (permission) {
-
-            Notification.permission = permission;
-        });
-    }
-};
-
-module.exports = notify;
+module.exports = notify

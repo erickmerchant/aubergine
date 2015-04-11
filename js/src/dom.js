@@ -1,32 +1,25 @@
-var dom = function(selector) {
-    this.nodes = document.querySelectorAll(selector);
-};
+var Dom = function (selector) {
+  this.nodes = document.querySelectorAll(selector)
+}
 
-dom.prototype = {
-    each: function(fn) {
+Dom.prototype = {
+  each: function (fn) {
+    [].slice.call(this.nodes).forEach(function (el) {
+      fn.call(el)
+    })
+  },
+  on: function (event, fn) {
+    this.each(function () {
+      this.addEventListener(event, fn)
+    })
+  },
+  html: function (html) {
+    this.each(function () {
+      this.innerHTML = html
+    })
+  }
+}
 
-        [].slice.call(this.nodes).forEach(function(el){
-
-            fn.call(el);
-        });
-    },
-    on: function(event, fn) {
-
-        this.each(function() {
-
-            this.addEventListener(event, fn);
-        });
-    },
-    html: function(html) {
-
-        this.each(function() {
-
-            this.innerHTML = html;
-        });
-    }
-};
-
-module.exports = function(selector) {
-
-    return new dom(selector);
-};
+module.exports = function (selector) {
+  return new Dom(selector)
+}
