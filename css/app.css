@@ -29,12 +29,14 @@
 
 @import 'basscss-defaults';
 
-@import "./basscss-adjustments.css";
 @import "./icons.css";
 
 :root {
   --font-family: var(--monospace-font-family);
   --border-width: 4px;
-  --button-padding-y: var(--space-2);
-  --button-font-size: var(--h3);
+  --container-width: 40em;
+}
+
+.full-view-height {
+  min-height: 100vh;
 }

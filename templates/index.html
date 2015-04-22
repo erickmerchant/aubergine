@@ -10,25 +10,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="./favicon.png" rel="shortcut icon" type="image/png">
+    <link href="/favicon.png" rel="shortcut icon" type="image/png">
     <title>00:00</title>
   </head>
-  <body class="flex flex-center lime bg-black">
-    <form class="mx-auto center p1">
-      <h1 class="h00 h00-responsive">00:00</h1>
-      {% for button in buttons %}
-        <div class="sm-col sm-col-6 p1">
-          <button class="button-outline full-width" type="button" data-interval="{{ button.interval }}" data-message="{{ button.message }}">{{ button.text }}</button>
+  <body class="flex flex-column lime bg-black full-view-height">
+    <div class="flex-center flex-auto">
+      <form class="container center p1 flex-auto">
+        <h1 class="h00 h00-responsive">00:00</h1>
+        {% for button in buttons %}
+          <div class="col col-12 sm-col-6 p1 h3">
+            <button class="button-outline full-width py2" type="button" data-interval="{{ button.interval }}" data-message="{{ button.message }}">{{ button.text }}</button>
+          </div>
+        {% endfor %}
+        <div class="col col-12 sm-col-12 p3">
+          <h2>{{ icon('clock') }} Chrono</h2>
         </div>
-      {% endfor %}
-      <div class="sm-col sm-col-12 p3">
-        {{ footer }}
-        <span class="inline-block p1">
-          {% for link in menu %}
-            <a class="p1 button-transparent lime" href="{{ link.url }}">{{ icon(link.icon) }}</a>
-          {% endfor %}
-        </span>
-      </div>
-    </form>
+      </form>
+    </div>
+    <footer class="p2 mt2 clearfix center muted h6" role="contentinfo">
+      <span class="p1">&copy; {{ author }}, {{ year }}</span>
+      <a class="button button-transparent" href="https://github.com/erickmerchant/chrono">{{ icon('github') }} View Source</a>
+    </footer>
   </body>
 </html>
