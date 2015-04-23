@@ -1,19 +1,19 @@
 'use strict'
 
 const directory = './'
-var gulp = require('gulp')
-var defaultSeries = gulp.series(pages, minifyHTML, icons, js, css, shortenSelectors, insertCSS)
+const gulp = require('gulp')
+const defaultSeries = gulp.series(pages, minifyHTML, icons, js, css, shortenSelectors, insertCSS)
 
 gulp.task('default', defaultSeries)
 
 gulp.task('dev', gulp.parallel(defaultSeries, watch, serve))
 
 function pages () {
-  var swig = require('swig')
-  var render = require('static-engine-render')
-  var content = require('static-engine-content')
-  var engine = require('static-engine')
-  var cson = require('cson-parser')
+  const swig = require('swig')
+  const render = require('static-engine-render')
+  const content = require('static-engine-content')
+  const engine = require('static-engine')
+  const cson = require('cson-parser')
 
   swig.setDefaults({ cache: false })
 
@@ -29,17 +29,16 @@ function pages () {
 }
 
 function css () {
-  var autoprefixer = require('gulp-autoprefixer')
-  var uncss = require('gulp-uncss')
-  var csso = require('gulp-csso')
-  var glob = require('glob')
-  var rework = require('gulp-rework')
-  var concat = require('gulp-concat')
-  var calc = require('rework-calc')
-  var media = require('rework-custom-media')
-  var npm = require('rework-npm')
-  var vars = require('rework-vars')
-  var color = require('rework-color-function')
+  const autoprefixer = require('gulp-autoprefixer')
+  const uncss = require('gulp-uncss')
+  const csso = require('gulp-csso')
+  const rework = require('gulp-rework')
+  const concat = require('gulp-concat')
+  const calc = require('rework-calc')
+  const media = require('rework-custom-media')
+  const npm = require('rework-npm')
+  const vars = require('rework-vars')
+  const color = require('rework-color-function')
 
   return gulp.src('./css/app.css')
     .pipe(rework(
@@ -52,21 +51,21 @@ function css () {
     .pipe(autoprefixer({ browsers: ['> 5%', 'last 2 versions'] }))
     .pipe(concat('index.css'))
     .pipe(uncss({
-      html: glob.sync('index.html')
+      html: ['index.html']
     }))
     .pipe(csso())
     .pipe(gulp.dest(directory))
 }
 
 function js () {
-  var uglify = require('gulp-uglify')
-  var tap = require('gulp-tap')
-  var cheerio = require('gulp-cheerio')
-  var browserify = require('browserify')
-  var source = require('vinyl-source-stream')
-  var buffer = require('vinyl-buffer')
-  var collapse = require('bundle-collapser/plugin')
-  var bundler = browserify({
+  const uglify = require('gulp-uglify')
+  const tap = require('gulp-tap')
+  const cheerio = require('gulp-cheerio')
+  const browserify = require('browserify')
+  const source = require('vinyl-source-stream')
+  const buffer = require('vinyl-buffer')
+  const collapse = require('bundle-collapser/plugin')
+  const bundler = browserify({
     entries: './js/app.js',
     debug: false
   })
@@ -90,7 +89,7 @@ function js () {
 }
 
 function minifyHTML () {
-  var htmlmin = require('gulp-htmlmin')
+  const htmlmin = require('gulp-htmlmin')
 
   return gulp.src('index.html')
     .pipe(htmlmin({
@@ -99,47 +98,65 @@ function minifyHTML () {
     .pipe(gulp.dest(directory))
 }
 
-function icons () {
-  var cheerio = require('gulp-cheerio')
-  var fs = require('fs')
+function icons (done) {
+  const cheerio = require('gulp-cheerio')
+  const fs = require('fs')
+  const path = require('path')
+  const glob = require('glob')
 
-  function getPath (id) {
-    return fs.readFileSync('./node_modules/geomicons-open/src/paths/' + id + '.d', { encoding: 'utf8'}).split('\n').join('')
-  }
+  glob('./node_modules/geomicons-open/src/paths/*.d', function (err, files) {
+    if (err) {
+      done(err)
+    }
 
-  return gulp.src('./index.html')
-    .pipe(cheerio(function ($) {
-      var defs = new Set()
-      var href
-      var id
-      var paths
-
-      $('use').each(function () {
-        href = $(this).attr('xlink:href')
-        id = href.substring(1)
-
-        if ($('use[xlink\\:href="' + href + '"]').length > 1) {
-          defs.add(id)
-        } else {
-          $(this).replaceWith('<path d="' + getPath(id) + '"/>')
-        }
+    files = files.map(function (file) {
+      return new Promise(function (resolve, reject) {
+        fs.readFile(file, 'utf-8', function (err, content) {
+          if (err) {
+            reject(err)
+          } else {
+            resolve([path.basename(file, '.d'), content.split('\n').join('')])
+          }
+        })
       })
+    })
 
-      if (defs.size) {
-        paths = []
+    Promise.all(files).then(function (keyVals) {
+      const map = new Map(keyVals)
+      const defs = new Set()
 
-        for (id of defs) {
-          paths.push('<path d="' + getPath(id) + '" id="' + id + '"/>')
-        }
+      gulp.src('./index.html')
+        .pipe(cheerio(function ($) {
+          $('use').each(function () {
+            const href = $(this).attr('xlink:href')
+            const id = href.substring(1)
 
-        $('body').append('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>' + paths.join('') + '</defs></svg>')
-      }
-    }))
-    .pipe(gulp.dest(directory))
+            if ($('use[xlink\\:href="' + href + '"]').length > 1) {
+              defs.add(id)
+            } else {
+              $(this).replaceWith('<path d="' + map.get(id) + '"/>')
+            }
+          })
+
+          if (defs.size) {
+            let paths = []
+
+            for (let id of defs) {
+              paths.push('<path d="' + map.get(id) + '" id="' + id + '"/>')
+            }
+
+            $('body').append('<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>' + paths.join('') + '</defs></svg>')
+          }
+        }))
+        .pipe(gulp.dest(directory))
+        .on('end', done)
+    })
+    .catch(done)
+  })
 }
 
 function shortenSelectors () {
-  var selectors = require('gulp-selectors')
+  const selectors = require('gulp-selectors')
 
   return gulp.src(['index.css', 'index.html'])
     .pipe(selectors.run())
@@ -147,8 +164,8 @@ function shortenSelectors () {
 }
 
 function insertCSS () {
-  var tap = require('gulp-tap')
-  var cheerio = require('gulp-cheerio')
+  const tap = require('gulp-tap')
+  const cheerio = require('gulp-cheerio')
 
   return gulp.src('index.css')
     .pipe(tap(function (file) {
@@ -161,11 +178,11 @@ function insertCSS () {
 }
 
 function serve (done) {
-  var express = require('express')
-  var _static = require('express-static')
-  var logger = require('express-log')
+  const express = require('express')
+  const _static = require('express-static')
+  const logger = require('express-log')
 
-  var app = express()
+  const app = express()
 
   app.use(logger())
 
@@ -175,8 +192,8 @@ function serve (done) {
     res.redirect('/')
   })
 
-  var server = app.listen(8088, function () {
-    console.log('server is running at %s', server.address().port)
+  app.listen(8088, function () {
+    console.log('server is running at %s', this.address().port)
   })
 
   done()
