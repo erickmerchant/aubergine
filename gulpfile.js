@@ -123,10 +123,11 @@ function icons (done) {
 
     Promise.all(files).then(function (keyVals) {
       const map = new Map(keyVals)
-      const defs = new Set()
 
       gulp.src('./index.html')
         .pipe(cheerio(function ($) {
+          const defs = new Set()
+
           $('use').each(function () {
             const href = $(this).attr('xlink:href')
             const id = href.substring(1)
