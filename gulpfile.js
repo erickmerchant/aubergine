@@ -2,7 +2,7 @@
 
 const directory = './'
 const gulp = require('gulp')
-const defaultSeries = gulp.series(pages, minifyHTML, icons, js, css, shortenSelectors, insertCSS)
+const defaultSeries = gulp.series(gulp.parallel(gulp.series(pages, icons, minifyHTML, js), css), insertCSS)
 
 gulp.task('default', defaultSeries)
 
@@ -29,35 +29,28 @@ function pages () {
 }
 
 function css () {
-  const autoprefixer = require('gulp-autoprefixer')
-  const uncss = require('gulp-uncss')
-  const csso = require('gulp-csso')
-  const rework = require('gulp-rework')
+  const cssnext = require('gulp-cssnext')
   const concat = require('gulp-concat')
-  const calc = require('rework-calc')
-  const media = require('rework-custom-media')
-  const npm = require('rework-npm')
-  const vars = require('rework-vars')
-  const color = require('rework-color-function')
+  const csso = require('gulp-csso')
 
-  return gulp.src('./css/app.css')
-    .pipe(rework(
-      npm(),
-      vars(),
-      media(),
-      calc,
-      color
-    ))
-    .pipe(autoprefixer({ browsers: ['> 5%', 'last 2 versions'] }))
-    .pipe(concat('index.css'))
-    .pipe(uncss({
-      html: ['index.html']
+  return gulp.src('css/app.css')
+    .pipe(cssnext({
+      features: {
+        customProperties: {
+          strict: false
+        },
+        rem: false,
+        pseudoElements: false,
+        colorRgba: false
+      },
+      browsers: ['> 5%', 'last 2 versions']
     }))
+    .pipe(concat('index.css'))
     .pipe(csso())
     .pipe(gulp.dest(directory))
 }
 
-function js () {
+function js (done) {
   const uglify = require('gulp-uglify')
   const tap = require('gulp-tap')
   const cheerio = require('gulp-cheerio')
@@ -70,7 +63,7 @@ function js () {
     debug: false
   })
 
-  return bundler
+  bundler
     .plugin(collapse)
     .bundle()
     .pipe(source('bundle.js'))
@@ -85,6 +78,7 @@ function js () {
           $('body').append('<script>' + file.contents + '</script>')
         }))
         .pipe(gulp.dest(directory))
+        .on('end', done)
     }))
 }
 
@@ -156,26 +150,67 @@ function icons (done) {
   })
 }
 
-function shortenSelectors () {
-  const selectors = require('gulp-selectors')
-
-  return gulp.src(['index.css', 'index.html'])
-    .pipe(selectors.run())
-    .pipe(gulp.dest(directory))
-}
-
-function insertCSS () {
-  const tap = require('gulp-tap')
+function insertCSS (done) {
   const cheerio = require('gulp-cheerio')
+  const fs = require('fs')
+  const postcss = require('postcss')
+  const byebye = require('css-byebye')
+  const discardEmpty = require('postcss-discard-empty')
+  const minifySelectors = require('postcss-minify-selectors')
+  const mergeRules = require('postcss-merge-rules')
+  const pseudosRegex = /\:?(\:[a-z-]+)/g
 
-  return gulp.src('index.css')
-    .pipe(tap(function (file) {
-      gulp.src('index.html')
-        .pipe(cheerio(function ($) {
-          $('head').append('<style type="text/css">' + file.contents + '</style>')
-        }))
-        .pipe(gulp.dest(directory))
-    }))
+  fs.readFile('./index.css', 'utf-8', function (err, css) {
+    if (err) {
+      done(err)
+    }
+
+    gulp.src('./index.html')
+      .pipe(cheerio(function ($) {
+        const parsed = postcss.parse(css)
+        var unused = []
+        var output
+
+        function trav (nodes) {
+          nodes.forEach(function (node) {
+            if (node.selector) {
+              node.selector
+                .split(',')
+                .map(function (selector) {
+                  return selector.trim()
+                })
+                .forEach(function (selector) {
+                  var _selector = selector.replace(pseudosRegex, function (selector, pseudo) {
+                    return pseudo === ':not' ? selector : ''
+                  })
+
+                  try {
+                    if (_selector && !$(_selector).length) {
+                      unused.push(selector)
+                    }
+                  } catch (e) {
+                    console.error(_selector)
+                  }
+                })
+            }
+
+            if (node.nodes) {
+              trav(node.nodes)
+            }
+          })
+        }
+
+        trav(parsed.nodes)
+
+        output = byebye.process(css, { rulesToRemove: unused })
+
+        output = postcss(discardEmpty(), minifySelectors(), mergeRules()).process(output).css
+
+        $('head').append(`<style type="text/css">${ output }</style>`)
+      }))
+      .pipe(gulp.dest(directory))
+      .on('end', done)
+  })
 }
 
 function serve (done) {
