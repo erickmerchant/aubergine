@@ -4,6 +4,7 @@
 @import "./icons.css";
 
 :root {
+  --monospace-font-family: Courier, monospace;
   --font-family: var(--monospace-font-family);
   --border-width: 4px;
   --container-width: 40em;
