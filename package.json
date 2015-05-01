@@ -4,7 +4,7 @@
   "dependencies": {
     "basscss": "^6.0.2",
     "basscss-utility-headings": "0.0.6",
-    "browserify": "^9.0.2",
+    "browserify": "^10.0.0",
     "bundle-collapser": "^1.1.1",
     "cson-parser": "^1.0.8",
     "css-byebye": "^0.2.1",
