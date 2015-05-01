@@ -17,6 +17,16 @@ Dom.prototype = {
     this.each(function () {
       this.innerHTML = html
     })
+  },
+  add: function (c) {
+    this.each(function () {
+      this.classList.add(c)
+    })
+  },
+  remove: function (c) {
+    this.each(function () {
+      this.classList.remove(c)
+    })
   }
 }
 

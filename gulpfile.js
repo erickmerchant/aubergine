@@ -159,6 +159,7 @@ function insertCSS (done) {
   const minifySelectors = require('postcss-minify-selectors')
   const mergeRules = require('postcss-merge-rules')
   const pseudosRegex = /\:?(\:[a-z-]+)/g
+  const del = require('del')
 
   fs.readFile('./index.css', 'utf-8', function (err, css) {
     if (err) {
@@ -169,33 +170,36 @@ function insertCSS (done) {
       .pipe(cheerio(function ($) {
         const parsed = postcss.parse(css)
         var unused = []
+        var ignore = ['.flash']
         var output
 
         function trav (nodes) {
           nodes.forEach(function (node) {
-            if (node.selector) {
-              node.selector
-                .split(',')
-                .map(function (selector) {
-                  return selector.trim()
-                })
-                .forEach(function (selector) {
-                  var _selector = selector.replace(pseudosRegex, function (selector, pseudo) {
-                    return pseudo === ':not' ? selector : ''
+            if (node.type !== 'atrule' || !node.name.endsWith('frames')) {
+              if (node.selector) {
+                node.selector
+                  .split(',')
+                  .map(function (selector) {
+                    return selector.trim()
                   })
+                  .forEach(function (selector) {
+                    var _selector = selector.replace(pseudosRegex, function (selector, pseudo) {
+                      return pseudo === ':not' ? selector : ''
+                    })
 
-                  try {
-                    if (_selector && !$(_selector).length) {
-                      unused.push(selector)
+                    try {
+                      if (_selector && ignore.indexOf(_selector) < 0 && !$(_selector).length) {
+                        unused.push(selector)
+                      }
+                    } catch (e) {
+                      console.error(_selector)
                     }
-                  } catch (e) {
-                    console.error(_selector)
-                  }
-                })
-            }
+                  })
+              }
 
-            if (node.nodes) {
-              trav(node.nodes)
+              if (node.nodes) {
+                trav(node.nodes)
+              }
             }
           })
         }
@@ -209,7 +213,9 @@ function insertCSS (done) {
         $('head').append(`<style type="text/css">${ output }</style>`)
       }))
       .pipe(gulp.dest(directory))
-      .on('end', done)
+      .on('end', function () {
+        del(['./index.css'], done)
+      })
   })
 }
 

@@ -2,6 +2,8 @@
 @import 'basscss-utility-headings';
 
 @import "./icons.css";
+@import "animate.css/source/_base.css";
+@import "animate.css/source/attention_seekers/flash.css";
 
 :root {
   --monospace-font-family: Courier, monospace;

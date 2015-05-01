@@ -4,7 +4,7 @@ var end = 0
 var state = 0
 var message = ''
 var timeoutID = null
-var output = dom('title, h1')
+var output = dom('h1')
 var icon = './noticon.png'
 var notification
 
@@ -20,6 +20,7 @@ function go () {
 
     } else {
       notification = notify(message, icon)
+      output.add('flash')
       reset()
     }
   }
@@ -50,6 +51,7 @@ function format (diff) {
 dom('button').on('click', function () {
   var data = this.dataset
 
+  output.remove('flash')
   reset()
 
   if (notification) {
