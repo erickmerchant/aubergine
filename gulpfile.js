@@ -11,14 +11,14 @@ gulp.task('dev', gulp.parallel(defaultSeries, watch, serve))
 function pages () {
   const swig = require('swig')
   const render = require('static-engine-render')
-  const content = require('static-engine-content')
+  const read = require('static-engine-read')
   const engine = require('static-engine')
   const cson = require('cson-parser')
 
   swig.setDefaults({ cache: false })
 
   return engine([
-    content('./content/index.cson'),
+    read('./content/index.cson'),
     function (pages, done) {
       done(null, [cson.parse(pages[0].content)])
     },
