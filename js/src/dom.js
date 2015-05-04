@@ -1,10 +1,10 @@
 var Dom = function (selector) {
-  this.nodes = document.querySelectorAll(selector)
+  this.nodes = [].slice.call(document.querySelectorAll(selector))
 }
 
 Dom.prototype = {
   each: function (fn) {
-    [].slice.call(this.nodes).forEach(function (el) {
+    this.nodes.forEach(function (el) {
       fn.call(el)
     })
   },
