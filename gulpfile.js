@@ -30,7 +30,6 @@ function pages () {
 
 function css () {
   const cssnext = require('gulp-cssnext')
-  const concat = require('gulp-concat')
   const csso = require('gulp-csso')
 
   return gulp.src('css/app.css')
@@ -45,7 +44,6 @@ function css () {
       },
       browsers: ['> 5%', 'last 2 versions']
     }))
-    .pipe(concat('index.css'))
     .pipe(csso())
     .pipe(gulp.dest(directory))
 }
@@ -161,7 +159,7 @@ function insertCSS (done) {
   const pseudosRegex = /\:?(\:[a-z-]+)/g
   const del = require('del')
 
-  fs.readFile('./index.css', 'utf-8', function (err, css) {
+  fs.readFile('./app.css', 'utf-8', function (err, css) {
     if (err) {
       done(err)
     }
@@ -214,7 +212,7 @@ function insertCSS (done) {
       }))
       .pipe(gulp.dest(directory))
       .on('end', function () {
-        del(['./index.css'], done)
+        del(['./app.css'], done)
       })
   })
 }
