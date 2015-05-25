@@ -3,7 +3,6 @@
 
 const directory = './'
 const sergeant = require('sergeant')
-const chalk = require('chalk')
 const bach = require('./bach-extended.js')
 const vinylFS = require('vinyl-fs')
 const defaultSeries = bach.series(bach.parallel(bach.series(pages, icons, minifyHTML, js), css), insertCSS)
