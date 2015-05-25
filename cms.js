@@ -1,12 +1,19 @@
+#!/usr/bin/env node
 'use strict'
 
 const directory = './'
-const gulp = require('gulp')
-const defaultSeries = gulp.series(gulp.parallel(gulp.series(pages, icons, minifyHTML, js), css), insertCSS)
+const sergeant = require('sergeant')
+const chalk = require('chalk')
+const bach = require('./bach-extended.js')
+const vinylFS = require('vinyl-fs')
+const defaultSeries = bach.series(bach.parallel(bach.series(pages, icons, minifyHTML, js), css), insertCSS)
+const app = sergeant('CMS for chrono')
 
-gulp.task('default', defaultSeries)
+app.command('update', 'Build the site once', {}, defaultSeries)
 
-gulp.task('dev', gulp.parallel(defaultSeries, watch, serve))
+app.command('watch', 'Build the site then watch for changes. Run a server', {}, bach.parallel(defaultSeries, watch, serve))
+
+app.run()
 
 function pages () {
   const swig = require('swig')
@@ -32,7 +39,7 @@ function css () {
   const cssnext = require('gulp-cssnext')
   const csso = require('gulp-csso')
 
-  return gulp.src('css/app.css')
+  return vinylFS.src('css/app.css')
     .pipe(cssnext({
       features: {
         customProperties: {
@@ -45,7 +52,7 @@ function css () {
       browsers: ['> 5%', 'last 2 versions']
     }))
     .pipe(csso())
-    .pipe(gulp.dest(directory))
+    .pipe(vinylFS.dest(directory))
 }
 
 function js (done) {
@@ -71,11 +78,11 @@ function js (done) {
     }))
     .pipe(uglify())
     .pipe(tap(function (file) {
-      return gulp.src('index.html')
+      return vinylFS.src('index.html')
         .pipe(cheerio(function ($) {
           $('body').append('<script>' + file.contents + '</script>')
         }))
-        .pipe(gulp.dest(directory))
+        .pipe(vinylFS.dest(directory))
         .on('end', done)
     }))
 }
@@ -83,18 +90,18 @@ function js (done) {
 function minifyHTML () {
   const htmlmin = require('gulp-htmlmin')
 
-  return gulp.src('index.html')
+  return vinylFS.src('index.html')
     .pipe(htmlmin({
       collapseWhitespace: true
     }))
-    .pipe(gulp.dest(directory))
+    .pipe(vinylFS.dest(directory))
 }
 
 function icons (done) {
   const cheerio = require('gulp-cheerio')
   const geomicons = require('geomicons-open/paths')
 
-  gulp.src('./index.html')
+  vinylFS.src('./index.html')
     .pipe(cheerio(function ($) {
       const defs = new Set()
 
@@ -119,7 +126,7 @@ function icons (done) {
         $('body').append(`<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0"><defs>${ paths.join('') }</defs></svg>`)
       }
     }))
-    .pipe(gulp.dest(directory))
+    .pipe(vinylFS.dest(directory))
     .on('end', done)
 }
 
@@ -139,7 +146,7 @@ function insertCSS (done) {
       done(err)
     }
 
-    gulp.src('./index.html')
+    vinylFS.src('./index.html')
       .pipe(cheerio(function ($) {
         const parsed = postcss.parse(css)
         var unused = []
@@ -185,7 +192,7 @@ function insertCSS (done) {
 
         $('head').append(`<style type="text/css">${ output }</style>`)
       }))
-      .pipe(gulp.dest(directory))
+      .pipe(vinylFS.dest(directory))
       .on('end', function () {
         del(['./app.css'], done)
       })
@@ -215,5 +222,5 @@ function serve (done) {
 }
 
 function watch () {
-  gulp.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html', 'content/**/*.cson'], defaultSeries)
+  vinylFS.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html', 'content/**/*.cson'], defaultSeries)
 }
