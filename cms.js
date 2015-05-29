@@ -8,9 +8,9 @@ const vinylFS = require('vinyl-fs')
 const defaultSeries = bach.series(bach.parallel(bach.series(pages, icons, minifyHTML, js), css), insertCSS)
 const app = sergeant('CMS for chrono')
 
-app.command('update', 'Build the site once', {}, defaultSeries)
+app.command('update', { description: 'Build the site once' }, defaultSeries)
 
-app.command('watch', 'Build the site then watch for changes. Run a server', {}, bach.parallel(defaultSeries, watch, serve))
+app.command('watch', { description: 'Build the site then watch for changes. Run a server' }, bach.parallel(defaultSeries, watch, serve))
 
 app.run()
 
