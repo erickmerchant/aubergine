@@ -5,7 +5,7 @@ const directory = './'
 const sergeant = require('sergeant')
 const bach = require('./bach-extended.js')
 const vinylFS = require('vinyl-fs')
-const defaultSeries = bach.series(bach.parallel(bach.series(pages, icons, minifyHTML, js), css), insertCSS)
+const defaultSeries = bach.series(bach.parallel(bach.series(pages, icons, minifyHTML), css, js), shortenSelectors, insertCSS, insertJS)
 const app = sergeant('CMS for chrono')
 
 app.command('update', { description: 'Build the site once' }, defaultSeries)
@@ -57,7 +57,7 @@ function css () {
 function js (done) {
   const uglify = require('gulp-uglify')
   const tap = require('gulp-tap')
-  const cheerio = require('gulp-cheerio')
+  const vinylFS = require('vinyl-fs')
   const browserify = require('browserify')
   const source = require('vinyl-source-stream')
   const buffer = require('vinyl-buffer')
@@ -76,14 +76,8 @@ function js (done) {
       file.contents = new Buffer('!function(window, document, Math, Date){ ' + file.contents + ' }(window, document, Math, Date)')
     }))
     .pipe(uglify())
-    .pipe(tap(function (file) {
-      return vinylFS.src('index.html')
-        .pipe(cheerio(function ($) {
-          $('body').append('<script>' + file.contents + '</script>')
-        }))
-        .pipe(vinylFS.dest(directory))
-        .on('end', done)
-    }))
+    .pipe(vinylFS.dest(directory))
+    .on('end', done)
 }
 
 function minifyHTML () {
@@ -127,6 +121,17 @@ function icons (done) {
     }))
     .pipe(vinylFS.dest(directory))
     .on('end', done)
+}
+
+
+function shortenSelectors () {
+  const vinylFS = require('vinyl-fs')
+  const path = require('path')
+  const selectors = require('gulp-selectors')
+
+  return vinylFS.src(['./index.html', './app.css'])
+    .pipe(selectors.run(undefined, {ids: '*', classes: ['flash']}))
+    .pipe(vinylFS.dest(directory))
 }
 
 function insertCSS (done) {
@@ -194,6 +199,27 @@ function insertCSS (done) {
       .pipe(vinylFS.dest(directory))
       .on('end', function () {
         del(['./app.css'], done)
+      })
+  })
+}
+
+function insertJS (done) {
+  const cheerio = require('gulp-cheerio')
+  const fs = require('fs')
+  const del = require('del')
+
+  fs.readFile('./bundle.js', 'utf-8', function (err, js) {
+    if (err) {
+      done(err)
+    }
+
+    vinylFS.src('./index.html')
+      .pipe(cheerio(function ($) {
+        $('body').append('<script>' + js + '</script>')
+      }))
+      .pipe(vinylFS.dest(directory))
+      .on('end', function () {
+        del(['./bundle.js'], done)
       })
   })
 }
