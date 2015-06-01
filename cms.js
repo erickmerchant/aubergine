@@ -47,8 +47,7 @@ function css () {
         rem: false,
         pseudoElements: false,
         colorRgba: false
-      },
-      browsers: ['> 5%', 'last 2 versions']
+      }
     }))
     .pipe(csso())
     .pipe(vinylFS.dest(directory))
@@ -123,10 +122,8 @@ function icons (done) {
     .on('end', done)
 }
 
-
 function shortenSelectors () {
   const vinylFS = require('vinyl-fs')
-  const path = require('path')
   const selectors = require('gulp-selectors')
 
   return vinylFS.src(['./index.html', './app.css'])
