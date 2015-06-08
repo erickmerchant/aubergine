@@ -3,6 +3,7 @@
 
 const directory = './'
 const sergeant = require('sergeant')
+const chalk = require('chalk')
 const bach = require('./bach-extended.js')
 const vinylFS = require('vinyl-fs')
 const defaultSeries = bach.series(bach.parallel(bach.series(pages, icons, minifyHTML), css, js), shortenSelectors, insertCSS, insertJS)
@@ -12,7 +13,15 @@ app.command('update', { description: 'Build the site once' }, defaultSeries)
 
 app.command('watch', { description: 'Build the site then watch for changes. Run a server' }, bach.parallel(defaultSeries, watch, serve))
 
-app.run()
+app.run(function (err, result) {
+  if (err) {
+    console.error(chalk.red(err))
+  } else {
+    if (typeof result === 'string') {
+      console.log(result)
+    }
+  }
+})
 
 function pages () {
   const swig = require('swig')

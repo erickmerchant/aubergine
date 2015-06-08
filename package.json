@@ -28,7 +28,7 @@
     "postcss-merge-rules": "^1.2.2",
     "postcss-minify-selectors": "^1.3.1",
     "pretty-hrtime": "^1.0.0",
-    "sergeant": "^4.0.0",
+    "sergeant": "^5.0.0",
     "static-engine": "^10.0.0",
     "static-engine-read": "^1.0.0",
     "static-engine-render": "^5.0.0",
