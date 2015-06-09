@@ -145,9 +145,7 @@ function insertCSS (done) {
   const fs = require('fs')
   const postcss = require('postcss')
   const byebye = require('css-byebye')
-  const discardEmpty = require('postcss-discard-empty')
-  const minifySelectors = require('postcss-minify-selectors')
-  const mergeRules = require('postcss-merge-rules')
+  const nano = require('cssnano')
   const pseudosRegex = /\:?(\:[a-z-]+)/g
   const del = require('del')
 
@@ -196,7 +194,7 @@ function insertCSS (done) {
 
         trav(parsed.nodes)
 
-        output = postcss(byebye({ rulesToRemove: unused }), discardEmpty(), minifySelectors(), mergeRules()).process(css).css
+        output = postcss(byebye({ rulesToRemove: unused }), nano()).process(css).css
 
         $('head').append(`<style type="text/css">${ output }</style>`)
       }))
