@@ -10,7 +10,7 @@
     "bundle-collapser": "^1.1.1",
     "chalk": "^1.0.0",
     "cson-parser": "^1.0.8",
-    "css-byebye": "^0.2.1",
+    "css-byebye": "^1.0.0",
     "del": "^1.1.1",
     "express": "^4.10.7",
     "express-log": "^1.0.1",

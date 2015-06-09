@@ -196,9 +196,7 @@ function insertCSS (done) {
 
         trav(parsed.nodes)
 
-        output = byebye.process(css, { rulesToRemove: unused })
-
-        output = postcss(discardEmpty(), minifySelectors(), mergeRules()).process(output).css
+        output = postcss(byebye({ rulesToRemove: unused }), discardEmpty(), minifySelectors(), mergeRules()).process(css).css
 
         $('head').append(`<style type="text/css">${ output }</style>`)
       }))
