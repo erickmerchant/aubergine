@@ -130,9 +130,7 @@ function css (done) {
 
         ignore.forEach(function (v) {
           if (output.map[v.substr(1)]) {
-            console.log('/\\.' + output.map[v.substr(1)] + '/g')
-
-            output.compiled = output.compiled.replace(new RegExp('\\.' + output.map[v.substr(1)], 'g'), v)
+            output.compiled = output.compiled.replace(new RegExp('\\.' + output.map[v.substr(1)] + '([^\\w-])', 'g'), v + '$1')
           }
         })
 
