@@ -4,15 +4,29 @@
 const directory = './'
 const sergeant = require('sergeant')
 const chalk = require('chalk')
-const bach = require('./bach-extended.js')
 const vinylFS = require('vinyl-fs')
 const fs = require('fs')
-const defaultSeries = bach.series(pages, icons, minifyHTML, css, js)
 const app = sergeant('CMS for chrono')
+const bach = require('bach')
+const pretty = require('pretty-hrtime')
+const extensions = {
+  create: function (fn) {
+    return { name: fn.name || 'anonymous' }
+  },
+  before: function (storage) {
+    storage.started = process.hrtime()
+
+    console.log(chalk.magenta(storage.name) + ' starting ... ')
+  },
+  after: function (result, storage) {
+    console.log(chalk.magenta(storage.name) + ' finished in ' + chalk.cyan(pretty(process.hrtime(storage.started))))
+  }
+}
+const defaultSeries = bach.series(pages, icons, minifyHTML, css, js, extensions)
 
 app.command('update', { description: 'Build the site once' }, defaultSeries)
 
-app.command('watch', { description: 'Build the site then watch for changes. Run a server' }, bach.parallel(defaultSeries, watch, serve))
+app.command('watch', { description: 'Build the site then watch for changes. Run a server' }, bach.parallel(defaultSeries, watch, serve, extensions))
 
 app.run(function (err, result) {
   if (err) {
