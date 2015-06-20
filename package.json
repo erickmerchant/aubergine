@@ -3,7 +3,6 @@
   "private": "true",
   "dependencies": {
     "animate.css": "^3.2.5",
-    "bach": "^0.4.1",
     "basscss": "^6.0.2",
     "basscss-utility-headings": "0.0.6",
     "browserify": "^10.0.0",
@@ -20,8 +19,7 @@
     "gulp-cheerio": "^0.6.2",
     "gulp-htmlmin": "^1.0.0",
     "postcss": "^4.1.6",
-    "pretty-hrtime": "^1.0.0",
-    "sergeant": "^5.0.0",
+    "sergeant": "^6.0.0",
     "smallector": "^1.0.1",
     "static-engine": "^10.0.0",
     "static-engine-read": "^1.0.0",
