@@ -3,7 +3,6 @@
 
 const directory = './'
 const sergeant = require('sergeant')
-const chalk = require('chalk')
 const vinylFS = require('vinyl-fs')
 const fs = require('fs')
 const app = sergeant({ description: 'CMS for chrono' })
