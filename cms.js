@@ -2,15 +2,14 @@
 'use strict'
 
 const directory = './'
-const sergeant = require('sergeant')
+const sgt = require('sergeant')
 const vinylFS = require('vinyl-fs')
 const fs = require('fs')
-const app = sergeant({ description: 'CMS for chrono' })
-const defaultSeries = sergeant.series(pages, icons, minifyHTML, css, js)
+const app = sgt({ description: 'CMS for chrono' })
 
-app.command('update', { description: 'Build the site once' }, defaultSeries)
+app.command('update', { description: 'Build the site once' }, sgt.series(pages, icons, minifyHTML, css, js))
 
-app.command('watch', { description: 'Build the site then watch for changes. Run a server' }, sergeant.parallel(defaultSeries, watch, serve))
+app.command('watch', { description: 'Build the site then watch for changes. Run a server' }, watch)
 
 app.run()
 
@@ -229,6 +228,10 @@ function serve (done) {
   done()
 }
 
-function watch () {
-  vinylFS.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html', 'content/**/*.cson'], defaultSeries)
+function watch (options, done) {
+  vinylFS.watch(['css/**/*.css', 'js/**/*.js', 'templates/**/*.html', 'content/**/*.cson'], function () {
+    sgt.series(pages, icons, minifyHTML, css, js)(options, function () { })
+  })
+
+  sgt.parallel(sgt.series(pages, icons, minifyHTML, css, js), serve)(options, done)
 }
