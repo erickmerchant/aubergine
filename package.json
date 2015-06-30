@@ -3,7 +3,7 @@
   "private": "true",
   "dependencies": {
     "animate.css": "^3.2.5",
-    "basscss": "^6.0.2",
+    "basscss": "^7.0.0",
     "basscss-utility-headings": "0.0.6",
     "browserify": "^10.0.0",
     "bundle-collapser": "^1.2.0",
