@@ -1,5 +1,6 @@
 @import 'basscss';
 @import 'basscss-utility-headings';
+@import 'basscss-border-colors';
 
 @import "./icons.css";
 @import "animate.css/source/_base.css";
@@ -14,4 +15,9 @@
 
 .full-view-height {
   min-height: 100vh;
+}
+
+.btn-glow:focus {
+  border-color: currentcolor;
+  box-shadow: 0 0 0.25em 0.125em currentcolor;
 }
