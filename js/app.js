@@ -67,6 +67,8 @@ dom('button').on('click', function () {
   message = data.message
 
   go()
+
+  this.focus()
 })
 
 notify.grant()
