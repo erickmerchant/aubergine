@@ -13,23 +13,23 @@
     <title>Chrono</title>
     <link href="/favicon.png" rel="shortcut icon" type="image/png">
   </head>
-  <body class="flex flex-column bg-black lime full-view-height">
+  <body class="flex flex-column center bg-black lime full-view-height">
     <div class="flex flex-center flex-auto">
-      <form class="col-12 container center p1">
+      <form class="container col-12">
         <h1 class="h00 h00-responsive animated">00:00</h1>
         {% for button in buttons %}
-          <div class="col col-12 sm-col-6 p1 h3">
-            <button class="btn btn-glow border rounded col-12 py2" type="button" data-interval="{{ button.interval }}" data-message="{{ button.message }}">{{ button.text }}</button>
+          <div class="col col-12 sm-col-6 h3 p2">
+            <button class="btn btn-glow border rounded col-12 p2" type="button" data-interval="{{ button.interval }}" data-message="{{ button.message }}">{{ button.text }}</button>
           </div>
         {% endfor %}
-        <div class="col col-12 sm-col-12 p3">
+        <div class="col col-12 sm-col-12">
           <h2>{{ icon('clock') }} Chrono</h2>
         </div>
       </form>
     </div>
-    <footer class="p2 mt2 clearfix center muted h6" role="contentinfo">
-      <span class="p1">&copy; {{ author }}, {{ year }}</span>
-      <a class="btn" href="https://github.com/erickmerchant/chrono">{{ icon('github') }} View Source</a>
+    <footer class="clearfix muted h6 p2" role="contentinfo">
+      &copy; {{ author }}, {{ year }}
+      <a class="btn btn-glow" href="https://github.com/erickmerchant/chrono">{{ icon('github') }} View Source</a>
     </footer>
   </body>
 </html>
