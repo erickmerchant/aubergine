@@ -1,33 +1,30 @@
-var Dom = function (selector) {
+function Dom (selector) {
   this.nodes = [].slice.call(document.querySelectorAll(selector))
 }
 
-Dom.prototype = {
-  each: function (fn) {
+function wrap (method) {
+  return function () {
+    var args = [].slice.call(arguments)
+
     this.nodes.forEach(function (el) {
-      fn.call(el)
-    })
-  },
-  on: function (event, fn) {
-    this.each(function () {
-      this.addEventListener(event, fn)
-    })
-  },
-  html: function (html) {
-    this.each(function () {
-      this.innerHTML = html
-    })
-  },
-  add: function (c) {
-    this.each(function () {
-      this.classList.add(c)
-    })
-  },
-  remove: function (c) {
-    this.each(function () {
-      this.classList.remove(c)
+      method.apply(el, args)
     })
   }
+}
+
+Dom.prototype = {
+  on: wrap(function (event, fn) {
+    this.addEventListener(event, fn)
+  }),
+  html: wrap(function (html) {
+    this.innerHTML = html
+  }),
+  add: wrap(function (c) {
+    this.classList.add(c)
+  }),
+  remove: wrap(function (c) {
+    this.classList.remove(c)
+  })
 }
 
 module.exports = function (selector) {
