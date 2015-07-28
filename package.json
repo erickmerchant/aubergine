@@ -3,6 +3,7 @@
   "private": "true",
   "dependencies": {
     "animate.css": "^3.2.5",
+    "atlatl": "^0.1.0",
     "basscss": "^7.0.0",
     "basscss-border-colors": "^1.0.0",
     "basscss-utility-headings": "0.0.6",
@@ -25,7 +26,6 @@
     "static-engine": "^10.0.0",
     "static-engine-read": "^1.0.0",
     "static-engine-render": "^5.0.0",
-    "swig": "^1.4.2",
     "uglify-js": "^2.4.23",
     "vinyl-fs": "^1.0.0"
   },
