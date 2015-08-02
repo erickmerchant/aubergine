@@ -24,6 +24,6 @@ module.exports = function pages () {
     function (pages, done) {
       done(null, [cson.parse(pages[0].content)])
     },
-    render('./index.html', renderer('index'))
+    render('./index.html', renderer('index.html'))
   ])
 }
