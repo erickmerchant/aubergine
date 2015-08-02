@@ -1,16 +1,21 @@
 'use strict'
 
-const atlatl = require('atlatl')
+const atlatl = require('atlatl')('./templates/')
 const render = require('static-engine-render')
 const read = require('static-engine-read')
 const engine = require('static-engine')
 const cson = require('cson-parser')
 
 module.exports = function pages () {
-  const loader = atlatl('./templates/')
   const renderer = function (name) {
     return function (page, done) {
-      loader(name, page, done)
+      atlatl(name, function (err, template) {
+        if (err) {
+          done(err)
+        } else {
+          done(null, template(page))
+        }
+      })
     }
   }
 
