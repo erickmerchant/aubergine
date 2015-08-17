@@ -3,7 +3,7 @@
   "private": "true",
   "dependencies": {
     "animate.css": "^3.2.5",
-    "atlatl": "^0.13.0",
+    "atlatl": "^0.15.0",
     "basscss": "^7.0.0",
     "basscss-border-colors": "^1.0.0",
     "basscss-utility-headings": "0.0.6",
