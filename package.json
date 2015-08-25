@@ -26,7 +26,7 @@
     "static-engine": "^10.0.0",
     "static-engine-read": "^1.0.0",
     "static-engine-render": "^5.0.0",
-    "uglify-js": "^2.4.23",
+    "uglify-js": "^2.4.24",
     "vinyl-fs": "^1.0.0"
   },
   "scripts": {
