@@ -1,5 +1,5 @@
-@partial icon name
-  @if name
+@partial icon (name)
+  @if (name)
     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
       <use xlink:href="#${ name }"></use>
     </svg>
@@ -19,19 +19,25 @@
     <div class="flex flex-center flex-auto">
       <form class="container col-12">
         <h1 class="h00 h00-responsive animated">00:00</h1>
-        @each content.buttons button
+        @each content.buttons (button)
           <div class="col col-12 sm-col-6 h3 p2">
             <button class="btn btn-glow border rounded col-12 p2" type="button" data-interval="${ button.interval }" data-message="${ button.message }">${ button.text }</button>
           </div>
         @
         <div class="col col-12 sm-col-12">
-          <h2>${ icon('clock') } Chrono</h2>
+          <h2>
+            @call icon ('clock')
+            Chrono
+          </h2>
         </div>
       </form>
     </div>
     <footer class="clearfix muted h6 p2" role="contentinfo">
       &copy; ${ content.author }, ${ content.year }
-      <a class="btn btn-glow" href="https://github.com/erickmerchant/chrono">${ icon('github') } View Source</a>
+      <a class="btn btn-glow" href="https://github.com/erickmerchant/chrono">
+        @call icon ('github')
+        View Source
+      </a>
     </footer>
   </body>
 </html>
