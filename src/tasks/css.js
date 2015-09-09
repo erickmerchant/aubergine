@@ -31,7 +31,7 @@ module.exports = function css (done) {
     )
 
     vinylFS.src('./index.html')
-      .pipe(cheerio(function ($) {
+      .pipe(cheerio(function ($, file, done) {
         const parsed = postcss.parse(css)
         const unused = []
         const ignore = ['.flash']
@@ -86,9 +86,11 @@ module.exports = function css (done) {
           }
         })
 
-        output = postcss(nano()).process(output.compiled).css
+        postcss([nano()]).process(output.compiled).then(function (output) {
+          $('head').append(`<style type="text/css">${ output.css }</style>`)
 
-        $('head').append(`<style type="text/css">${ output }</style>`)
+          done()
+        })
       }))
       .pipe(vinylFS.dest('./'))
       .on('end', function () {

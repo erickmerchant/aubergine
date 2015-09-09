@@ -17,7 +17,6 @@ function go () {
     if (diff > 0) {
       output.html(format(diff))
       timeoutID = setTimeout(go, 100)
-
     } else {
       notification = notify(message, icon)
       output.add('flash')
