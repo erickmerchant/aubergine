@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict'
 
-const sgt = require('sergeant')
-const app = sgt({ description: 'CMS for chrono' })
+const sergeant = require('sergeant')
+const app = sergeant().describe('CMS for chrono')
 const commands = ['update', 'watch']
 
 commands.forEach(function (command) {
