@@ -35,5 +35,10 @@
   },
   "devDependencies": {
     "standard": "^5.0.0"
+  },
+  "standard": {
+    "ignore": [
+      "/app.js"
+    ]
   }
 }
