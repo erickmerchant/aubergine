@@ -9,6 +9,7 @@
     "basscss-utility-headings": "0.0.6",
     "browserify": "^12.0.0",
     "bundle-collapser": "^1.2.0",
+    "cheerio": "^0.19.0",
     "cson-parser": "^1.0.8",
     "css-byebye": "^1.0.0",
     "cssnano": "^3.0.0",
@@ -16,19 +17,19 @@
     "express": "^4.10.7",
     "express-static": "^1.0.3",
     "geomicons-open": "^2.0.0",
-    "gulp-cheerio": "^0.6.2",
-    "gulp-htmlmin": "^1.0.0",
-    "gulp-rename": "^1.2.2",
+    "html-minifier": "^1.0.0",
+    "lodash.endswith": "^3.0.2",
     "morgan": "^1.6.1",
     "portfinder": "^0.4.0",
     "postcss": "^5.0.1",
     "sergeant": "^7.0.0",
     "smallector": "^1.0.1",
+    "smear": "^1.1.0",
     "static-engine": "^10.0.0",
     "static-engine-read": "^1.0.0",
     "static-engine-render": "^5.0.0",
-    "uglify-js": "^2.4.24",
-    "vinyl-fs": "^1.0.0"
+    "thenify": "^3.1.1",
+    "uglify-js": "^2.4.24"
   },
   "scripts": {
     "test": "standard"

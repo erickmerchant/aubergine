@@ -1,12 +1,13 @@
 'use strict'
 
 const fs = require('fs')
+const chokidar = require('chokidar')
 const browserify = require('browserify')
 const uglify = require('uglify-js')
 const collapse = require('bundle-collapser/plugin')
 const bundler = browserify({debug: false})
 
-module.exports = function js () {
+function js () {
   return new Promise(function (resolve, reject) {
     bundler.add('js/app.js')
 
@@ -29,3 +30,13 @@ module.exports = function js () {
     })
   })
 }
+
+js.watch = function () {
+  chokidar.watch('js/**/*.js').on('all', function () {
+    js()
+  })
+
+  return js()
+}
+
+module.exports = js
