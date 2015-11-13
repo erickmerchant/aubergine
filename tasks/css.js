@@ -29,11 +29,13 @@ function css () {
 }
 
 css.watch = function () {
-  chokidar.watch('css/**/*.css').on('all', function () {
-    css()
-  })
+  return css().then(function () {
+    chokidar.watch('css/**/*.css', {ignoreInitial: true}).on('all', function () {
+      css().catch(console.error)
+    })
 
-  return css()
+    return true
+  })
 }
 
 module.exports = css

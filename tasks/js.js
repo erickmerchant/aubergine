@@ -32,11 +32,13 @@ function js () {
 }
 
 js.watch = function () {
-  chokidar.watch('js/**/*.js').on('all', function () {
-    js()
-  })
+  return js().then(function () {
+    chokidar.watch('js/**/*.js', {ignoreInitial: true}).on('all', function () {
+      js().catch(console.error)
+    })
 
-  return js()
+    return true
+  })
 }
 
 module.exports = js
