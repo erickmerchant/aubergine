@@ -29,7 +29,7 @@
     "static-engine-read": "^1.0.0",
     "static-engine-render": "^5.0.0",
     "thenify": "^3.1.1",
-    "uglify-js": "^2.4.24"
+    "uglify-js": "^2.6.1"
   },
   "scripts": {
     "test": "standard"
