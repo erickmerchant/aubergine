@@ -1,6 +1,6 @@
 'use strict'
 
-const atlatl = require('atlatl')('./templates/')
+const atlatl = require('atlatl')
 const render = require('static-engine-render')
 const read = require('static-engine-read')
 const engine = require('static-engine')
@@ -8,9 +8,10 @@ const cson = require('cson-parser')
 const chokidar = require('chokidar')
 
 function pages () {
+  const templates = atlatl('./templates/')
   const renderer = function (name) {
     return function (page, done) {
-      atlatl(name).then(function (template) {
+      templates(name).then(function (template) {
         done(null, template(page))
       })
       .catch(done)
