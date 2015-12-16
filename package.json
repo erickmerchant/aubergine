@@ -7,8 +7,6 @@
     "basscss": "^7.0.0",
     "basscss-border-colors": "^1.0.0",
     "basscss-utility-headings": "0.0.6",
-    "browserify": "^12.0.0",
-    "bundle-collapser": "^1.2.0",
     "cheerio": "^0.19.0",
     "cson-parser": "^1.0.8",
     "css-byebye": "^1.0.0",
@@ -29,7 +27,7 @@
     "static-engine-read": "^1.0.0",
     "static-engine-render": "^5.0.0",
     "thenify": "^3.1.1",
-    "uglify-js": "^2.6.1"
+    "webpack": "^1.12.9"
   },
   "scripts": {
     "test": "standard"
