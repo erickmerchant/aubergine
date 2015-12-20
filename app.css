@@ -1,3 +1,5 @@
+/*! Basscss | http://basscss.com | MIT License */
+
 body { margin: 0 }
 img { max-width: 100% }
 svg { max-height: 100% }
@@ -236,6 +238,7 @@ hr {
 .table-light tr:last-child td {
   border-bottom: 0;
 }
+
 /* Basscss Btn */
 
 .btn {
@@ -317,6 +320,7 @@ hr {
 .btn-outline.is-disabled {
   opacity: .5;
 }
+
 /* Basscss Type Scale */
 
 .h1 { font-size: 2rem }
@@ -325,7 +329,11 @@ hr {
 .h4 { font-size: 1rem }
 .h5 { font-size: .875rem }
 .h6 { font-size: .75rem }
-/* Basscss Utility Typography */
+/* Basscss Typography */
+
+.font-family-inherit { font-family: inherit }
+.font-size-inherit { font-size: inherit }
+.text-decoration-none { text-decoration: none }
 
 .bold    { font-weight: bold }
 .regular { font-weight: normal }
@@ -340,6 +348,14 @@ hr {
 .nowrap { white-space: nowrap }
 .break-word { word-wrap: break-word }
 
+.line-height-1 { line-height: 1 }
+.line-height-2 { line-height: 1.125 }
+.line-height-3 { line-height: 1.25 }
+.line-height-4 { line-height: 1.5 }
+
+.list-style-none { list-style: none }
+.underline { text-decoration: underline }
+
 .truncate {
   max-width: 100%;
   overflow: hidden;
@@ -351,7 +367,7 @@ hr {
   list-style: none;
   padding-left: 0;
 }
-/* Basscss Utility Layout */
+/* Basscss Layout */
 
 .inline       { display: inline }
 .block        { display: block }
@@ -382,7 +398,7 @@ hr {
 .align-top      { vertical-align: top }
 .align-middle   { vertical-align: middle }
 .align-bottom   { vertical-align: bottom }
-/* Basscss Utility White Space */
+/* Basscss Margin */
 
 .m0  { margin:        0 }
 .mt0 { margin-top:    0 }
@@ -420,6 +436,8 @@ hr {
 .mxn4 { margin-left: -4rem; margin-right: -4rem; }
 
 .mx-auto { margin-left: auto; margin-right: auto; }
+/* Basscss Padding */
+
 .p0 { padding: 0 }
 
 .p1  { padding: .5rem }
@@ -437,7 +455,7 @@ hr {
 .p4  { padding: 4rem }
 .py4 { padding-top: 4rem; padding-bottom: 4rem }
 .px4 { padding-left: 4rem; padding-right: 4rem }
-/* Basscss Positions */
+/* Basscss Position */
 
 .relative { position: relative }
 .absolute { position: absolute }
@@ -780,7 +798,7 @@ hr {
 @media (min-width: 64em) {
   .lg-flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex }
 }
-/* Basscss Color Borders */
+/* Basscss Border */
 
 .border {
   border-style: solid;
@@ -823,6 +841,7 @@ hr {
 .rounded-left   { border-radius: 3px 0 0 3px }
 
 .not-rounded { border-radius: 0 }
+
 /* Basscss Colors */
 
 .black  { color: #111 }
@@ -878,6 +897,8 @@ hr {
 .bg-lighten-2 { background-color: rgba(255,255,255,.125) }
 .bg-lighten-3 { background-color: rgba(255,255,255,.25) }
 .bg-lighten-4 { background-color: rgba(255,255,255,.5) }
+
+/* Basscss Defaults */
 /* Basscss Utility Headings */
 
 .h00 { font-size: 4rem }
