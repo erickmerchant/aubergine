@@ -6,7 +6,7 @@
     "atlatl": "^1.0.1",
     "basscss": "^7.0.0",
     "basscss-border-colors": "^1.0.0",
-    "basscss-utility-headings": "0.0.6",
+    "basscss-utility-headings": "0.0.7",
     "cheerio": "^0.20.0",
     "chokidar": "^1.4.1",
     "cson-parser": "^1.0.8",
@@ -35,7 +35,7 @@
     "test": "standard"
   },
   "devDependencies": {
-    "standard": "^5.0.0"
+    "standard": "^6.0.4"
   },
   "standard": {
     "ignore": [

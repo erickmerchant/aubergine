@@ -2,11 +2,12 @@
 
 const chokidar = require('chokidar')
 const webpack = require('webpack')
+const path = require('path')
 
 function js () {
   return new Promise(function (resolve, reject) {
     webpack({
-      context: __dirname + '/js/',
+      context: path.join(__dirname, '/js/'),
       entry: 'app.js',
       output: {
         path: './',
