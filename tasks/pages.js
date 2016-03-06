@@ -12,7 +12,7 @@ function pages () {
   const renderer = function (name) {
     return function (page, done) {
       templates('./templates/' + name).then(function (template) {
-        done(null, template(page))
+        done(null, template.render(page))
       })
       .catch(done)
     }
