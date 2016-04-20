@@ -1,26 +1,21 @@
 'use strict'
 
 const chokidar = require('chokidar')
-const webpack = require('webpack')
-const path = require('path')
+const fs = require('fs')
+const browserify = require('browserify')
+const streamToPromise = require('stream-to-promise')
+const collapser = require('bundle-collapser/plugin')
 
 function js () {
-  return new Promise(function (resolve, reject) {
-    webpack({
-      context: path.join(__dirname, '/js/'),
-      entry: 'app.js',
-      output: {
-        path: './',
-        filename: 'app.js'
-      }
-    }, function (err) {
-      if (err) {
-        reject(err)
-      } else {
-        resolve()
-      }
-    })
+  var bundleFs = fs.createWriteStream('app.js')
+  var bundle = browserify({
+    plugin: [collapser]
   })
+
+  bundle.add('js/app.js')
+  bundle.bundle().pipe(bundleFs)
+
+  return streamToPromise(bundle)
 }
 
 js.watch = function () {

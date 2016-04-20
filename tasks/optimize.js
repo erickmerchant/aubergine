@@ -155,7 +155,8 @@ module.exports = function minifyHTML () {
         removeAttributeQuotes: true,
         // removeRedundantAttributes: true,
         removeEmptyAttributes: true,
-        removeOptionalTags: true
+        removeOptionalTags: true,
+        minifyJS: true
       }))
     })
   }))

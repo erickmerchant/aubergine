@@ -5,26 +5,24 @@ const fs = require('fs')
 const fsReadFile = thenify(fs.readFile)
 const fsWriteFile = thenify(fs.writeFile)
 const chokidar = require('chokidar')
-const cssnext = require('cssnext')
+const postcss = require('postcss')
+const postcssPlugins = [
+  require('postcss-import')(),
+  require('postcss-custom-media')(),
+  require('postcss-custom-properties')(),
+  require('postcss-calc')(),
+  require('autoprefixer')
+]
 
 function css () {
   return fsReadFile('css/app.css', 'utf-8')
   .then(function (css) {
-    css = cssnext(
-      css, {
-        from: 'css/app.css',
-        features: {
-          customProperties: {
-            strict: false
-          },
-          rem: false,
-          pseudoElements: false,
-          colorRgba: false
-        }
-      }
-    )
-
-    return fsWriteFile('./app.css', css)
+    return postcss(postcssPlugins).process(css, {
+      from: 'css/app.css',
+      to: 'app.css'
+    }).then(function (output) {
+      return fsWriteFile('app.css', output.css)
+    })
   })
 }
 
