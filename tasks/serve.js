@@ -1,7 +1,6 @@
 'use strict'
 
 const express = require('express')
-const _static = require('express-static')
 const morgan = require('morgan')
 const portfinder = require('portfinder')
 
@@ -15,7 +14,7 @@ module.exports = function serve () {
 
         app.use(morgan('dev'))
 
-        app.use(_static('./'))
+        app.use(express.static('./'))
 
         app.use(function (req, res, next) {
           res.redirect('/')
