@@ -1,6 +1,6 @@
 {
   "name": "chrono",
-  "private": "true",
+  "private": true,
   "dependencies": {
     "animate.css": "^3.2.5",
     "atlatl": "^5.0.0",
@@ -41,7 +41,7 @@
     "test": "standard"
   },
   "devDependencies": {
-    "standard": "^6.0.4"
+    "standard": "^7.0.0"
   },
   "standard": {
     "ignore": [

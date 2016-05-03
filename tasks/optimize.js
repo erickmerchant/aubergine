@@ -13,7 +13,7 @@ const postcss = require('postcss')
 const byebye = require('css-byebye')
 const nano = require('cssnano')
 const endsWith = require('lodash.endswith')
-const pseudosRegex = /\:?(\:[a-z-]+)/g
+const pseudosRegex = /:?(:[a-z-]+)/g
 
 module.exports = function minifyHTML () {
   return Promise.all([
