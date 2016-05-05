@@ -2,6 +2,7 @@
 
 const thenify = require('thenify')
 const fs = require('fs')
+const path = require('path')
 const fsReadFile = thenify(fs.readFile)
 const fsWriteFile = thenify(fs.writeFile)
 const chokidar = require('chokidar')
@@ -14,20 +15,20 @@ const postcssPlugins = [
   require('autoprefixer')
 ]
 
-function css () {
+function css (dest) {
   return fsReadFile('css/app.css', 'utf-8')
   .then(function (css) {
     return postcss(postcssPlugins).process(css, {
       from: 'css/app.css',
-      to: 'app.css'
+      to: path.join(dest, 'app.css')
     }).then(function (output) {
-      return fsWriteFile('app.css', output.css)
+      return fsWriteFile(path.join(dest, 'app.css'), output.css)
     })
   })
 }
 
-css.watch = function () {
-  return css().then(function () {
+css.watch = function (dest) {
+  return css(dest).then(function () {
     chokidar.watch('css/**/*.css', {ignoreInitial: true}).on('all', function () {
       css().catch(console.error)
     })

@@ -4,6 +4,7 @@ const htmlMinify = require('html-minifier').minify
 const cheerio = require('cheerio')
 const Smallector = require('smallector')
 const fs = require('fs')
+const path = require('path')
 const smear = require('smear')
 const thenify = require('thenify')
 const fsReadFile = thenify(fs.readFile)
@@ -15,19 +16,19 @@ const nano = require('cssnano')
 const endsWith = require('lodash.endswith')
 const pseudosRegex = /:?(:[a-z-]+)/g
 
-module.exports = function minifyHTML () {
+module.exports = function minifyHTML (dest) {
   return Promise.all([
-    fsReadFile('./app.css', fsReadOptions)
+    fsReadFile(path.join(dest, 'app.css'), fsReadOptions)
     .then(function (css) {
       return postcss.parse(css)
     }),
-    fsReadFile('./icons.svg', fsReadOptions)
+    fsReadFile(path.join(dest, 'icons.svg'), fsReadOptions)
     .then(function (icons) {
       return cheerio.load(icons)
     })
   ])
   .then(smear(function (css, icons) {
-    return fsReadFile('./index.html')
+    return fsReadFile(path.join(dest, 'index.html'))
     .then(function (html) {
       return cheerio.load(html)
     })
@@ -140,7 +141,7 @@ module.exports = function minifyHTML () {
       return $
     })
     .then(function ($) {
-      return fsReadFile('./app.js')
+      return fsReadFile(path.join(dest, 'app.js'))
       .then(function (js) {
         $('body').find('script').replaceWith(`<script>${js}</script>`)
 
@@ -148,7 +149,7 @@ module.exports = function minifyHTML () {
       })
     })
     .then(function ($) {
-      return fsWriteFile('./index.html', htmlMinify($.html(), {
+      return fsWriteFile(path.join(dest, 'index.html'), htmlMinify($.html(), {
         collapseWhitespace: true,
         removeComments: true,
         collapseBooleanAttributes: true,

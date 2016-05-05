@@ -1,7 +1,10 @@
 {
   "name": "chrono",
   "private": true,
-  "dependencies": {
+  "scripts": {
+    "test": "standard"
+  },
+  "devDependencies": {
     "animate.css": "^3.2.5",
     "atlatl": "^5.0.0",
     "autoprefixer": "^6.3.6",
@@ -21,6 +24,7 @@
     "geomicons-open": "^2.0.0",
     "html-minifier": "^2.0.0",
     "lodash.endswith": "^4.0.0",
+    "mkdirp": "^0.5.1",
     "morgan": "^1.6.1",
     "portfinder": "^1.0.0",
     "postcss": "^5.0.1",
@@ -28,21 +32,15 @@
     "postcss-custom-media": "^5.0.1",
     "postcss-custom-properties": "^5.0.0",
     "postcss-import": "^8.1.0",
-    "sergeant": "^10.0.0",
+    "sergeant": "^11.0.0",
     "smallector": "^1.0.1",
     "smear": "^1.1.0",
+    "standard": "^7.0.0",
     "static-engine": "^10.0.0",
     "static-engine-read": "^1.0.0",
     "static-engine-render": "^5.0.0",
     "stream-to-promise": "^1.1.0",
-    "thenify": "^3.1.1"
-  },
-  "scripts": {
-    "test": "standard"
-  },
-  "devDependencies": {
-    "sergeant": "^11.0.0",
-    "standard": "^7.0.0"
+    "thenify": "^3.2.0"
   },
   "standard": {
     "ignore": [

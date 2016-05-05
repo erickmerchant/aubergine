@@ -1,6 +1,9 @@
 'use strict'
 
 const sergeant = require('sergeant')
+const assert = require('assert')
+const thenify = require('thenify')
+const mkdirp = thenify(require('mkdirp'))
 const app = sergeant().describe('CMS for chrono')
 const pages = require('./tasks/pages.js')
 const icons = require('./tasks/icons.js')
@@ -11,20 +14,39 @@ const serve = require('./tasks/serve.js')
 
 app.command('update')
 .describe('Build the site once')
-.action(function () {
-  return Promise.all([pages(), icons(), css(), js()]).then(optimize)
+.parameter('destination', 'where to build everything')
+.action(function (args) {
+  assert.ok(args.get('destination'))
+  assert.equal(typeof args.get('destination'), 'string')
+
+  var dest = args.get('destination')
+
+  return Promise.all([
+    mkdirp(dest),
+    pages(dest),
+    icons(dest),
+    css(dest),
+    js(dest)
+  ]).then(optimize(dest))
 })
 
 app.command('watch')
 .describe('Build the site then watch for changes. Run a server')
-.action(function () {
+.parameter('destination', 'where to build everything')
+.action(function (args) {
+  assert.ok(args.get('destination'))
+  assert.equal(typeof args.get('destination'), 'string')
+
+  var dest = args.get('destination')
+
   return Promise.all([
-    css.watch(),
-    js.watch(),
-    pages.watch(),
-    icons.watch()
+    mkdirp(dest),
+    css.watch(dest),
+    js.watch(dest),
+    pages.watch(dest),
+    icons.watch(dest)
   ])
-  .then(serve)
+  .then(serve(dest))
 })
 
 app.run()

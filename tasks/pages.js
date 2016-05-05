@@ -6,8 +6,9 @@ const read = require('static-engine-read')
 const engine = require('static-engine')
 const cson = require('cson-parser')
 const chokidar = require('chokidar')
+const path = require('path')
 
-function pages () {
+function pages (dest) {
   const templates = atlatl()
   const renderer = function (name) {
     return function (page, done) {
@@ -23,14 +24,14 @@ function pages () {
     function (pages, done) {
       done(null, [cson.parse(pages[0].content)])
     },
-    render('./index.html', renderer('index.html'))
+    render(path.join(dest, 'index.html'), renderer('index.html'))
   ])
 }
 
-pages.watch = function () {
-  return pages().then(function () {
+pages.watch = function (dest) {
+  return pages(dest).then(function () {
     chokidar.watch(['templates/**/*.html', '!templates/compiled/*.html', 'content/**/*.md', 'content/**/*.cson'], {ignoreInitial: true}).on('all', function () {
-      pages().catch(console.error)
+      pages(dest).catch(console.error)
     })
 
     return true
