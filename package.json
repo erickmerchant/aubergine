@@ -32,6 +32,7 @@
     "postcss-custom-media": "^5.0.1",
     "postcss-custom-properties": "^5.0.0",
     "postcss-import": "^8.1.0",
+    "promise-map": "^1.1.0",
     "sergeant": "^11.0.0",
     "smallector": "^1.0.1",
     "smear": "^1.1.0",

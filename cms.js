@@ -5,6 +5,7 @@ const assert = require('assert')
 const thenify = require('thenify')
 const mkdirp = thenify(require('mkdirp'))
 const app = sergeant().describe('CMS for chrono')
+const base = require('./tasks/base.js')
 const pages = require('./tasks/pages.js')
 const icons = require('./tasks/icons.js')
 const css = require('./tasks/css.js')
@@ -23,6 +24,7 @@ app.command('update')
 
   return Promise.all([
     mkdirp(dest),
+    base(dest),
     pages(dest),
     icons(dest),
     css(dest),
@@ -41,6 +43,7 @@ app.command('watch')
 
   return Promise.all([
     mkdirp(dest),
+    base.watch(dest),
     css.watch(dest),
     js.watch(dest),
     pages.watch(dest),
