@@ -2,9 +2,10 @@
 
 const sergeant = require('sergeant')
 const assert = require('assert')
+const chalk = require('chalk')
 const thenify = require('thenify')
 const mkdirp = thenify(require('mkdirp'))
-const app = sergeant().describe('CMS for chrono')
+const app = sergeant().describe('Build CLI for chrono')
 const base = require('./tasks/base.js')
 const pages = require('./tasks/pages.js')
 const icons = require('./tasks/icons.js')
@@ -17,8 +18,8 @@ app.command('update')
 .describe('Build the site once')
 .parameter('destination', 'where to build everything')
 .action(function (args) {
-  assert.ok(args.get('destination'))
-  assert.equal(typeof args.get('destination'), 'string')
+  assert.ok(args.get('destination'), 'you must provide a destination')
+  assert.equal(typeof args.get('destination'), 'string', 'destination must be a string')
 
   var dest = args.get('destination')
 
@@ -36,8 +37,8 @@ app.command('watch')
 .describe('Build the site then watch for changes. Run a server')
 .parameter('destination', 'where to build everything')
 .action(function (args) {
-  assert.ok(args.get('destination'))
-  assert.equal(typeof args.get('destination'), 'string')
+  assert.ok(args.get('destination'), 'you must provide a destination')
+  assert.equal(typeof args.get('destination'), 'string', 'destination must be a string')
 
   var dest = args.get('destination')
 
@@ -52,4 +53,6 @@ app.command('watch')
   .then(serve(dest))
 })
 
-app.run()
+app.run().catch(function (err) {
+  console.error(chalk.red(err.message))
+})
