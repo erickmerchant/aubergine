@@ -4,7 +4,6 @@ const chokidar = require('chokidar')
 const fs = require('fs')
 const path = require('path')
 const browserify = require('browserify')
-const streamToPromise = require('stream-to-promise')
 const collapser = require('bundle-collapser/plugin')
 
 function js (dest) {
@@ -16,7 +15,10 @@ function js (dest) {
   bundle.add('js/app.js')
   bundle.bundle().pipe(bundleFs)
 
-  return streamToPromise(bundle)
+  return new Promise(function (resolve, reject) {
+    bundleFs.once('finish', resolve)
+    bundleFs.once('error', reject)
+  })
 }
 
 js.watch = function (dest) {

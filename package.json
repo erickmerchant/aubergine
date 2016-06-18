@@ -40,7 +40,6 @@
     "static-engine": "^10.0.0",
     "static-engine-read": "^1.0.0",
     "static-engine-render": "^5.0.0",
-    "stream-to-promise": "^1.1.0",
     "thenify": "^3.2.0"
   },
   "standard": {
