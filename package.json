@@ -20,7 +20,7 @@
     "css-byebye": "^1.0.0",
     "cssnano": "^3.0.0",
     "express": "^4.10.7",
-    "fs-extra": "^1.0.0",
+    "fs-extra": "^2.0.0",
     "geomicons-open": "^2.0.0",
     "html-minifier": "^3.0.2",
     "lodash.endswith": "^4.0.0",
