@@ -33,7 +33,7 @@
     "postcss-custom-properties": "^5.0.0",
     "postcss-import": "^9.0.0",
     "promise-map": "^1.1.0",
-    "sergeant": "^13.0.1",
+    "sergeant": "^14.0.0",
     "smallector": "^1.0.1",
     "smear": "^1.1.0",
     "standard": "^8.0.0",
