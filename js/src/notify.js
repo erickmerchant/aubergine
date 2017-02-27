@@ -8,11 +8,9 @@ function permission () {
   return ''
 }
 
-function notify (message, icon) {
+function notify (message) {
   if (permission() === 'granted') {
-    var notification = new Notification(message, {
-      icon: icon
-    })
+    var notification = new Notification(message)
 
     notification.onclick = function () {
       window.focus()

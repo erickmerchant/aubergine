@@ -5,7 +5,6 @@ var state = 0
 var message = ''
 var timeoutID = null
 var output = dom('h1')
-var icon = './noticon.png'
 var notification
 
 function go () {
@@ -18,7 +17,7 @@ function go () {
       output.html(format(diff))
       timeoutID = setTimeout(go, 100)
     } else {
-      notification = notify(message, icon)
+      notification = notify(message)
       output.add('flash')
       reset()
     }
