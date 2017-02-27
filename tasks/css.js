@@ -30,7 +30,7 @@ function css (dest) {
 css.watch = function (dest) {
   return css(dest).then(function () {
     chokidar.watch('css/**/*.css', {ignoreInitial: true}).on('all', function () {
-      css().catch(console.error)
+      css(dest).catch(console.error)
     })
 
     return true

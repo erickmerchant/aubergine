@@ -24,7 +24,7 @@ function js (dest) {
 js.watch = function (dest) {
   return js(dest).then(function () {
     chokidar.watch('js/**/*.js', {ignoreInitial: true}).on('all', function () {
-      js().catch(console.error)
+      js(dest).catch(console.error)
     })
 
     return true
