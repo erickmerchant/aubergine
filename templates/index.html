@@ -16,13 +16,13 @@
     <link href="/favicon.png" rel="shortcut icon" type="image/png">
     <link href="/app.css" rel="stylesheet" type="text/css">
   </head>
-  <body class="flex flex-column center bg-black lime full-view-height">
+  <body class="flex flex-column center background-dark-gray white full-view-height">
     <div class="flex items-center flex-auto">
       <form class="max-width-3 mx-auto col-12">
         <h1 class="h00 h00-responsive animated">00:00</h1>
         @each content.buttons (button)
-          <div class="col col-12 sm-col-6 h3 p2">
-            <button class="btn lime border rounded col-12 p2" type="button" data-interval="${button.interval}" data-message="${button.message}">${button.text}</button>
+          <div class="col col-12 sm-col-4 h3 p2">
+            <button class="btn white border rounded col-12 p2" type="button" data-interval="${button.interval}" data-message="${button.message}">${button.text}</button>
           </div>
         @
         <div class="col col-12 sm-col-12">
@@ -35,7 +35,7 @@
     </div>
     <footer class="clearfix muted h6 m1" role="contentinfo">
       <span class="p2 inline-block">&copy; ${content.author}, ${content.year}</span>
-      <a class="btn lime p2" href="https://github.com/erickmerchant/chrono">
+      <a class="btn white p2" href="https://github.com/erickmerchant/chrono">
         @call icon ('github')
         View Source
       </a>

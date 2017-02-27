@@ -1,7 +1,7 @@
 @import 'basscss-basic';
 @import 'basscss';
 @import 'basscss-utility-headings';
-@import 'colors.css/src/colors.css';
+@import './colors.css';
 @import "animate.css/source/_base.css";
 @import "animate.css/source/attention_seekers/flash.css";
 
@@ -33,7 +33,7 @@ body {
 }
 
 .btn:focus {
-  box-shadow: 0 0 0.125em 0.125em currentcolor;
+  box-shadow: 0 0 0.25em 0 currentcolor;
 }
 
 .icon {
@@ -44,6 +44,6 @@ body {
 }
 
 :root {
-  --border-width: 4px;
+  --border-width: 3px;
   --container-width: 40em;
 }
