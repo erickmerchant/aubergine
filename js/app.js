@@ -65,7 +65,9 @@ dom('button').on('click', function () {
 
   message = data.message
 
-  go()
+  if (data.interval > 0) {
+    go()
+  }
 
   this.focus()
 })
