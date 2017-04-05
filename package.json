@@ -18,7 +18,7 @@
     "cpy-cli": "^1.0.1",
     "geomicons-open": "^2.0.0",
     "harp": "^0.23.0",
-    "standard": "^9.0.0",
+    "standard": "^10.0.0",
     "watch": "^1.0.2"
   },
   "standard": {
