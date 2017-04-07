@@ -3,10 +3,8 @@
   "private": true,
   "scripts": {
     "test": "standard",
-    "cpy": "cpy base/* node_modules/geomicons-open/dist/geomicons.svg build",
-    "assets": "assets build",
-    "build": "npm run cpy && npm run assets",
-    "watch": "watch 'npm run cpy' base & assets build -w --no-min & harp server build --port 8000"
+    "build": "copy-files node_modules/geomicons-open/dist/geomicons.svg build && copy-files 'base/*' build && assets build",
+    "watch": "copy-files node_modules/geomicons-open/dist/geomicons.svg build & copy-files 'base/*' build -w & assets build -w --no-min & serve-files build"
   },
   "devDependencies": {
     "@erickmerchant/assets": "^1.0.0",
@@ -15,15 +13,11 @@
     "basscss-basic": "^1.0.0",
     "basscss-utility-headings": "^0.1.0",
     "colors.css": "^3.0.0",
-    "cpy-cli": "^1.0.1",
     "geomicons-open": "^2.0.0",
-    "harp": "^0.23.0",
-    "standard": "^10.0.0",
-    "watch": "^1.0.2"
+    "standard": "^10.0.0"
   },
-  "standard": {
-    "ignore": [
-      "/app.js"
-    ]
+  "dependencies": {
+    "@erickmerchant/copy-files": "^1.0.0",
+    "@erickmerchant/serve-files": "^1.0.1"
   }
 }
