@@ -3,11 +3,13 @@
   "private": true,
   "scripts": {
     "test": "standard",
-    "build": "copy-files node_modules/geomicons-open/dist/geomicons.svg build && copy-files 'base/*' build && assets build",
-    "watch": "copy-files node_modules/geomicons-open/dist/geomicons.svg build & copy-files 'base/*' build -w & assets build -w --no-min & serve-files build"
+    "build": "copy-files node_modules/geomicons-open/dist/geomicons.svg 'base/*' build && assets build",
+    "watch": "copy-files node_modules/geomicons-open/dist/geomicons.svg 'base/*' build -w & assets build -w --no-min & serve-files build"
   },
   "devDependencies": {
     "@erickmerchant/assets": "^1.0.0",
+    "@erickmerchant/copy-files": "^1.1.0",
+    "@erickmerchant/serve-files": "^1.0.1"
     "animate.css": "^3.2.5",
     "basscss": "^8.0.0",
     "basscss-basic": "^1.0.0",
@@ -16,8 +18,5 @@
     "geomicons-open": "^2.0.0",
     "standard": "^10.0.0"
   },
-  "dependencies": {
-    "@erickmerchant/copy-files": "^1.0.0",
-    "@erickmerchant/serve-files": "^1.0.1"
-  }
+  "dependencies": {}
 }
