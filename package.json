@@ -4,12 +4,12 @@
   "scripts": {
     "test": "standard",
     "build": "copy-files 'base/*' build && assets build",
-    "watch": "copy-files 'base/*' build -w & assets build -w --no-min & serve-files build"
+    "watch": "copy-files 'base/*' build -w & assets build -w --no-min & serve-files build --default 200"
   },
   "devDependencies": {
     "@erickmerchant/assets": "^1.0.0",
     "@erickmerchant/copy-files": "^1.1.0",
-    "@erickmerchant/serve-files": "^1.0.1",
+    "@erickmerchant/serve-files": "^2.0.0",
     "animate.css": "^3.2.5",
     "basscss": "^8.0.0",
     "basscss-basic": "^1.0.0",
