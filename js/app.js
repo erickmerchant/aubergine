@@ -108,7 +108,8 @@ function icon (key) {
 }
 
 function format (diff) {
-  if (diff < 0) diff = 0
+  if (diff <= 0) diff = 0
+  else diff += 999.999
 
   diff /= 1000
 
