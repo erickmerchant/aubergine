@@ -102,8 +102,8 @@ function component ({state, dispatch, next}) {
 
 function icon (key) {
   return html`
-  <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-    <path d="${icons[key]}" />
+  <svg class="icon" viewBox="0 0 32 32">
+    <path d="${icons[key]}">
   </svg>`
 }
 
