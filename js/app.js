@@ -4,8 +4,8 @@ const icons = {
   clock: require('geomicons-open/src/clock')
 }
 const framework = require('@erickmerchant/framework')
-const html = require('yo-yo')
-const diff = html.update
+const html = require('bel')
+const diff = require('nanomorph')
 const target = document.querySelector('body')
 
 framework({target, store, component, diff})(({dispatch}) => { dispatch(0) })

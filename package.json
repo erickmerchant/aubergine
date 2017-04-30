@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@erickmerchant/framework": "^9.1.0",
-    "yo-yo": "^1.4.0"
+    "bel": "^4.6.0",
+    "nanomorph": "^4.0.5"
   }
 }
