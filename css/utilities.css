@@ -11,7 +11,8 @@
 --whitespace-3: 2rem;
 --whitespace-4: 4rem;
 }
-*, *:before, *:after { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+.border-box { box-sizing: border-box; }
 .content-box { box-sizing: content-box; }
 .fit-width { max-width: 100%; }
 .full-width { width: 100%; }

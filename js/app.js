@@ -39,7 +39,7 @@ const buttons = [
 
 function component ({state, dispatch, next}) {
   return html`
-  <body class="flex column items-center background-dark-gray white min-height-100vh">
+  <body class="flex column border-box items-center background-dark-gray white min-height-100vh">
     <div class="flex items-center justify-center auto width-3">
       <form class="margin-horizontal-auto width-2 center">
         <h1 class="desktop-font-size-6vw animated ${state <= 0 ? 'flash' : ''}">${format(state)}</h1>
