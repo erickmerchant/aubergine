@@ -39,17 +39,17 @@ const buttons = [
 
 function component ({state, dispatch, next}) {
   return html`
-  <body class="flex flex-column center background-dark-gray white full-view-height">
-    <div class="flex items-center flex-auto">
-      <form class="max-width-3 mx-auto col-12 align-center">
-        <h1 class="h00 h00-responsive animated ${state <= 0 ? 'flash' : ''}">${format(state)}</h1>
-        <div class="flex items-center">
+  <body class="flex column items-center background-dark-gray white min-height-100vh">
+    <div class="flex items-center justify-center auto width-3">
+      <form class="margin-horizontal-auto width-2 center">
+        <h1 class="desktop-font-size-6vw animated ${state <= 0 ? 'flash' : ''}">${format(state)}</h1>
+        <div class="flex row mobile-column justify-center wrap auto">
           ${buttons.map((button) => html`
-          <div class="flex flex-auto h3 p2">
-            <button class="btn white border rounded col-12 p2" type="button" onclick=${set(button.time, button.message)}>${button.title}</button>
+          <div class="margin-2 auto">
+            <button class="button white width-3 padding-2 background-dark-gray white" type="button" onclick=${set(button.time, button.message)}>${button.title}</button>
           </div>`)}
         </div>
-        <div class="col col-12 sm-col-12">
+        <div class="width-3">
           <h2>
             ${icon('clock')}
             Chrono
@@ -57,9 +57,9 @@ function component ({state, dispatch, next}) {
         </div>
       </form>
     </div>
-    <footer class="clearfix muted h6 m1" role="contentinfo">
-      <span class="p2 inline-block">© Erick Merchant, 2017</span>
-      <a class="btn white p2" href="https://github.com/erickmerchant/chrono">
+    <footer class="margin-1 center" role="contentinfo">
+      <span class="inline-block padding-2">© Erick Merchant, 2017</span>
+      <a class="inline-block white padding-2" href="https://github.com/erickmerchant/chrono">
         ${icon('github')}
         View Source
       </a>

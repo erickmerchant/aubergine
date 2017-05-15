@@ -1,39 +1,51 @@
-@import 'basscss-basic';
-@import 'basscss';
-@import 'basscss-utility-headings';
-@import './colors.css';
+@import './utilities.css';
 @import "animate.css/source/_base.css";
 @import "animate.css/source/attention_seekers/flash.css";
 
+:root {
+  --border-width: 3px;
+  --border-radius: 3px;
+}
+
 body {
+  margin: 0;
+  line-height: 1.5;
   font-family: Courier, monospace;
 }
 
-.full-view-height {
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  box-shadow: 0 .1em 0 0 currentColor;
+  text-decoration: none;
+}
+
+.min-height-100vh {
   min-height: 100vh;
 }
 
-.btn {
-  font-family: inherit;
-  font-size: inherit;
+.button {
+  appearance: none;
+  border-radius: var(--border-radius);
+  border: var(--border-radius) solid currentColor;
+  box-shadow: none;
+  font-size: 1em;
   font-weight: bold;
+  padding: var(--whitespace-2);
   text-decoration: none;
-  cursor: pointer;
-  display: inline-block;
-  line-height: 1.125rem;
-  height: auto;
-  background: transparent;
-  vertical-align: middle;
-  -webkit-appearance: none;
-  border-color: currentcolor;
+  white-space: nowrap;
+  font-family: inherit;
 }
 
-.btn:hover {
-  text-decoration: none;
+.button:focus {
+  outline: var(--border-radius) solid inherit;
 }
 
-.btn:focus {
-  box-shadow: 0 0 0.25em 0 currentcolor;
+.button.is-disabled {
+  cursor: default;
 }
 
 .icon {
@@ -43,7 +55,6 @@ body {
   fill: currentcolor;
 }
 
-:root {
-  --border-width: 3px;
-  --container-width: 40em;
+@media (--breakpoint-desktop) {
+  .desktop-font-size-6vw { font-size: 6vw; }
 }
