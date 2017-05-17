@@ -3,20 +3,7 @@ const icons = {
   github: require('geomicons-open/src/github'),
   clock: require('geomicons-open/src/clock')
 }
-const framework = require('@erickmerchant/framework')
 const html = require('bel')
-const diff = require('nanomorph')
-const target = document.querySelector('body')
-
-framework({target, store, component, diff})(({dispatch}) => { dispatch(0) })
-
-function store (state = 0, val) {
-  if (val != null) {
-    state = val
-  }
-
-  return state
-}
 
 let timeoutID, notification
 const buttons = [
@@ -37,7 +24,7 @@ const buttons = [
   }
 ]
 
-function component ({state, dispatch, next}) {
+module.exports = function ({state, dispatch, next}) {
   return html`
   <body class="flex column border-box items-center background-dark-gray white min-height-100vh">
     <div class="flex items-center justify-center auto width-3">
