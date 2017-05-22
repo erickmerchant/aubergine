@@ -13,6 +13,24 @@ body {
   font-family: Courier, monospace;
 }
 
+h1, h2, h3,
+h4, h5, h6 {
+  font-weight: bold;
+  line-height: 1.25;
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+
+h1 { font-size: var(--type-xx-large); }
+h2 { font-size: var(--type-x-large); }
+h3 { font-size: var(--type-large); }
+
+@media (--breakpoint-mobile) {
+  h1 { font-size: var(--type-x-large); }
+  h2 { font-size: var(--type-large); }
+  h3 { font-size: var(--type-medium); }
+}
+
 a {
   color: var(--blue);
   text-decoration: none;
@@ -32,9 +50,8 @@ a:hover {
   border-radius: var(--border-radius);
   border: var(--border-radius) solid currentColor;
   box-shadow: none;
-  font-size: 1em;
+  font-size: inherit;
   font-weight: bold;
-  padding: var(--whitespace-2);
   text-decoration: none;
   white-space: nowrap;
   font-family: inherit;
@@ -53,8 +70,4 @@ a:hover {
   height: 1em;
   vertical-align: -0.125em; /* 2 */
   fill: currentcolor;
-}
-
-@media (--breakpoint-desktop) {
-  .desktop-font-size-6vw { font-size: 6vw; }
 }
