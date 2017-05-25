@@ -19,7 +19,7 @@
     "basscss-utility-headings": "^0.1.0",
     "bel": "^5.0.0",
     "geomicons-open": "^2.0.0",
-    "nanomorph": "^4.0.5",
+    "nanomorph": "^5.0.0",
     "standard": "^10.0.0"
   },
   "dependencies": {}
