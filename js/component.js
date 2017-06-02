@@ -27,16 +27,16 @@ const buttons = [
 module.exports = function ({state, dispatch, next}) {
   return html`
   <body class="flex column border-box items-center background-dark-gray white min-height-100vh">
-    <div class="flex items-center justify-center auto width-3">
-      <form class="margin-horizontal-auto width-2 center">
+    <div class="flex items-center justify-center auto full-width">
+      <form class="margin-horizontal-auto width-2-of-3 center">
         <h1 class="animated ${state <= 0 ? 'flash' : ''}">${format(state)}</h1>
         <div class="flex row mobile-column justify-center wrap auto">
           ${buttons.map((button) => html`
           <div class="margin-2 auto">
-            <button class="button white width-3 padding-2 margin-horizontal-1 background-dark-gray white" type="button" onclick=${set(button.time, button.message)}>${button.title}</button>
+            <button class="button white full-width padding-2 margin-horizontal-1 background-dark-gray white" type="button" onclick=${set(button.time, button.message)}>${button.title}</button>
           </div>`)}
         </div>
-        <div class="width-3">
+        <div class="full-width">
           <h2>
             ${icon('clock')}
             Chrono
