@@ -7,7 +7,7 @@
     "watch": "copy-files 'base/*' build -w & assets build -w --no-min & serve-files build --default 200"
   },
   "devDependencies": {
-    "@erickmerchant/assets": "^3.3.0",
+    "@erickmerchant/assets": "^3.3.1",
     "@erickmerchant/copy-files": "^1.1.0",
     "@erickmerchant/framework": "^9.2.1",
     "@erickmerchant/framework-cli": "^1.0.1",
