@@ -1,4 +1,5 @@
 .DS_Store
 node_modules
-.atlatl-cache
+.nyc_output
+coverage
 build

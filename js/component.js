@@ -1,11 +1,9 @@
-const notify = require('./notify.js')()
 const icons = {
   github: require('geomicons-open/src/github'),
   clock: require('geomicons-open/src/clock')
 }
 const html = require('bel')
 
-let timeoutID, notification
 const buttons = [
   {
     time: 25 * 60000,
@@ -25,6 +23,8 @@ const buttons = [
 ]
 
 module.exports = function ({state, dispatch, next}) {
+  const click = require('./click.js')(dispatch)
+
   return html`
   <body class="flex column border-box items-center background-dark-gray white min-height-100vh">
     <div class="flex items-center justify-center auto full-width">
@@ -33,7 +33,7 @@ module.exports = function ({state, dispatch, next}) {
         <div class="flex row mobile-column justify-center wrap auto">
           ${buttons.map((button) => html`
           <div class="margin-2 auto">
-            <button class="button white full-width padding-2 margin-horizontal-1 background-dark-gray white" type="button" onclick=${set(button.time, button.message)}>${button.title}</button>
+            <button class="button white full-width padding-2 margin-horizontal-1 background-dark-gray white" type="button" onclick=${click(button.time, button.message)}>${button.title}</button>
           </div>`)}
         </div>
         <div class="full-width">
@@ -55,38 +55,6 @@ module.exports = function ({state, dispatch, next}) {
     </footer>
   </body>
   `
-
-  function set (val, message) {
-    return function (e) {
-      if (timeoutID) {
-        clearTimeout(timeoutID)
-      }
-
-      if (notification) {
-        notification
-        .then(function (notification) { notification.close() })
-        .catch(function (e) { console.error(e) })
-      }
-
-      const end = Date.now() + val
-
-      dispatch(val)
-
-      timeoutID = setTimeout(cycle, 100)
-
-      function cycle () {
-        const diff = end - Date.now()
-
-        dispatch(diff)
-
-        if (diff > 0) {
-          timeoutID = setTimeout(cycle, 100)
-        } else {
-          notification = notify(message)
-        }
-      }
-    }
-  }
 }
 
 function icon (key) {
@@ -98,23 +66,19 @@ function icon (key) {
 
 function format (diff) {
   if (diff <= 0) diff = 0
-  else diff += 999.999
+  else diff += 999
 
   diff /= 1000
 
   const parts = [diff / 60, diff % 60]
-    .map((int) => Math.floor(int))
-    .map(function (int) {
-      if (int >= 10) {
-        return int
-      }
+  .map((int) => Math.floor(int))
+  .map(function (int) {
+    if (int >= 10) {
+      return int
+    }
 
-      return '0' + int
-    })
-
-  if (parts[1] === 60) {
-    parts[1] = '00'
-  }
+    return '0' + int
+  })
 
   return parts.join(':')
 }

@@ -2,11 +2,19 @@
   "name": "chrono",
   "private": true,
   "scripts": {
-    "test": "standard",
-    "build": "copy-files 'base/*' build && assets build && framework render renderer.js && optimize build build/bundle.css --inline",
+    "test": "standard && tape 'test/**/*.js' | faucet",
+    "cover": "nyc --reporter=html npm test",
+    "build": "npm run test && copy-files 'base/*' build && assets build && framework render renderer.js && optimize build build/bundle.css --inline",
     "watch": "copy-files 'base/*' build -w & assets build -w --no-min & serve-files build --default 200"
   },
   "devDependencies": {
+    "assert-snapshot": "^1.0.1",
+    "faucet": "0.0.1",
+    "nyc": "^11.0.2",
+    "standard": "^10.0.0",
+    "tape": "^4.6.3"
+  },
+  "dependencies": {
     "@erickmerchant/assets": "^3.3.1",
     "@erickmerchant/copy-files": "^1.1.1",
     "@erickmerchant/framework": "^10.0.1",
@@ -16,8 +24,6 @@
     "animate.css": "^3.2.5",
     "bel": "^5.0.0",
     "geomicons-open": "^2.0.0",
-    "nanomorph": "^5.0.0",
-    "standard": "^10.0.0"
-  },
-  "dependencies": {}
+    "nanomorph": "^5.0.0"
+  }
 }
