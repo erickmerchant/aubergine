@@ -28,7 +28,7 @@ module.exports = function ({state, dispatch, next}) {
   return html`
   <body class="flex column border-box items-center background-dark-gray white min-height-100vh">
     <div class="flex items-center justify-center auto full-width">
-      <form class="margin-horizontal-auto width-2-of-3 center">
+      <form class="margin-horizontal-auto full-width max-width-50rem center">
         <h1 class="animated ${state <= 0 ? 'flash' : ''}">${format(state)}</h1>
         <div class="flex row mobile-column justify-center wrap auto">
           ${buttons.map((button) => html`

@@ -45,6 +45,10 @@ a:hover {
   min-height: 100vh;
 }
 
+.max-width-50rem {
+  max-width: 50rem;
+}
+
 .button {
   appearance: none;
   border-radius: var(--border-radius);
