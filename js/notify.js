@@ -1,17 +1,22 @@
 module.exports = function () {
   return function (message) {
-    return window.Notification.requestPermission().then(function (result) {
-      if (result === 'granted') {
-        const notification = new window.Notification(message)
+    if (window.Notification != null) {
+      window.Notification.requestPermission().then(function (result) {
+        if (result === 'granted') {
+          const notification = new window.Notification(message)
 
-        notification.onclick = function () {
-          window.focus()
+          notification.onclick = function () {
+            window.focus()
+          }
+
+          return notification
         }
 
-        return notification
-      }
-
-      return Promise.reject(new Error('denied'))
-    })
+        return Promise.reject(new Error('denied'))
+      })
+      .catch(function (e) {
+        console.error(e)
+      })
+    }
   }
 }
