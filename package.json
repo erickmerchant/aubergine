@@ -15,11 +15,11 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^3.3.1",
-    "@erickmerchant/copy-files": "^1.1.1",
+    "@erickmerchant/assets": "^3.3.2",
+    "@erickmerchant/copy-files": "^1.2.0",
     "@erickmerchant/framework": "^10.0.2",
     "@erickmerchant/framework-cli": "^1.0.2",
-    "@erickmerchant/optimize": "^3.0.1",
+    "@erickmerchant/optimize": "^3.0.2",
     "@erickmerchant/serve-files": "^2.0.1",
     "animate.css": "^3.2.5",
     "bel": "^5.0.0",
