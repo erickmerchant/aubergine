@@ -21,14 +21,14 @@ h4, h5, h6 {
   margin-bottom: .5em;
 }
 
-h1 { font-size: var(--type-xx-large); }
-h2 { font-size: var(--type-x-large); }
-h3 { font-size: var(--type-large); }
+h1 { font-size: var(--typesize-xx-large); }
+h2 { font-size: var(--typesize-x-large); }
+h3 { font-size: var(--typesize-large); }
 
 @media (--breakpoint-mobile) {
-  h1 { font-size: var(--type-x-large); }
-  h2 { font-size: var(--type-large); }
-  h3 { font-size: var(--type-medium); }
+  h1 { font-size: var(--typesize-x-large); }
+  h2 { font-size: var(--typesize-large); }
+  h3 { font-size: var(--typesize-medium); }
 }
 
 a {

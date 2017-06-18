@@ -44,7 +44,7 @@ module.exports = function ({state, dispatch, next}) {
         </div>
       </form>
     </div>
-    <footer class="margin-1 center type-small" role="contentinfo">
+    <footer class="margin-1 center typesize-small" role="contentinfo">
       <span class="inline-block padding-2">© Erick Merchant, 2017</span>
       <span class="inline-block padding-2">
         <a class="white" href="https://github.com/erickmerchant/chrono">

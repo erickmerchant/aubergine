@@ -1,21 +1,4 @@
-@custom-media --breakpoint-mobile (width < 40rem);
-@custom-media --breakpoint-desktop (width >= 40rem);
-:root {
---black: hsl(0, 0%, 12.5%);
---dark-gray: hsl(0, 0%, 25%);
---gray: hsl(0, 0%, 50%);
---light-gray: hsl(0, 0%, 75%);
---white: hsl(0, 0%, 100%);
---whitespace-1: 0.5rem;
---whitespace-2: 1rem;
---whitespace-3: 2rem;
---whitespace-4: 4rem;
---type-xx-large: 5rem;
---type-x-large: 2.5rem;
---type-large: 1.25rem;
---type-medium: 1rem;
---type-small: 0.75rem;
-}
+@import "./variables.css";
 *, *:before, *:after { box-sizing: inherit; }
 .border-box { box-sizing: border-box; }
 .content-box { box-sizing: content-box; }
@@ -65,8 +48,6 @@
 .center { text-align: center; }
 .left { text-align: left; }
 .right { text-align: right; }
-.width-1-of-3 { width: calc(100% / 3 * 1); }
-.width-2-of-3 { width: calc(100% / 3 * 2); }
 .margin-1 {
   margin-top: var(--whitespace-1);
   margin-right: var(--whitespace-1);
@@ -265,11 +246,11 @@
 .padding-right-0 { padding-right: var(--whitespace-0); }
 .padding-bottom-0 { padding-bottom: var(--whitespace-0); }
 .padding-left-0 { padding-left: var(--whitespace-0); }
-.type-xx-large { font-size: var(--type-xx-large); }
-.type-x-large { font-size: var(--type-x-large); }
-.type-large { font-size: var(--type-large); }
-.type-medium { font-size: var(--type-medium); }
-.type-small { font-size: var(--type-small); }
+.typesize-xx-large { font-size: var(--typesize-xx-large); }
+.typesize-x-large { font-size: var(--typesize-x-large); }
+.typesize-large { font-size: var(--typesize-large); }
+.typesize-medium { font-size: var(--typesize-medium); }
+.typesize-small { font-size: var(--typesize-small); }
 @media (--breakpoint-mobile) {
 .mobile-flex { display: flex;  }
 .mobile-auto { flex: 1 1 auto;  }
@@ -315,8 +296,6 @@
 .mobile-center { text-align: center; }
 .mobile-left { text-align: left; }
 .mobile-right { text-align: right; }
-.mobile-width-1-of-3 { width: calc(100% / 3 * 1); }
-.mobile-width-2-of-3 { width: calc(100% / 3 * 2); }
 .mobile-margin-1 {
   margin-top: var(--whitespace-1);
   margin-right: var(--whitespace-1);
@@ -515,11 +494,11 @@
 .mobile-padding-right-0 { padding-right: var(--whitespace-0); }
 .mobile-padding-bottom-0 { padding-bottom: var(--whitespace-0); }
 .mobile-padding-left-0 { padding-left: var(--whitespace-0); }
-.mobile-type-xx-large { font-size: var(--type-xx-large); }
-.mobile-type-x-large { font-size: var(--type-x-large); }
-.mobile-type-large { font-size: var(--type-large); }
-.mobile-type-medium { font-size: var(--type-medium); }
-.mobile-type-small { font-size: var(--type-small); }
+.mobile-typesize-xx-large { font-size: var(--typesize-xx-large); }
+.mobile-typesize-x-large { font-size: var(--typesize-x-large); }
+.mobile-typesize-large { font-size: var(--typesize-large); }
+.mobile-typesize-medium { font-size: var(--typesize-medium); }
+.mobile-typesize-small { font-size: var(--typesize-small); }
 }
 @media (--breakpoint-desktop) {
 .desktop-flex { display: flex;  }
@@ -566,8 +545,6 @@
 .desktop-center { text-align: center; }
 .desktop-left { text-align: left; }
 .desktop-right { text-align: right; }
-.desktop-width-1-of-3 { width: calc(100% / 3 * 1); }
-.desktop-width-2-of-3 { width: calc(100% / 3 * 2); }
 .desktop-margin-1 {
   margin-top: var(--whitespace-1);
   margin-right: var(--whitespace-1);
@@ -766,11 +743,11 @@
 .desktop-padding-right-0 { padding-right: var(--whitespace-0); }
 .desktop-padding-bottom-0 { padding-bottom: var(--whitespace-0); }
 .desktop-padding-left-0 { padding-left: var(--whitespace-0); }
-.desktop-type-xx-large { font-size: var(--type-xx-large); }
-.desktop-type-x-large { font-size: var(--type-x-large); }
-.desktop-type-large { font-size: var(--type-large); }
-.desktop-type-medium { font-size: var(--type-medium); }
-.desktop-type-small { font-size: var(--type-small); }
+.desktop-typesize-xx-large { font-size: var(--typesize-xx-large); }
+.desktop-typesize-x-large { font-size: var(--typesize-x-large); }
+.desktop-typesize-large { font-size: var(--typesize-large); }
+.desktop-typesize-medium { font-size: var(--typesize-medium); }
+.desktop-typesize-small { font-size: var(--typesize-small); }
 }
 .black { color: var(--black); }
 .background-black { background-color: var(--black); }

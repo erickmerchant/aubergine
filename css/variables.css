@@ -1,0 +1,22 @@
+@custom-media --breakpoint-mobile (width < 40rem);
+
+@custom-media --breakpoint-desktop (width >= 40rem);
+
+:root {
+  --whitespace-1: 0.5rem;
+  --whitespace-2: 1rem;
+  --whitespace-3: 2rem;
+  --whitespace-4: 4rem;
+
+  --typesize-xx-large: 5rem;
+  --typesize-x-large: 2.5rem;
+  --typesize-large: 1.25rem;
+  --typesize-medium: 1rem;
+  --typesize-small: 0.75rem;
+
+  --black: hsl(0, 0%, 12.5%);
+  --dark-gray: hsl(0, 0%, 25%);
+  --gray: hsl(0, 0%, 50%);
+  --light-gray: hsl(0, 0%, 75%);
+  --white: hsl(0, 0%, 100%);
+}
