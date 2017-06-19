@@ -3,7 +3,7 @@ let timeoutID, notification
 
 module.exports = function (dispatch) {
   return function (val, message) {
-    return function (e) {
+    return function () {
       if (timeoutID) {
         clearTimeout(timeoutID)
       }
