@@ -14,7 +14,7 @@ module.exports = function (dispatch) {
         .catch(function (e) { console.error(e) })
       }
 
-      const end = Date.now() + val
+      const end = Date.now() + val + 1000
 
       dispatch(val)
 
@@ -25,7 +25,7 @@ module.exports = function (dispatch) {
 
         dispatch(diff)
 
-        if (diff > 0) {
+        if (diff > 1000) {
           timeoutID = setTimeout(cycle, 100)
         } else {
           notification = notify(message)
