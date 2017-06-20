@@ -32,7 +32,7 @@ module.exports = function ({state, dispatch, next}) {
         <h1 class="animated ${state <= 0 ? 'flash' : ''}">${format(state)}</h1>
         <div class="flex row mobile-column justify-center wrap auto">
           ${buttons.map((button) => html`
-          <div class="margin-2 auto">
+          <div class="margin-2 flex auto">
             <button class="button white full-width padding-2 margin-horizontal-1 background-dark-gray white" type="button" onclick=${click(button.time, button.message)}>${button.title}</button>
           </div>`)}
         </div>
