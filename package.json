@@ -4,8 +4,8 @@
   "scripts": {
     "test": "standard && tape 'test/**/*.js' | faucet",
     "cover": "nyc --reporter=html npm test",
-    "build": "npm run test && copy-files 'base/*' build && assets build && framework render renderer.js && optimize build build/bundle.css --inline",
-    "watch": "copy-files 'base/*' build -w & assets build -w --no-min & serve-files build --default 200"
+    "build": "npm run test && copy-files 'base/*' build && assets ./ build && framework render renderer.js && optimize build build/bundle.css --inline",
+    "watch": "copy-files 'base/*' build -w & assets ./ build -w --no-min & serve-files build --default 200"
   },
   "devDependencies": {
     "assert-snapshot": "^1.0.1",
@@ -15,7 +15,7 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^4.0.3",
+    "@erickmerchant/assets": "^5.0.0",
     "@erickmerchant/copy-files": "^1.2.0",
     "@erickmerchant/framework": "^11.0.0",
     "@erickmerchant/framework-cli": "^1.0.2",
