@@ -749,6 +749,8 @@
 .desktop-typesize-medium { font-size: var(--typesize-medium); }
 .desktop-typesize-small { font-size: var(--typesize-small); }
 }
+.blue { color: var(--blue); }
+.background-blue { background-color: var(--blue); }
 .black { color: var(--black); }
 .background-black { background-color: var(--black); }
 .dark-gray { color: var(--dark-gray); }
