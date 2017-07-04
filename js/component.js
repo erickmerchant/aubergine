@@ -28,7 +28,7 @@ module.exports = function ({state, dispatch, next}) {
   return html`
   <body class="flex column border-box items-center background-dark-gray white min-height-100vh">
     <div class="flex items-center justify-center auto full-width">
-      <form class="margin-horizontal-auto full-width max-width-50rem center">
+      <form class="margin-horizontal-auto full-width max-width-50rem align-center">
         <h1 class="animated ${state <= 0 ? 'flash' : ''}">${format(state)}</h1>
         <div class="flex row mobile-column justify-center wrap auto">
           ${buttons.map((button) => html`
@@ -44,7 +44,7 @@ module.exports = function ({state, dispatch, next}) {
         </div>
       </form>
     </div>
-    <footer class="margin-1 center typesize-small" role="contentinfo">
+    <footer class="margin-1 align-center font-size-small" role="contentinfo">
       <span class="inline-block padding-2">© Erick Merchant, 2017</span>
       <span class="inline-block padding-2">
         <a class="white" href="https://github.com/erickmerchant/chrono">

@@ -2,11 +2,6 @@
 @import "animate.css/source/_base.css";
 @import "animate.css/source/attention_seekers/flash.css";
 
-:root {
-  --border-width: 3px;
-  --border-radius: 3px;
-}
-
 body {
   margin: 0;
   line-height: 1.5;
@@ -21,14 +16,14 @@ h4, h5, h6 {
   margin-bottom: .5em;
 }
 
-h1 { font-size: var(--typesize-xx-large); }
-h2 { font-size: var(--typesize-x-large); }
-h3 { font-size: var(--typesize-large); }
+h1 { font-size: var(--font-size-xx-large); }
+h2 { font-size: var(--font-size-x-large); }
+h3 { font-size: var(--font-size-large); }
 
 @media (--breakpoint-mobile) {
-  h1 { font-size: var(--typesize-x-large); }
-  h2 { font-size: var(--typesize-large); }
-  h3 { font-size: var(--typesize-medium); }
+  h1 { font-size: var(--font-size-x-large); }
+  h2 { font-size: var(--font-size-large); }
+  h3 { font-size: var(--font-size-medium); }
 }
 
 a {
