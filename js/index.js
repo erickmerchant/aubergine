@@ -1,6 +1,6 @@
 const assert = require('assert')
 const framework = require('@erickmerchant/framework')
-const diff = require('nanomorph')
+const diff = require('yo-yo').update
 const component = require('./component')
 const target = document.querySelector('body')
 

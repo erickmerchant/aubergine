@@ -2,7 +2,7 @@ const icons = {
   github: require('geomicons-open/src/github'),
   clock: require('geomicons-open/src/clock')
 }
-const html = require('bel')
+const html = require('yo-yo')
 
 const buttons = [
   {
