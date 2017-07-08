@@ -2,14 +2,18 @@
 @import "animate.css/source/_base.css";
 @import "animate.css/source/attention_seekers/flash.css";
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  height: 100%;
   line-height: 1.5;
   font-family: Courier, monospace;
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1, h2, h3 {
   font-weight: bold;
   line-height: 1.25;
   margin-top: 1em;
@@ -36,32 +40,11 @@ a:hover {
   text-decoration: none;
 }
 
-.min-height-100vh {
-  min-height: 100vh;
-}
-
-.max-width-50rem {
-  max-width: 50rem;
-}
-
-.button {
+button {
   appearance: none;
-  border-radius: var(--border-radius);
-  border: var(--border-radius) solid currentColor;
   box-shadow: none;
   font-size: inherit;
-  font-weight: bold;
-  text-decoration: none;
-  white-space: nowrap;
   font-family: inherit;
-}
-
-.button:focus {
-  outline: var(--border-radius) solid inherit;
-}
-
-.button.is-disabled {
-  cursor: default;
 }
 
 .icon {

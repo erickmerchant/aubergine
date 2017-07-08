@@ -26,14 +26,14 @@ module.exports = function ({state, dispatch, next}) {
   const click = require('./click.js')(dispatch)
 
   return html`
-  <body class="flex column border-box items-center background-dark-gray white min-height-100vh">
+  <body class="flex column border-box items-center background-dark-gray white">
     <div class="flex items-center justify-center auto full-width">
-      <form class="margin-horizontal-auto full-width max-width-50rem align-center">
+      <form class="margin-horizontal-auto full-width max-width align-center">
         <h1 class="animated ${state <= 0 ? 'flash' : ''}">${format(state)}</h1>
         <div class="flex row mobile-column justify-center wrap auto">
           ${buttons.map((button) => html`
           <div class="margin-2 flex auto">
-            <button class="button white full-width padding-2 margin-horizontal-1 background-dark-gray white" type="button" onclick=${click(button.time, button.message)}>${button.title}</button>
+            <button class="border-radius border border-white bold white full-width padding-2 margin-horizontal-1 background-dark-gray white" type="button" onclick=${click(button.time, button.message)}>${button.title}</button>
           </div>`)}
         </div>
         <div class="full-width">
