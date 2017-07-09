@@ -2,9 +2,9 @@
   "name": "chrono",
   "private": true,
   "scripts": {
-    "test": "standard && tape 'test/**/*.js' | faucet",
+    "test": "standard",
     "cover": "nyc --reporter=html npm test",
-    "build": "npm run test && copy-files 'base/*' build && assets ./ build && framework render renderer.js && optimize build build/bundle.css --inline",
+    "build": "copy-files 'base/*' build && assets ./ build && framework render renderer.js && optimize build build/bundle.css --inline",
     "watch": "copy-files 'base/*' build -w & assets ./ build -w --no-min & serve-files build --default 200"
   },
   "devDependencies": {
