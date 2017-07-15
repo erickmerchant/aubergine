@@ -23,8 +23,6 @@ const buttons = [
 ]
 
 module.exports = function ({state, dispatch, next}) {
-  const click = require('./click.js')(dispatch)
-
   return html`
   <body class="flex column border-box items-center background-dark-gray white">
     <div class="flex items-center justify-center auto full-width">
@@ -33,7 +31,7 @@ module.exports = function ({state, dispatch, next}) {
         <div class="flex row mobile-column justify-center wrap auto">
           ${buttons.map((button) => html`
           <div class="margin-2 flex auto">
-            <button class="border-radius border bold white full-width padding-2 margin-horizontal-1 background-dark-gray white" type="button" onclick=${click(button.time, button.message)}>${button.title}</button>
+            <button class="border-radius border bold white full-width padding-2 margin-horizontal-1 background-dark-gray white" type="button" onclick=${() => dispatch(button.time, button.message)}>${button.title}</button>
           </div>`)}
         </div>
         <div class="full-width">
@@ -53,8 +51,7 @@ module.exports = function ({state, dispatch, next}) {
         </a>
       </span>
     </footer>
-  </body>
-  `
+  </body>`
 }
 
 function icon (key) {
