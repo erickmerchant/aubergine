@@ -1,38 +1,42 @@
-const notify = require('./notify.js')()
-let timeoutID, notification
-
-// assert.equal(typeof val, 'number')
-
 module.exports = function (seed) {
-  seed(0)
+  seed({
+    value: 0,
+    id: null,
+    message: null
+  })
 
-  return function (commit, val, message) {
-    if (timeoutID) {
-      clearTimeout(timeoutID)
-    }
+  return function (commit, value, message) {
+    const end = Date.now() + value + 1000
 
-    if (notification) {
-      notification
-      .then(function (notification) { notification.close() })
-      .catch(function (e) { console.error(e) })
-    }
+    commit((state) => {
+      state.message = null
 
-    const end = Date.now() + val + 1000
+      if (state.id) {
+        clearTimeout(state.id)
+      }
 
-    commit(() => val)
+      let id = setTimeout(cycle, 100)
 
-    timeoutID = setTimeout(cycle, 100)
+      return {
+        value,
+        id
+      }
+    })
 
     function cycle () {
-      const diff = end - Date.now()
+      const value = end - Date.now()
 
-      commit(() => diff)
+      commit((state) => {
+        state.value = value
 
-      if (diff > 1000) {
-        timeoutID = setTimeout(cycle, 100)
-      } else {
-        notification = notify(message)
-      }
+        if (value > 1000) {
+          state.id = setTimeout(cycle, 100)
+        } else {
+          state.message = message
+        }
+
+        return state
+      })
     }
   }
 }

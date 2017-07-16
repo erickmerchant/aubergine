@@ -1,9 +1,9 @@
+const notify = require('./notify.js')
 const icons = {
   github: require('geomicons-open/src/github'),
   clock: require('geomicons-open/src/clock')
 }
 const html = require('yo-yo')
-
 const buttons = [
   {
     time: 25 * 60000,
@@ -23,11 +23,17 @@ const buttons = [
 ]
 
 module.exports = function ({state, dispatch, next}) {
+  next(function () {
+    if (state.message) {
+      notify(state.message)
+    }
+  })
+
   return html`
   <body class="flex column border-box items-center background-dark-gray white">
     <div class="flex items-center justify-center auto full-width">
       <form class="margin-horizontal-auto full-width max-width align-center">
-        <h1 class="animated ${state <= 0 ? 'flash' : ''}">${format(state)}</h1>
+        <h1 class="animated ${state.value <= 0 ? 'flash' : ''}">${format(state.value)}</h1>
         <div class="flex row mobile-column justify-center wrap auto">
           ${buttons.map((button) => html`
           <div class="margin-2 flex auto">

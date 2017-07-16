@@ -1,4 +1,3 @@
-const assert = require('assert')
 const framework = require('@erickmerchant/framework')
 const diff = require('yo-yo').update
 const store = require('./store')
