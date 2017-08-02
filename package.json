@@ -11,7 +11,7 @@
     "faucet": "0.0.1",
     "nyc": "^11.1.0",
     "standard": "^10.0.0",
-    "tape": "^4.7.0"
+    "tape": "^4.8.0"
   },
   "dependencies": {
     "@erickmerchant/assets": "^6.3.1",
