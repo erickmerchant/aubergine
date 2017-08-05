@@ -1,5 +1,5 @@
 const framework = require('@erickmerchant/framework')
-const diff = require('yo-yo').update
+const diff = require('nanomorph')
 const store = require('./store')
 const component = require('./component')
 const target = document.querySelector('body')
