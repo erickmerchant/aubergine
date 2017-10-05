@@ -30,7 +30,7 @@ module.exports = function ({state, dispatch, next}) {
   })
 
   return html`
-  <body class="flex column border-box items-center background-dark-gray white">
+  <body class="flex column items-center background-dark-gray white">
     <div class="flex items-center justify-center auto full-width">
       <div class="margin-horizontal-auto full-width max-width align-center">
         <h1 class="animated ${state.value <= 0 ? 'flash' : ''}">${format(state.value)}</h1>
