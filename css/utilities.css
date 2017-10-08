@@ -771,19 +771,6 @@
 .desktop-font-size-medium { font-size: var(--font-size-medium); }
 .desktop-font-size-small { font-size: var(--font-size-small); }
 }
-.blue { color: var(--blue); }
-.background-blue { background-color: var(--blue); }
-.placeholder-blue::placeholder { color: var(--blue); }
-.border-blue {
-  border-top: var(--border-width) solid var(--blue);
-  border-right: var(--border-width) solid var(--blue);
-  border-bottom: var(--border-width) solid var(--blue);
-  border-left: var(--border-width) solid var(--blue);
-}
-.border-top-blue { border-top: var(--border-width) solid var(--blue); }
-.border-right-blue { border-right: var(--border-width) solid var(--blue); }
-.border-bottom-blue { border-bottom: var(--border-width) solid var(--blue); }
-.border-left-blue { border-left: var(--border-width) solid var(--blue); }
 .black { color: var(--black); }
 .background-black { background-color: var(--black); }
 .placeholder-black::placeholder { color: var(--black); }

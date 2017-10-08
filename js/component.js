@@ -42,8 +42,7 @@ module.exports = function ({state, dispatch, next}) {
         </div>
         <div class="full-width">
           <h2>
-            ${icon('clock')}
-            Chrono
+            ${icon('clock')} Chrono
           </h2>
         </div>
       </div>
@@ -52,8 +51,7 @@ module.exports = function ({state, dispatch, next}) {
       <span class="inline-block padding-2">© Erick Merchant, 2017</span>
       <span class="inline-block padding-2">
         <a class="white" href="https://github.com/erickmerchant/chrono">
-          ${icon('github')}
-          View Source
+          ${icon('github')} View Source
         </a>
       </span>
     </footer>

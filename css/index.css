@@ -13,7 +13,7 @@ body {
   font-family: Courier, monospace;
 }
 
-h1, h2, h3 {
+h1, h2 {
   font-weight: bold;
   line-height: 1.25;
   margin-top: 1em;
@@ -22,12 +22,10 @@ h1, h2, h3 {
 
 h1 { font-size: var(--font-size-xx-large); }
 h2 { font-size: var(--font-size-x-large); }
-h3 { font-size: var(--font-size-large); }
 
 @media (--breakpoint-mobile) {
   h1 { font-size: var(--font-size-x-large); }
   h2 { font-size: var(--font-size-large); }
-  h3 { font-size: var(--font-size-medium); }
 }
 
 a {
