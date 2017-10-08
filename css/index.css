@@ -51,3 +51,11 @@ button {
   vertical-align: -0.125em; /* 2 */
   fill: currentcolor;
 }
+
+.box-shadow {
+  box-shadow: 0px 0px 3px var(--black);
+}
+
+.text-shadow {
+  text-shadow: 0px 0px 3px var(--black);
+}
