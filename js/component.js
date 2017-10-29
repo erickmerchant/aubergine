@@ -1,9 +1,9 @@
 const notify = require('./notify.js')
+const html = require('bel')
 const icons = {
   github: require('geomicons-open/src/github'),
   clock: require('geomicons-open/src/clock')
 }
-const html = require('bel')
 const buttons = [
   {
     time: 25 * 60000,
