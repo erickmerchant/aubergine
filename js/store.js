@@ -15,11 +15,10 @@ module.exports = function (seed) {
         clearTimeout(state.id)
       }
 
-      let id = setTimeout(cycle, 100)
+      cycle()
 
       return {
-        value,
-        id
+        value
       }
     })
 
