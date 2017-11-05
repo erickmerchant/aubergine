@@ -5,7 +5,7 @@
     "test": "standard",
     "cover": "nyc --reporter=html npm test",
     "build": "copy-files base/* build && assets . build && framework render fixtures/*.json js/component.js build/200.html && optimize build build/bundle.css --inline",
-    "watch": "copy-files base/* build -w & assets . build -w --no-min & serve-files build --default 200"
+    "watch": "copy-files base/* build -w & assets . build -w --no-min & serve-files build --default 200 --open"
   },
   "devDependencies": {
     "faucet": "0.0.1",
