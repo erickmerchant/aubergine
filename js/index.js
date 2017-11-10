@@ -4,4 +4,4 @@ const store = require('./store')
 const component = require('./component')
 const target = document.querySelector('body')
 
-framework({target, store, component, diff})()
+framework({target, store, component, diff})

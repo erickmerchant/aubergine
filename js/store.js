@@ -1,11 +1,13 @@
-module.exports = function (seed) {
-  seed({
-    value: 0,
-    id: null,
-    message: null
+module.exports = function (commit) {
+  commit(() => {
+    return {
+      value: 0,
+      id: null,
+      message: null
+    }
   })
 
-  return function (commit, value, message) {
+  return function (value, message) {
     const end = Date.now() + value + 1000
 
     commit((state) => {
@@ -17,9 +19,9 @@ module.exports = function (seed) {
 
       cycle()
 
-      return {
-        value
-      }
+      state.value = value
+
+      return state
     })
 
     function cycle () {
