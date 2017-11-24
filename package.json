@@ -14,12 +14,12 @@
     "tape": "^4.8.0"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^9.0.3",
-    "@erickmerchant/copy-files": "^1.4.1",
+    "@erickmerchant/assets": "^9.0.4",
+    "@erickmerchant/copy-files": "^1.4.2",
     "@erickmerchant/framework": "^13.0.1",
-    "@erickmerchant/framework-cli": "^3.0.13",
-    "@erickmerchant/optimize": "^5.0.16",
-    "@erickmerchant/serve-files": "^3.1.0",
+    "@erickmerchant/framework-cli": "^3.0.14",
+    "@erickmerchant/optimize": "^5.0.17",
+    "@erickmerchant/serve-files": "^3.1.1",
     "animate.css": "^3.5.2",
     "bel": "^5.1.5",
     "geomicons-open": "^2.0.0",
