@@ -1,61 +1,6 @@
+@import './variables.css';
+@import './basics.css';
 @import './utilities.css';
+@import './additions.css';
 @import "animate.css/source/_base.css";
 @import "animate.css/source/attention_seekers/flash.css";
-
-html {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  height: 100%;
-  line-height: 1.5;
-  font-family: Courier, monospace;
-}
-
-h1, h2 {
-  font-weight: bold;
-  line-height: 1.25;
-  margin-top: 1em;
-  margin-bottom: .5em;
-}
-
-h1 { font-size: var(--font-size-xx-large); }
-h2 { font-size: var(--font-size-x-large); }
-
-@media (--breakpoint-mobile) {
-  h1 { font-size: var(--font-size-x-large); }
-  h2 { font-size: var(--font-size-large); }
-}
-
-a {
-  color: var(--blue);
-  text-decoration: none;
-}
-
-a:hover {
-  box-shadow: 0 .1em 0 0 currentColor;
-  text-decoration: none;
-}
-
-button {
-  appearance: none;
-  box-shadow: none;
-  font-size: inherit;
-  font-family: inherit;
-}
-
-.icon {
-  width: 1em; /* 1 */
-  height: 1em;
-  vertical-align: -0.125em; /* 2 */
-  fill: currentcolor;
-}
-
-.box-shadow {
-  box-shadow: 0px 0px 3px var(--black);
-}
-
-.text-shadow {
-  text-shadow: 0px 0px 3px var(--black);
-}
