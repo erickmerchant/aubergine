@@ -12,3 +12,23 @@
 .text-shadow {
   text-shadow: 0px 0px 3px var(--black);
 }
+
+.gap-2 {
+  grid-gap: var(--whitespace-2)
+}
+
+.grid {
+  display: grid;
+}
+
+@media (--breakpoint-desktop) {
+  .desktop-auto-flow-column {
+    grid-auto-flow: column;
+  }
+}
+
+@media (--breakpoint-mobile) {
+  .mobile-auto-flow-row {
+    grid-auto-flow: row;
+  }
+}

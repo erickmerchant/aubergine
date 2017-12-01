@@ -30,23 +30,21 @@ module.exports = function ({state, dispatch, next}) {
   })
 
   return html`
-  <body class="flex column items-center background-dark-gray white">
-    <div class="flex items-center justify-center auto full-width">
-      <div class="margin-horizontal-auto full-width max-width align-center">
-        <h1 class="animated ${state.value <= 0 ? 'flash' : ''} text-shadow">${format(state.value)}</h1>
-        <div class="flex row mobile-column justify-center wrap auto">
-          ${buttons.map((button) => html`
-          <div class="mobile-margin-horizontal-4 flex auto">
-            <button class="border-radius border bold full-width padding-2 margin-horizontal-1 margin-vertical-1 background-gray white box-shadow text-shadow" type="button" onclick=${() => dispatch(button.time, button.message)}>${button.title}</button>
-          </div>`)}
-        </div>
-        <div class="full-width">
-          <h2 class="text-shadow">
-            ${icon('clock')} Chrono
-          </h2>
-        </div>
+  <body class="background-dark-gray white">
+    <main class="full-width margin-horizontal-auto max-width align-center">
+      <h1 class="animated ${state.value <= 0 ? 'flash' : ''} text-shadow">${format(state.value)}</h1>
+      <div class="grid desktop-auto-flow-column mobile-auto-flow-row gap-2 margin-horizontal-2">
+        ${buttons.map((button) => html`
+        <div>
+          <button class="border-radius border bold full-width padding-2 background-gray white box-shadow text-shadow" type="button" onclick=${() => dispatch(button.time, button.message)}>${button.title}</button>
+        </div>`)}
       </div>
-    </div>
+      <div class="full-width">
+        <h2 class="text-shadow">
+          ${icon('clock')} Chrono
+        </h2>
+      </div>
+    </main>
     <footer class="margin-1 align-center font-size-small text-shadow" role="contentinfo">
       <span class="inline-block padding-2">© Erick Merchant, 2017</span>
       <span class="inline-block padding-2">
