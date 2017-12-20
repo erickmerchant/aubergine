@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@erickmerchant/assets": "^10.3.3",
-    "@erickmerchant/copy-files": "^1.6.3",
+    "@erickmerchant/copy-files": "^1.7.0",
     "@erickmerchant/framework": "^13.1.1",
     "@erickmerchant/framework-cli": "^4.1.2",
     "@erickmerchant/optimize": "^6.2.2",
