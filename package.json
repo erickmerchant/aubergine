@@ -3,15 +3,15 @@
   "private": true,
   "scripts": {
     "test": "standard",
-    "build": "copy-files base/* build && assets build && framework render fixtures/*.json js/component.js build/200.html && optimize build",
-    "watch": "copy-files base/* build -w & assets build -w --no-min & serve-files build --default 200 --open"
+    "build": "copy-files base/* build && assets css/index.css js/index.js build/bundle && framework render fixtures/*.json js/component.js build/200.html && optimize build",
+    "watch": "copy-files base/* build -w & assets css/index.css js/index.js build/bundle -w --no-min & serve-files build --default 200 --open"
   },
   "devDependencies": {
     "standard": "^10.0.3",
     "tape": "^4.8.0"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^10.3.3",
+    "@erickmerchant/assets": "^11.0.2",
     "@erickmerchant/copy-files": "^1.7.1",
     "@erickmerchant/framework": "^13.1.1",
     "@erickmerchant/framework-cli": "^4.1.2",
