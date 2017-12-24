@@ -1,5 +1,5 @@
 module.exports = function (commit) {
-  commit(() => {
+  commit(function () {
     return {
       value: 0,
       id: null,
@@ -10,7 +10,7 @@ module.exports = function (commit) {
   return function (value, message) {
     const end = Date.now() + value + 1000
 
-    commit((state) => {
+    commit(function (state) {
       state.message = null
 
       if (state.id) {
@@ -27,7 +27,7 @@ module.exports = function (commit) {
     function cycle () {
       const value = end - Date.now()
 
-      commit((state) => {
+      commit(function (state) {
         state.value = value
 
         if (value > 1000) {
