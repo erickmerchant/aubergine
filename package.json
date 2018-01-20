@@ -11,7 +11,7 @@
     "tape": "^4.8.0"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^11.1.12",
+    "@erickmerchant/assets": "^11.1.13",
     "@erickmerchant/copy-files": "^1.8.2",
     "@erickmerchant/framework": "^13.1.2",
     "@erickmerchant/framework-cli": "^4.2.3",
