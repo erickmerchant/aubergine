@@ -14,7 +14,7 @@
 }
 
 .gap-2 {
-  grid-gap: var(--whitespace-2)
+  grid-gap: var(--spacing-2)
 }
 
 .grid {
