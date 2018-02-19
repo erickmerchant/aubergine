@@ -7,7 +7,7 @@
     "watch": "copy-files base/* build -w & assets css/index.css js/index.js build/bundle -w --no-min & serve-files build --default 200 --open"
   },
   "devDependencies": {
-    "standard": "^10.0.3",
+    "standard": "^11.0.0",
     "tape": "^4.8.0"
   },
   "dependencies": {

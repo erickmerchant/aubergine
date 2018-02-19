@@ -69,14 +69,14 @@ function format (diff) {
   diff /= 1000
 
   const parts = [diff / 60, diff % 60]
-  .map((int) => Math.floor(int))
-  .map(function (int) {
-    if (int >= 10) {
-      return int
-    }
+    .map((int) => Math.floor(int))
+    .map(function (int) {
+      if (int >= 10) {
+        return int
+      }
 
-    return '0' + int
-  })
+      return '0' + int
+    })
 
   return parts.join(':')
 }

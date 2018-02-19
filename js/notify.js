@@ -13,8 +13,8 @@ module.exports = function (message) {
 
       return Promise.reject(new Error('denied'))
     })
-    .catch(function (e) {
-      console.error(e)
-    })
+      .catch(function (e) {
+        console.error(e)
+      })
   }
 }
