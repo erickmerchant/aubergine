@@ -7,11 +7,7 @@ module.exports = function (message) {
         notification.onclick = function () {
           window.focus()
         }
-
-        return notification
       }
-
-      return Promise.reject(new Error('denied'))
     })
       .catch(function (e) {
         console.error(e)

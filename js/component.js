@@ -30,8 +30,7 @@ module.exports = function ({state, dispatch, next}) {
     }
   })
 
-  return html`
-  <body class="flex column items-center justify-center background-dark-gray white">
+  return html`<body class="flex column items-center justify-center background-dark-gray white">
     <main class="full-width margin-horizontal-auto max-width align-center">
       <h1 class="animated ${state.value <= 0 ? 'flash' : ''} text-shadow">${format(state.value)}</h1>
       <div class="grid desktop-auto-flow-column mobile-auto-flow-row gap-2 margin-horizontal-2">
@@ -61,8 +60,7 @@ module.exports = function ({state, dispatch, next}) {
 }
 
 function icon (key) {
-  return html`
-  <svg class="icon" viewBox="0 0 32 32">
+  return html`<svg class="icon" viewBox="0 0 32 32">
     <path d="${icons[key]}">
   </svg>`
 }
