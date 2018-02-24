@@ -18,7 +18,7 @@
     "@erickmerchant/optimize": "^6.3.11",
     "@erickmerchant/serve-files": "^3.6.1",
     "animate.css": "^3.6.1",
-    "bel": "^5.1.6",
+    "bel": "^5.1.7",
     "geomicons-open": "^2.0.0",
     "nanomorph": "^5.1.3"
   }
