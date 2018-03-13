@@ -1,6 +1,6 @@
 const notify = require('./notify.js')
-const html = require('bel')
-const raw = require('bel/raw')
+const html = require('nanohtml')
+const raw = require('nanohtml/raw')
 const icons = {
   github: require('geomicons-open/src/github'),
   clock: require('geomicons-open/src/clock')
