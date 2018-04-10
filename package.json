@@ -11,11 +11,11 @@
     "tape": "^4.9.0"
   },
   "dependencies": {
-    "@erickmerchant/assets": "^13.0.3",
+    "@erickmerchant/assets": "^13.0.6",
     "@erickmerchant/copy-files": "^2.0.2",
     "@erickmerchant/framework": "^13.3.0",
     "@erickmerchant/framework-cli": "^5.0.9",
-    "@erickmerchant/optimize": "^9.0.2",
+    "@erickmerchant/optimize": "^9.0.4",
     "@erickmerchant/serve-files": "^4.0.3",
     "animate.css": "^3.6.1",
     "geomicons-open": "^2.0.0",
