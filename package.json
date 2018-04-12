@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "test": "standard",
-    "build": "copy-files base build && assets css/index.css js/index.js build/bundle && framework render js/fixtures.js js/component.js build/200.html && optimize build",
+    "build": "copy-files base build && assets css/index.css js/index.js build/bundle && framework render js/fixture.js js/component.js build/200.html && optimize build",
     "watch": "copy-files base build -w & assets css/index.css js/index.js build/bundle -w --no-min & serve-files build --default 200 --open"
   },
   "devDependencies": {
