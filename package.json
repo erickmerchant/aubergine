@@ -3,8 +3,10 @@
   "private": true,
   "scripts": {
     "test": "standard",
-    "build": "copy-files base build && assets css/index.css js/index.js build/bundle && framework render js/fixture.js js/component.js build/200.html && optimize build",
-    "watch": "copy-files base build -w & assets css/index.css js/index.js build/bundle -w --no-min & serve-files build --default 200 --open"
+    "assets": "assets css/index.css js/index.js build/bundle",
+    "copy-files": "copy-files base build",
+    "build": "npm run copy-files && npm run assets && framework render js/fixture.js js/component.js build/200.html && optimize build",
+    "watch": "npm run copy-files -- -w & npm run assets -- -w --no-min & serve-files build --default 200 --open"
   },
   "devDependencies": {
     "standard": "^11.0.1",
