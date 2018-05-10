@@ -2,21 +2,21 @@ module.exports = function (commit) {
   commit(function () {
     return {
       value: 300000,
-      location: '/break.html'
+      location: '/snapshots/break.html'
     }
   })
 
   commit(function () {
     return {
       value: 0,
-      location: '/reset.html'
+      location: '/snapshots/reset.html'
     }
   })
 
   commit(function () {
     return {
       value: 1500000,
-      location: '/work.html'
+      location: '/snapshots/work.html'
     }
   })
 }
