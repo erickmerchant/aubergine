@@ -4,9 +4,9 @@
   "scripts": {
     "test": "standard",
     "assets": "assets css/index.css js/index.js dist/bundle",
-    "copy-files": "copy-files files dist",
-    "build": "npm run copy-files && npm run assets && framework render js/fixture.js js/component.js dist/index.html && optimize dist && rimraf dist/snapshots",
-    "watch": "npm run copy-files -- -w & npm run assets -- -w --no-min & serve-files dist --open"
+    "clean": "rimraf dist && copy-files files dist",
+    "build": "npm run clean && npm run assets && framework render js/fixture.js js/component.js dist/index.html && optimize dist && rimraf dist/snapshots",
+    "watch": "npm run clean -- -w & npm run assets -- -w --no-min & serve-files dist --open"
   },
   "devDependencies": {
     "standard": "^11.0.1",
