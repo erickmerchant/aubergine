@@ -54,7 +54,7 @@ module.exports = function ({state, dispatch, next}) {
 
   function button (button) {
     return html`<div>
-      <button class="border-radius border-black bold full-width padding-2 background-white black" type="button" onclick=${() => dispatch(button.time, button.message)}>${button.title}</button>
+      <button class="border-radius border-black bold full-width padding-2 background-white black hover-background-black hover-white" type="button" onclick=${() => dispatch(button.time, button.message)}>${button.title}</button>
     </div>`
   }
 }

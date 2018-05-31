@@ -666,9 +666,17 @@
 .desktop-font-size-5 { font-size: var(--font-size-5); }
 .desktop-font-size-6 { font-size: var(--font-size-6); }
 }
-.black { color: var(--black); }
-.background-black { background-color: var(--black); }
-.placeholder-black::placeholder { color: var(--black); }
+.black,
+.placeholder-black::placeholder,
+.hover-black:hover,
+.focus-black:focus {
+  color: var(--black);
+}
+.background-black,
+.hover-background-black:hover,
+.focus-background-black:focus {
+  background-color: var(--black);
+}
 .border-black {
   border-top: var(--border-width) solid var(--black);
   border-right: var(--border-width) solid var(--black);
@@ -679,9 +687,17 @@
 .border-right-black { border-right: var(--border-width) solid var(--black); }
 .border-bottom-black { border-bottom: var(--border-width) solid var(--black); }
 .border-left-black { border-left: var(--border-width) solid var(--black); }
-.white { color: var(--white); }
-.background-white { background-color: var(--white); }
-.placeholder-white::placeholder { color: var(--white); }
+.white,
+.placeholder-white::placeholder,
+.hover-white:hover,
+.focus-white:focus {
+  color: var(--white);
+}
+.background-white,
+.hover-background-white:hover,
+.focus-background-white:focus {
+  background-color: var(--white);
+}
 .border-white {
   border-top: var(--border-width) solid var(--white);
   border-right: var(--border-width) solid var(--white);
