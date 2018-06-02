@@ -28,8 +28,13 @@ h2 { font-size: var(--font-size-2); }
   h2 { font-size: var(--font-size-3); }
 }
 
-a, a:hover {
+a {
   color: currentColor;
+  text-decoration: none;
+}
+
+a:hover {
+  box-shadow: 0 .1em 0 0 currentColor;
   text-decoration: none;
 }
 
