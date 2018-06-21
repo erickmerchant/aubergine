@@ -4,9 +4,9 @@
   "scripts": {
     "test": "standard",
     "assets": "assets css/index.css js/index.js dist/bundle",
-    "clean": "rimraf dist && copy-files files dist",
-    "build": "npm run clean && npm run assets && framework render js/fixture.js js/component.js dist/index.html && optimize dist && rimraf dist/snapshots",
-    "watch": "npm run clean -- -w & npm run assets -- -w --no-min & serve-files dist --open --port 3000"
+    "setup": "rimraf dist && copy-files files dist",
+    "build": "npm run setup && npm run assets && framework render js/fixture.js js/component.js dist/index.html && optimize dist && rimraf dist/snapshots",
+    "watch": "npm run setup -- -w & npm run assets -- -w --no-min & serve-files dist --open --port 3000"
   },
   "devDependencies": {
     "standard": "^11.0.1",
@@ -17,7 +17,7 @@
     "@erickmerchant/copy-files": "^2.2.3",
     "@erickmerchant/framework": "^13.3.0",
     "@erickmerchant/framework-cli": "^5.2.3",
-    "@erickmerchant/optimize": "^9.4.3",
+    "@erickmerchant/optimize": "^9.5.0",
     "@erickmerchant/serve-files": "^6.1.3",
     "animate.css": "^3.6.1",
     "geomicons-open": "^2.0.0",
