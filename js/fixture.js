@@ -19,4 +19,6 @@ module.exports = function (commit) {
       location: '/snapshots/work.html'
     }
   })
+
+  return {}
 }
