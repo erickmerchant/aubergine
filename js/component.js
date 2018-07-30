@@ -43,7 +43,7 @@ module.exports = function ({state, dispatch, next}) {
       </div>
     </main>
     <footer class="margin-1 align-center font-size-6 black" role="contentinfo">
-      <span class="inline-block padding-2">${raw('&copy;')} Erick Merchant, 2017</span>
+      <span class="inline-block padding-2">${raw('&copy;')} ${(new Date()).getFullYear()} Erick Merchant</span>
       <span class="inline-block padding-2">
         <a class="black" href="https://github.com/erickmerchant/chrono">
           ${icon('github')} View Source
