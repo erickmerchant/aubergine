@@ -30,13 +30,13 @@ module.exports = function ({state, dispatch, next}) {
     }
   })
 
-  return html`<body class="flex column items-center justify-center background-white black">
-    <main class="full-width margin-horizontal-auto mobile-max-width-1 desktop-max-width-2 align-center">
+  return html`<body class="flex column items-center justify-center background-white black border-box">
+    <main class="width-full margin-x-auto mobile-max-width-1 desktop-max-width-2 align-center">
       <h1 class="animated ${state.value <= 0 ? 'flash' : ''}">${format(state.value)}</h1>
-      <div class="grid desktop-auto-flow-column mobile-auto-flow-row gap-2 margin-horizontal-2">
+      <div class="grid desktop-auto-flow-column mobile-auto-flow-row gap-2 margin-x-2">
         ${buttons.map(button)}
       </div>
-      <div class="full-width">
+      <div class="width-full">
         <h2 class="">
           ${icon('clock')} Chrono
         </h2>
@@ -54,7 +54,7 @@ module.exports = function ({state, dispatch, next}) {
 
   function button (button) {
     return html`<div>
-      <button class="border-radius border-black bold full-width padding-2 background-white black hover-background-black hover-white" type="button" onclick=${() => dispatch('set', button.time, button.message)}>${button.title}</button>
+      <button class="border-radius border-black bold width-full padding-2 background-white black hover-background-black hover-white" type="button" onclick=${() => dispatch('set', button.time, button.message)}>${button.title}</button>
     </div>`
   }
 }

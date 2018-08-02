@@ -4,23 +4,3 @@
   vertical-align: -0.125em; /* 2 */
   fill: currentcolor;
 }
-
-.gap-2 {
-  grid-gap: var(--spacing-2)
-}
-
-.grid {
-  display: grid;
-}
-
-@media (--breakpoint-desktop) {
-  .desktop-auto-flow-column {
-    grid-auto-flow: column;
-  }
-}
-
-@media (--breakpoint-mobile) {
-  .mobile-auto-flow-row {
-    grid-auto-flow: row;
-  }
-}
