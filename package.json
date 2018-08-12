@@ -5,7 +5,7 @@
     "test": "standard",
     "assets": "assets css/index.css js/index.js dist/bundle",
     "setup": "rimraf dist && copy-files files dist",
-    "build": "npm run setup && npm run assets && framework render js/fixture.js js/component.js dist/200.html && optimize dist && rimraf dist/snapshots",
+    "build": "npm run setup && npm run assets && framework render js/fixture.js js/body.js dist/200.html && optimize dist && rimraf dist/snapshots",
     "watch": "npm run setup -- -w & npm run assets -- -w --no-min & serve-files dist --open --200"
   },
   "devDependencies": {
